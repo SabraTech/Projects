@@ -49,8 +49,8 @@ public class ShapeButtonListener implements ActionListener {
    * @param menu
    *          the menu
    */
-  public ShapeButtonListener(DrawingEngine engine, Gui guiWindow, JPanel panel,
-      DrawingBoard canvas, JComboBox<Object> menu, JButton sourceButton, Factory factory) {
+  public ShapeButtonListener(DrawingEngine engine, Gui guiWindow, JPanel panel, DrawingBoard canvas,
+      JComboBox<Object> menu, JButton sourceButton, Factory factory) {
     this.engine = engine;
     this.panel = panel;
     this.canvas = canvas;
