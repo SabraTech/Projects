@@ -59,7 +59,6 @@ public class XmlReaderAndWriter {
           // get the name of the shape
           String shapeName = dummyElement.getAttribute("name");
           // set the name of the shape
-          System.out.println(shapeName);
           returnedShapes[tmp] = factory.getShapeByExactName(shapeName);
 
           // loop for map

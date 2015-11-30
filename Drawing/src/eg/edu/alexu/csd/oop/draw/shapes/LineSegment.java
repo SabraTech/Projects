@@ -86,7 +86,7 @@ public class LineSegment extends MyShape {
         || !properties.containsKey("EndPointYCoordinate")) {
       // do nothing
     } else {
-      this.properties = MapCloner.cloneMap(properties);
+      this.properties = MapCloner.getInst().cloneMap(properties);
     }
 
   }
@@ -99,7 +99,7 @@ public class LineSegment extends MyShape {
   @Override
   public Map<String, Double> getProperties() {
     // TODO Auto-generated method stub
-    return MapCloner.cloneMap(properties);
+    return MapCloner.getInst().cloneMap(properties);
   }
 
   /*
@@ -113,7 +113,7 @@ public class LineSegment extends MyShape {
     if (super.getPosition() != null && properties.get("EndPointXCoordinate") != null
         && properties.get("EndPointYCoordinate") != null) {
 
-      Graphics2D canvas2D = (Graphics2D)canvas;
+      Graphics2D canvas2D = (Graphics2D) canvas;
       canvas2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
       canvas2D.setStroke(new BasicStroke(2));
       Double firstCoord = properties.get("EndPointXCoordinate");
@@ -134,7 +134,7 @@ public class LineSegment extends MyShape {
   public Object clone() throws CloneNotSupportedException {
     // TODO Auto-generated method stub
     try {
-      HashMap<String, Double> clonedProperties = MapCloner.cloneMap(properties);
+      HashMap<String, Double> clonedProperties = MapCloner.getInst().cloneMap(properties);
       return (Object) new LineSegment(new Point(super.getPosition().x, super.getPosition().y),
           clonedProperties, super.getColor(), super.getFillColor());
 

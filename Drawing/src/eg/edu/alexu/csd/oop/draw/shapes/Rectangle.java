@@ -85,8 +85,8 @@ public class Rectangle extends MyShape {
         || properties.get("Length") == null) {
       // do nothing
     } else {
-      
-      Graphics2D canvas2D = (Graphics2D)canvas;
+
+      Graphics2D canvas2D = (Graphics2D) canvas;
       canvas2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
       canvas2D.setStroke(new BasicStroke(2));
       Double width = properties.get("Width");
@@ -111,7 +111,7 @@ public class Rectangle extends MyShape {
     // TODO Auto-generated method stub
 
     try {
-      HashMap<String, Double> clonedProperties = MapCloner.cloneMap(properties);
+      HashMap<String, Double> clonedProperties = MapCloner.getInst().cloneMap(properties);
       return (Object) new Rectangle(new Point(super.getPosition().x, super.getPosition().y),
           clonedProperties, super.getColor(), super.getFillColor());
     } catch (Exception e) {

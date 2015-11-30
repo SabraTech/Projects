@@ -80,7 +80,7 @@ public class Ellipse extends MyShape {
   public void draw(Graphics canvas) {
     // TODO Auto-generated method stub
 
-    Graphics2D canvas2D = (Graphics2D)canvas;
+    Graphics2D canvas2D = (Graphics2D) canvas;
     canvas2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     canvas2D.setStroke(new BasicStroke(2));
     Double radiusOne = properties.get("MajorRadius");
@@ -103,7 +103,7 @@ public class Ellipse extends MyShape {
   public Object clone() throws CloneNotSupportedException {
     // TODO Auto-generated method stub
     try {
-      HashMap<String, Double> clonedProperties = MapCloner.cloneMap(this.properties);
+      HashMap<String, Double> clonedProperties = MapCloner.getInst().cloneMap(this.properties);
       return (Object) new Ellipse(new Point(super.getPosition().x, super.getPosition().y),
           clonedProperties, super.getColor(), super.getFillColor());
     } catch (Exception e) {

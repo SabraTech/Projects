@@ -109,16 +109,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="eg.edu.alexu.csd.oop.draw.map.cloner.MapCloner" project="Drawing" 
-    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/map/cloner/MapCloner.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="309" y="1092"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="eg.edu.alexu.csd.oop.draw.history.History" project="Drawing" 
+  <class id="13" language="java" name="eg.edu.alexu.csd.oop.draw.history.History" project="Drawing" 
     file="/Drawing/src/eg/edu/alexu/csd/oop/draw/history/History.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="594" y="301"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
@@ -127,7 +118,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="eg.edu.alexu.csd.oop.draw.save.JsonReaderAndWriter" project="Drawing" 
+  <class id="14" language="java" name="eg.edu.alexu.csd.oop.draw.save.JsonReaderAndWriter" project="Drawing" 
     file="/Drawing/src/eg/edu/alexu/csd/oop/draw/save/JsonReaderAndWriter.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="156" y="102"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
@@ -136,7 +127,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="eg.edu.alexu.csd.oop.draw.history.Action" project="Drawing" 
+  <class id="15" language="java" name="eg.edu.alexu.csd.oop.draw.history.Action" project="Drawing" 
     file="/Drawing/src/eg/edu/alexu/csd/oop/draw/history/Action.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="385" y="523"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
@@ -145,7 +136,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="eg.edu.alexu.csd.oop.draw.state.State" project="Drawing" 
+  <class id="16" language="java" name="eg.edu.alexu.csd.oop.draw.state.State" project="Drawing" 
     file="/Drawing/src/eg/edu/alexu/csd/oop/draw/state/State.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="129" y="301"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
@@ -154,7 +145,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="eg.edu.alexu.csd.oop.draw.state.StatesComparator" project="Drawing" 
+  <class id="17" language="java" name="eg.edu.alexu.csd.oop.draw.state.StatesComparator" project="Drawing" 
     file="/Drawing/src/eg/edu/alexu/csd/oop/draw/state/StatesComparator.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="371" y="305"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
@@ -163,7 +154,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="eg.edu.alexu.csd.oop.draw.ClassFinder" project="Drawing" 
+  <class id="18" language="java" name="eg.edu.alexu.csd.oop.draw.ClassFinder" project="Drawing" 
     file="/Drawing/src/eg/edu/alexu/csd/oop/draw/ClassFinder.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="967" y="482"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
@@ -172,38 +163,43 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <dependency id="20">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="13"/>  
-  </dependency>  
-  <association id="21">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="22" name="seule"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
+  <class id="19" language="java" name="eg.edu.alexu.csd.oop.draw.map.cloner.MapCloner" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/map/cloner/MapCloner.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="300" x="193" y="1033"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="20">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="21" name="singleton"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
+    <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="24">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="13"/>  
-  </dependency>  
-  <dependency id="25">    
+  <association id="23">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="24" name="seule"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="26">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <association id="26">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="27" name="shape"/>      
-      <multiplicity id="28" minimum="0" maximum="1"/>    
+  <association id="27">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="28" name="shape"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="29">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="13"/>  
-  </dependency>  
   <realization id="30">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
@@ -214,7 +210,7 @@
   </dependency>  
   <dependency id="32">    
     <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="18"/>  
+    <end type="TARGET" refId="17"/>  
   </dependency>  
   <dependency id="33">    
     <bendpoint x="303" y="-322"/>    
@@ -226,137 +222,148 @@
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
-  <association id="35">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="36" name="state2"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+  <dependency id="35">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <association id="36">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="37" name="state2"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="38">    
+  <association id="39">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="39" name="history"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
+      <attribute id="40" name="history"/>      
+      <multiplicity id="41" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
+    <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="41">    
+  <generalization id="42">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="7"/>  
   </generalization>  
-  <generalization id="42">    
+  <generalization id="43">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <generalization id="43">    
+  <dependency id="44">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <generalization id="45">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <dependency id="44">    
-    <end type="SOURCE" refId="15"/>    
+  <dependency id="46">    
+    <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <generalization id="45">    
+  <dependency id="47">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <generalization id="48">    
     <bendpoint x="526" y="1288"/>    
     <bendpoint x="-83" y="1285"/>    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <dependency id="46">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="17"/>  
+  <dependency id="49">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="16"/>  
   </dependency>  
-  <dependency id="47">    
+  <dependency id="50">    
     <bendpoint x="251" y="746"/>    
     <bendpoint x="-79" y="623"/>    
-    <end type="SOURCE" refId="19"/>    
+    <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <dependency id="48">    
-    <bendpoint x="179" y="1219"/>    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="13"/>  
-  </dependency>  
-  <dependency id="49">    
+  <dependency id="51">    
     <bendpoint x="9" y="-133"/>    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <association id="50">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="51" name="prev"/>      
-      <multiplicity id="52" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="53">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="54" name="xmlReaderAndWriter"/>      
-      <multiplicity id="55" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="56">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="57" name="currentShapesQueue"/>      
-      <multiplicity id="58" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="59">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="60" name="jasonReaderAndWriter"/>      
-      <multiplicity id="61" minimum="0" maximum="1"/>    
+  <association id="52">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="53" name="prev"/>      
+      <multiplicity id="54" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="62">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="16"/>  
-  </dependency>  
-  <association id="63">    
+  <association id="55">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="64" name="classFinderInst"/>      
-      <multiplicity id="65" minimum="0" maximum="1"/>    
+      <attribute id="56" name="xmlReaderAndWriter"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="66">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="67" name="next"/>      
-      <multiplicity id="68" minimum="0" maximum="2147483647"/>    
+  <association id="58">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="59" name="currentShapesQueue"/>      
+      <multiplicity id="60" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="69">    
+  <association id="61">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="62" name="jasonReaderAndWriter"/>      
+      <multiplicity id="63" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="64">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <association id="65">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="66" name="classFinderInst"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="69" name="next"/>      
+      <multiplicity id="70" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="71">    
     <bendpoint x="810" y="1287"/>    
     <bendpoint x="-82" y="1286"/>    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="70">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="71" name="state"/>      
-      <multiplicity id="72" minimum="0" maximum="1"/>    
+  <dependency id="72">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <association id="73">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="74" name="state"/>      
+      <multiplicity id="75" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="73">    
+  <dependency id="76">    
     <bendpoint x="247" y="5"/>    
     <bendpoint x="48" y="12"/>    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <generalization id="74">    
+  <generalization id="77">    
     <bendpoint x="211" y="1285"/>    
     <bendpoint x="64" y="1285"/>    
     <bendpoint x="-9" y="1285"/>    

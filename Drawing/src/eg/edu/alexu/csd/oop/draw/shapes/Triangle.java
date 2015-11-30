@@ -98,7 +98,7 @@ public class Triangle extends MyShape {
         return;
       }
     }
-    this.properties = MapCloner.cloneMap(properties);
+    this.properties = MapCloner.getInst().cloneMap(properties);
   }
 
   /*
@@ -109,7 +109,7 @@ public class Triangle extends MyShape {
   @Override
   public Map<String, Double> getProperties() {
     // TODO Auto-generated method stub
-    return MapCloner.cloneMap(properties);
+    return MapCloner.getInst().cloneMap(properties);
   }
 
   /*
@@ -133,8 +133,8 @@ public class Triangle extends MyShape {
     }
     firstCoord[3] = properties.get("X0").intValue();
     secondCoord[3] = properties.get("Y0").intValue();
-    
-    Graphics2D canvas2D = (Graphics2D)canvas;
+
+    Graphics2D canvas2D = (Graphics2D) canvas;
     canvas2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     canvas2D.setStroke(new BasicStroke(2));
     canvas2D.setColor(getFillColor());
@@ -153,7 +153,7 @@ public class Triangle extends MyShape {
   public Object clone() throws CloneNotSupportedException {
     // TODO Auto-generated method stub
     try {
-      HashMap<String, Double> clonedProperties = MapCloner.cloneMap(properties);
+      HashMap<String, Double> clonedProperties = MapCloner.getInst().cloneMap(properties);
 
       return (Object) new Triangle(new Point(super.getPosition().x, super.getPosition().y),
           clonedProperties, super.getColor(), super.getFillColor());

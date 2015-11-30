@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" automaticImage="JPEG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="eg.edu.alexu.csd.oop.draw.Main" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/Main.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="121" x="1498" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="eg.edu.alexu.csd.oop.draw.Factory" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/Factory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="218" x="1423" y="1821"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.SaveActionListner" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/SaveActionListner.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="194" x="1444" y="936"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.InstallActionListener" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/InstallActionListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="505" x="-20" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="eg.edu.alexu.csd.oop.draw.shapes.Ellipse" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/shapes/Ellipse.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="241" x="-412" y="2194"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.RedoActionListener" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/RedoActionListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="404" x="1659" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="eg.edu.alexu.csd.oop.draw.shapes.LineSegment" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/shapes/LineSegment.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="273" x="-131" y="2194"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.AboutActionListener" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/AboutActionListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="194" x="1699" y="936"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="eg.edu.alexu.csd.oop.draw.shapes.Square" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/shapes/Square.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="245" x="496" y="2459"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="10" language="java" name="eg.edu.alexu.csd.oop.draw.DrawingEngine" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/DrawingEngine.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="289" x="1905" y="1538"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="11" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.MenuActionListener" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/MenuActionListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="425" x="1933" y="936"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="eg.edu.alexu.csd.oop.draw.history.Action" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/history/Action.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="159" x="2483" y="1821"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.LoadActionListener" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/LoadActionListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="300" x="2103" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="eg.edu.alexu.csd.oop.draw.shapes.ShapesComparator" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/shapes/ShapesComparator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="155" x="2234" y="1538"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="eg.edu.alexu.csd.oop.draw.shapes.Circle" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/shapes/Circle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="237" x="-412" y="2459"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.ColorActionListener" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/ColorActionListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="404" x="1054" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.ShapeButtonListener" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/ShapeButtonListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="489" x="525" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.DeleteActionListener" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/DeleteActionListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="409" x="3237" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="eg.edu.alexu.csd.oop.draw.DrawingBoard" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/DrawingBoard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="155" x="2419" y="936"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.MovingActionListener" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/MovingActionListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="413" x="2784" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="eg.edu.alexu.csd.oop.draw.state.State" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/state/State.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="145" x="2663" y="2194"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="eg.edu.alexu.csd.oop.draw.save.JsonReaderAndWriter" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/save/JsonReaderAndWriter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="193" x="1672" y="1538"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.CopyActionListener" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/CopyActionListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="404" x="4099" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="eg.edu.alexu.csd.oop.draw.ClassFinder" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/ClassFinder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="441" x="879" y="1538"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="eg.edu.alexu.csd.oop.draw.history.History" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/history/History.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="163" x="2429" y="1538"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="eg.edu.alexu.csd.oop.draw.gui.Gui" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/Gui.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="513" width="255" x="1659" y="383"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="eg.edu.alexu.csd.oop.draw.map.cloner.MapCloner" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/map/cloner/MapCloner.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="300" x="33" y="2459"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="eg.edu.alexu.csd.oop.draw.shapes.Rectangle" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/shapes/Rectangle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="259" x="496" y="2194"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="eg.edu.alexu.csd.oop.draw.state.StatesComparator" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/state/StatesComparator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="145" x="2663" y="1538"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="eg.edu.alexu.csd.oop.draw.MyEngine" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/MyEngine.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="289" x="2379" y="1183"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="eg.edu.alexu.csd.oop.draw.save.XmlReaderAndWriter" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/save/XmlReaderAndWriter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="167" x="1465" y="1538"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.ResizeAction" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/ResizeAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="373" x="3686" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="eg.edu.alexu.csd.oop.draw.shapes.Triangle" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/shapes/Triangle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="274" x="182" y="2194"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="34" language="java" name="eg.edu.alexu.csd.oop.draw.Shape" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/Shape.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="217" x="1693" y="2459"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="35" language="java" name="eg.edu.alexu.csd.oop.draw.shapes.MyShape" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/shapes/MyShape.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="333" width="224" x="281" y="1821"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="eg.edu.alexu.csd.oop.draw.gui.listners.UndoActionListener" project="Drawing" 
+    file="/Drawing/src/eg/edu/alexu/csd/oop/draw/gui/listners/UndoActionListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="301" x="2443" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="37">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="38" name="shape"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="41" name="engine"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <bendpoint x="848" y="383"/>    
+    <bendpoint x="848" y="936"/>    
+    <bendpoint x="848" y="1183"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="44" name="myClassFinder"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="46">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="35"/>  
+  </generalization>  
+  <association id="47">    
+    <bendpoint x="1371" y="936"/>    
+    <bendpoint x="1371" y="1183"/>    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="48" name="myClassFinder"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <bendpoint x="2922" y="383"/>    
+    <bendpoint x="2922" y="936"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="51" name="engine"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="54" name="guiWindow"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="56">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="29"/>  
+  </dependency>  
+  <association id="57">    
+    <bendpoint x="1668" y="936"/>    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="58" name="engine"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="61" name="xmlReaderAndWriter"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="63">    
+    <bendpoint x="1681" y="1821"/>    
+    <bendpoint x="1681" y="2194"/>    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <dependency id="64">    
+    <bendpoint x="3048" y="383"/>    
+    <bendpoint x="3048" y="936"/>    
+    <bendpoint x="3048" y="1183"/>    
+    <bendpoint x="3048" y="1538"/>    
+    <bendpoint x="3048" y="1821"/>    
+    <bendpoint x="3048" y="2194"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <dependency id="65">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="27"/>  
+  </dependency>  
+  <dependency id="66">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="67">    
+    <bendpoint x="1392" y="936"/>    
+    <bendpoint x="1392" y="1183"/>    
+    <bendpoint x="1392" y="1538"/>    
+    <bendpoint x="1392" y="1821"/>    
+    <bendpoint x="1392" y="2194"/>    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <association id="68">    
+    <bendpoint x="1287" y="383"/>    
+    <bendpoint x="1287" y="936"/>    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="69" name="engine"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="72" name="guiWindow"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="75" name="guiWindow"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="77">    
+    <bendpoint x="2880" y="383"/>    
+    <bendpoint x="2880" y="936"/>    
+    <bendpoint x="2880" y="1183"/>    
+    <bendpoint x="2880" y="1538"/>    
+    <bendpoint x="2880" y="1821"/>    
+    <bendpoint x="2880" y="2194"/>    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <association id="78">    
+    <bendpoint x="2604" y="383"/>    
+    <bendpoint x="2604" y="936"/>    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="79" name="engine"/>      
+      <multiplicity id="80" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="81">    
+    <bendpoint x="1972" y="1821"/>    
+    <bendpoint x="1972" y="2194"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <association id="82">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="83" name="guiWindow"/>      
+      <multiplicity id="84" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="85">    
+    <bendpoint x="3006" y="383"/>    
+    <bendpoint x="3006" y="936"/>    
+    <bendpoint x="3006" y="1183"/>    
+    <bendpoint x="3006" y="1538"/>    
+    <bendpoint x="3006" y="1821"/>    
+    <bendpoint x="3006" y="2194"/>    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <dependency id="86">    
+    <bendpoint x="2859" y="1538"/>    
+    <bendpoint x="2859" y="1821"/>    
+    <bendpoint x="2859" y="2194"/>    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <association id="87">    
+    <bendpoint x="2440" y="383"/>    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="88" name="canvas"/>      
+      <multiplicity id="89" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="90">    
+    <bendpoint x="1021" y="383"/>    
+    <bendpoint x="1063" y="936"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="91" name="engine"/>      
+      <multiplicity id="92" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="93">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="94" name="singleInstance"/>      
+      <multiplicity id="95" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="96">    
+    <bendpoint x="1308" y="383"/>    
+    <bendpoint x="1308" y="936"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="97" name="engine"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="99">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="27"/>  
+  </dependency>  
+  <dependency id="100">    
+    <bendpoint x="806" y="383"/>    
+    <bendpoint x="806" y="936"/>    
+    <bendpoint x="806" y="1183"/>    
+    <bendpoint x="806" y="1538"/>    
+    <bendpoint x="806" y="1821"/>    
+    <bendpoint x="806" y="2194"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <generalization id="101">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="35"/>  
+  </generalization>  
+  <association id="102">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="103" name="factory"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="105">    
+    <bendpoint x="890" y="383"/>    
+    <bendpoint x="869" y="936"/>    
+    <bendpoint x="827" y="1183"/>    
+    <bendpoint x="827" y="1538"/>    
+    <bendpoint x="827" y="1821"/>    
+    <bendpoint x="827" y="2194"/>    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <association id="106">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="107" name="singleton"/>      
+      <multiplicity id="108" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="109">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="26"/>  
+  </dependency>  
+  <association id="110">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="111" name="guiWindow"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="113">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="114">    
+    <bendpoint x="2672" y="1821"/>    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <dependency id="115">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="27"/>  
+  </dependency>  
+  <dependency id="116">    
+    <bendpoint x="1567" y="2194"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <association id="117">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="118" name="jasonReaderAndWriter"/>      
+      <multiplicity id="119" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="120">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="121" name="guiWindow"/>      
+      <multiplicity id="122" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="123">    
+    <bendpoint x="1434" y="1538"/>    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="124">    
+    <bendpoint x="2943" y="383"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="125" name="canvas"/>      
+      <multiplicity id="126" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="127">    
+    <bendpoint x="1481" y="383"/>    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="128" name="canvas"/>      
+      <multiplicity id="129" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="130">    
+    <bendpoint x="3027" y="383"/>    
+    <bendpoint x="2985" y="936"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="131" name="engine"/>      
+      <multiplicity id="132" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="133">    
+    <bendpoint x="1808" y="1821"/>    
+    <bendpoint x="1808" y="2194"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <realization id="134">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="135">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="136" name="guiWindow"/>      
+      <multiplicity id="137" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="138">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="139" name="classFinderInst"/>      
+      <multiplicity id="140" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="141">    
+    <bendpoint x="2985" y="383"/>    
+    <bendpoint x="2943" y="936"/>    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="142" name="engine"/>      
+      <multiplicity id="143" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="144">    
+    <bendpoint x="2048" y="383"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="145" name="canvas"/>      
+      <multiplicity id="146" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="147">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="148" name="engine"/>      
+      <multiplicity id="149" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="150">    
+    <bendpoint x="1063" y="383"/>    
+    <bendpoint x="1021" y="936"/>    
+    <bendpoint x="935" y="1183"/>    
+    <bendpoint x="848" y="1538"/>    
+    <bendpoint x="848" y="1821"/>    
+    <bendpoint x="848" y="2194"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <dependency id="151">    
+    <bendpoint x="1295" y="1821"/>    
+    <bendpoint x="1295" y="2194"/>    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <association id="152">    
+    <bendpoint x="2625" y="383"/>    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="153" name="canvas"/>      
+      <multiplicity id="154" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="155">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="156" name="next"/>      
+      <multiplicity id="157" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="158">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <dependency id="159">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="160">    
+    <bendpoint x="2901" y="383"/>    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="161" name="canvas"/>      
+      <multiplicity id="162" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="163">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="35"/>  
+  </generalization>  
+  <association id="164">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="165" name="prev"/>      
+      <multiplicity id="166" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="167">    
+    <bendpoint x="1944" y="383"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="168" name="canvas"/>      
+      <multiplicity id="169" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="170">    
+    <bendpoint x="2703" y="383"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="171" name="canvas"/>      
+      <multiplicity id="172" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="173">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="174" name="state"/>      
+      <multiplicity id="175" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="176">    
+    <bendpoint x="2964" y="383"/>    
+    <bendpoint x="2964" y="936"/>    
+    <bendpoint x="2964" y="1183"/>    
+    <bendpoint x="2964" y="1538"/>    
+    <bendpoint x="2964" y="1821"/>    
+    <bendpoint x="2964" y="2194"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <association id="177">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="178" name="guiWindow"/>      
+      <multiplicity id="179" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="180">    
+    <bendpoint x="2838" y="1538"/>    
+    <bendpoint x="2838" y="1821"/>    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="181" name="currentShapesQueue"/>      
+      <multiplicity id="182" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="183">    
+    <bendpoint x="2409" y="383"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="184" name="canvas"/>      
+      <multiplicity id="185" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="186">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="187" name="seule"/>      
+      <multiplicity id="188" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="189">    
+    <bendpoint x="1329" y="383"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <association id="190">    
+    <bendpoint x="1413" y="936"/>    
+    <bendpoint x="1413" y="1183"/>    
+    <bendpoint x="1413" y="1538"/>    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="191" name="factory"/>      
+      <multiplicity id="192" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="193">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="194" name="factory"/>      
+      <multiplicity id="195" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="196">    
+    <bendpoint x="1042" y="383"/>    
+    <bendpoint x="1042" y="936"/>    
+    <bendpoint x="1206" y="1183"/>    
+    <bendpoint x="1371" y="1538"/>    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="197" name="factory"/>      
+      <multiplicity id="198" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="199">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="200" name="history"/>      
+      <multiplicity id="201" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="202">    
+    <bendpoint x="1702" y="1821"/>    
+    <bendpoint x="1702" y="2194"/>    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="34"/>  
+  </dependency>  
+  <generalization id="203">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <realization id="204">    
+    <bendpoint x="785" y="2194"/>    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="34"/>  
+  </realization>  
+  <association id="205">    
+    <bendpoint x="2388" y="383"/>    
+    <bendpoint x="2388" y="936"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="206" name="engine"/>      
+      <multiplicity id="207" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="208">    
+    <bendpoint x="1350" y="383"/>    
+    <bendpoint x="1350" y="936"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="209" name="engine"/>      
+      <multiplicity id="210" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="211">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="27"/>  
+  </dependency>  
+  <association id="212">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="213" name="guiWindow"/>      
+      <multiplicity id="214" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="215">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="26"/>  
+  </dependency>  
+  <association id="216">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="217" name="canvas"/>      
+      <multiplicity id="218" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="219">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="35"/>  
+  </generalization>  
+  <dependency id="220">    
+    <bendpoint x="2632" y="1538"/>    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <generalization id="221">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <association id="222">    
+    <bendpoint x="2724" y="383"/>    
+    <bendpoint x="2724" y="936"/>    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="223" name="engine"/>      
+      <multiplicity id="224" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="225">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="226" name="state2"/>      
+      <multiplicity id="227" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="228">    
+    <bendpoint x="869" y="383"/>    
+    <bendpoint x="1000" y="936"/>    
+    <bendpoint x="1175" y="1183"/>    
+    <bendpoint x="1350" y="1538"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="229" name="factory"/>      
+      <multiplicity id="230" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

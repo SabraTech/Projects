@@ -60,8 +60,6 @@ public class ClassFinder {
         if (dummyEntry.getName().endsWith(".class")) {
           String dummy2 = dummyEntry.getName().replaceAll("/", ".");
           dummy2 = dummy2.split(".class")[0];
-          String className = dummyEntry.getName().substring(0, dummyEntry.getName().length() - 6);
-          className = className.replace('/', '.');
           try {
             Class<?> dummyClass = Class.forName(dummy2, true, loader);
             if (this.superClass.isAssignableFrom(dummyClass) && !dummyClass.isInterface()
@@ -237,8 +235,6 @@ public class ClassFinder {
         if (dummyEntry.getName().endsWith(".class")) {
           String dummy2 = dummyEntry.getName().replaceAll("/", ".");
           dummy2 = dummy2.split(".class")[0];
-          String className = dummyEntry.getName().substring(0, dummyEntry.getName().length() - 6);
-          className = className.replace('/', '.');
           try {
             Class<?> dummyClass = Class.forName(dummy2, true, loader);
             if (this.superClass.isAssignableFrom(dummyClass) && !dummyClass.isInterface()
