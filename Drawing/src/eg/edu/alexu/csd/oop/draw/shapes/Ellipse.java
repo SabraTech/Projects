@@ -2,9 +2,12 @@ package eg.edu.alexu.csd.oop.draw.shapes;
 
 import eg.edu.alexu.csd.oop.draw.map.cloner.MapCloner;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,13 +80,16 @@ public class Ellipse extends MyShape {
   public void draw(Graphics canvas) {
     // TODO Auto-generated method stub
 
+    Graphics2D canvas2D = (Graphics2D)canvas;
+    canvas2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    canvas2D.setStroke(new BasicStroke(2));
     Double radiusOne = properties.get("MajorRadius");
     Double radiusTwo = properties.get("MinorRadius");
-    canvas.setColor(getFillColor());
-    canvas.fillOval(super.getPosition().x, super.getPosition().y, radiusOne.intValue(),
+    canvas2D.setColor(getFillColor());
+    canvas2D.fillOval(super.getPosition().x, super.getPosition().y, radiusOne.intValue(),
         radiusTwo.intValue());
-    canvas.setColor(getColor());
-    canvas.drawOval(super.getPosition().x, super.getPosition().y, radiusOne.intValue(),
+    canvas2D.setColor(getColor());
+    canvas2D.drawOval(super.getPosition().x, super.getPosition().y, radiusOne.intValue(),
         radiusTwo.intValue());
 
   }

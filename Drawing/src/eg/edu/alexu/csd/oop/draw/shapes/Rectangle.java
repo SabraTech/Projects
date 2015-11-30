@@ -1,8 +1,11 @@
 package eg.edu.alexu.csd.oop.draw.shapes;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,14 +85,17 @@ public class Rectangle extends MyShape {
         || properties.get("Length") == null) {
       // do nothing
     } else {
-
+      
+      Graphics2D canvas2D = (Graphics2D)canvas;
+      canvas2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+      canvas2D.setStroke(new BasicStroke(2));
       Double width = properties.get("Width");
       Double length = properties.get("Length");
-      canvas.setColor(getFillColor());
-      canvas.fillRect(super.getPosition().x, super.getPosition().y, width.intValue(),
+      canvas2D.setColor(getFillColor());
+      canvas2D.fillRect(super.getPosition().x, super.getPosition().y, width.intValue(),
           length.intValue());
-      canvas.setColor(getColor());
-      canvas.drawRect(super.getPosition().x, super.getPosition().y, width.intValue(),
+      canvas2D.setColor(getColor());
+      canvas2D.drawRect(super.getPosition().x, super.getPosition().y, width.intValue(),
           length.intValue());
     }
 

@@ -1,8 +1,11 @@
 package eg.edu.alexu.csd.oop.draw.shapes;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -130,11 +133,14 @@ public class Triangle extends MyShape {
     }
     firstCoord[3] = properties.get("X0").intValue();
     secondCoord[3] = properties.get("Y0").intValue();
-
-    canvas.setColor(getFillColor());
-    canvas.fillPolygon(firstCoord, secondCoord, 4);
-    canvas.setColor(getColor());
-    canvas.drawPolygon(firstCoord, secondCoord, 4);
+    
+    Graphics2D canvas2D = (Graphics2D)canvas;
+    canvas2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    canvas2D.setStroke(new BasicStroke(2));
+    canvas2D.setColor(getFillColor());
+    canvas2D.fillPolygon(firstCoord, secondCoord, 4);
+    canvas2D.setColor(getColor());
+    canvas2D.drawPolygon(firstCoord, secondCoord, 4);
 
   }
 

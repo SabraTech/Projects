@@ -1,8 +1,11 @@
 package eg.edu.alexu.csd.oop.draw.shapes;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,10 +113,13 @@ public class LineSegment extends MyShape {
     if (super.getPosition() != null && properties.get("EndPointXCoordinate") != null
         && properties.get("EndPointYCoordinate") != null) {
 
+      Graphics2D canvas2D = (Graphics2D)canvas;
+      canvas2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+      canvas2D.setStroke(new BasicStroke(2));
       Double firstCoord = properties.get("EndPointXCoordinate");
       Double secondCoord = properties.get("EndPointYCoordinate");
-      canvas.setColor(getFillColor());
-      canvas.drawLine(super.getPosition().x, super.getPosition().y, firstCoord.intValue(),
+      canvas2D.setColor(getFillColor());
+      canvas2D.drawLine(super.getPosition().x, super.getPosition().y, firstCoord.intValue(),
           secondCoord.intValue());
 
     }
