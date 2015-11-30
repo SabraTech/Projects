@@ -1,7 +1,7 @@
 package eg.edu.alexu.csd.oop.draw.gui.listners;
 
 import eg.edu.alexu.csd.oop.draw.DrawingBoard;
-import eg.edu.alexu.csd.oop.draw.DrawingEngine;
+import eg.edu.alexu.csd.oop.draw.MyEngine;
 import eg.edu.alexu.csd.oop.draw.gui.Gui;
 
 import java.awt.event.ActionEvent;
@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 public class UndoActionListener implements ActionListener {
 
   /** The engine. */
-  private DrawingEngine engine;
+  private MyEngine engine;
 
   /** The panel. */
   private JPanel panel;
@@ -39,8 +39,7 @@ public class UndoActionListener implements ActionListener {
    * @param canvas
    *          the canvas
    */
-  public UndoActionListener(DrawingEngine engine, JPanel panel, Gui guiWindow,
-      DrawingBoard canvas) {
+  public UndoActionListener(MyEngine engine, JPanel panel, Gui guiWindow, DrawingBoard canvas) {
     this.engine = engine;
     this.panel = panel;
     this.guiWindow = guiWindow;

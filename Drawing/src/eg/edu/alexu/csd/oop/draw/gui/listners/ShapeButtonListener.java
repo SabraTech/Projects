@@ -1,8 +1,8 @@
 package eg.edu.alexu.csd.oop.draw.gui.listners;
 
 import eg.edu.alexu.csd.oop.draw.DrawingBoard;
-import eg.edu.alexu.csd.oop.draw.DrawingEngine;
 import eg.edu.alexu.csd.oop.draw.Factory;
+import eg.edu.alexu.csd.oop.draw.MyEngine;
 import eg.edu.alexu.csd.oop.draw.Shape;
 import eg.edu.alexu.csd.oop.draw.gui.Gui;
 
@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 
 public class ShapeButtonListener implements ActionListener {
   /** The engine. */
-  private DrawingEngine engine;
+  private MyEngine engine;
 
   /** The panel. */
   private JPanel panel;
@@ -49,7 +49,7 @@ public class ShapeButtonListener implements ActionListener {
    * @param menu
    *          the menu
    */
-  public ShapeButtonListener(DrawingEngine engine, Gui guiWindow, JPanel panel, DrawingBoard canvas,
+  public ShapeButtonListener(MyEngine engine, Gui guiWindow, JPanel panel, DrawingBoard canvas,
       JComboBox<Object> menu, JButton sourceButton, Factory factory) {
     this.engine = engine;
     this.panel = panel;

@@ -1,7 +1,7 @@
 package eg.edu.alexu.csd.oop.draw.gui.listners;
 
 import eg.edu.alexu.csd.oop.draw.DrawingBoard;
-import eg.edu.alexu.csd.oop.draw.DrawingEngine;
+import eg.edu.alexu.csd.oop.draw.MyEngine;
 import eg.edu.alexu.csd.oop.draw.Shape;
 import eg.edu.alexu.csd.oop.draw.gui.Gui;
 
@@ -25,7 +25,7 @@ public class ResizeAction implements ActionListener {
   private JComboBox<Object> menu;
 
   /** The engine. */
-  private DrawingEngine engine;
+  private MyEngine engine;
 
   /** The canvas. */
   DrawingBoard canvas;
@@ -47,8 +47,8 @@ public class ResizeAction implements ActionListener {
    * @param guiWindow
    *          the gui window
    */
-  public ResizeAction(JComboBox<Object> menu, JPanel panel, DrawingEngine engine,
-      DrawingBoard canvas, Gui guiWindow) {
+  public ResizeAction(JComboBox<Object> menu, JPanel panel, MyEngine engine, DrawingBoard canvas,
+      Gui guiWindow) {
     this.panel = panel;
     this.menu = menu;
     this.engine = engine;

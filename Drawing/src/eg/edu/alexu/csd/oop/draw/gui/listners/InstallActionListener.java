@@ -2,8 +2,8 @@ package eg.edu.alexu.csd.oop.draw.gui.listners;
 
 import eg.edu.alexu.csd.oop.draw.ClassFinder;
 import eg.edu.alexu.csd.oop.draw.DrawingBoard;
-import eg.edu.alexu.csd.oop.draw.DrawingEngine;
 import eg.edu.alexu.csd.oop.draw.Factory;
+import eg.edu.alexu.csd.oop.draw.MyEngine;
 import eg.edu.alexu.csd.oop.draw.Shape;
 import eg.edu.alexu.csd.oop.draw.gui.Gui;
 
@@ -27,7 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class InstallActionListener implements ActionListener {
   /** The engine. */
-  private DrawingEngine engine;
+  private MyEngine engine;
 
   /** The gui window. */
   private Gui guiWindow;
@@ -56,8 +56,8 @@ public class InstallActionListener implements ActionListener {
    * @param myClassFinder
    *          the my class finder
    */
-  public InstallActionListener(DrawingEngine engine, Gui guiWindow, JPanel panel,
-      DrawingBoard canvas, JComboBox<Object> menu, Factory factory, ClassFinder myClassFinder) {
+  public InstallActionListener(MyEngine engine, Gui guiWindow, JPanel panel, DrawingBoard canvas,
+      JComboBox<Object> menu, Factory factory, ClassFinder myClassFinder) {
     this.engine = engine;
     this.guiWindow = guiWindow;
     this.factory = factory;

@@ -1,12 +1,11 @@
 package eg.edu.alexu.csd.oop.draw.gui.listners;
 
 import eg.edu.alexu.csd.oop.draw.DrawingBoard;
-import eg.edu.alexu.csd.oop.draw.DrawingEngine;
+import eg.edu.alexu.csd.oop.draw.MyEngine;
 import eg.edu.alexu.csd.oop.draw.gui.Gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,7 +20,7 @@ public class LoadActionListener implements ActionListener {
   private Gui guiWindow;
 
   /** The engine. */
-  private DrawingEngine engine;
+  private MyEngine engine;
 
   /** The panel. */
   private JPanel panel;
@@ -41,8 +40,7 @@ public class LoadActionListener implements ActionListener {
    * @param canvas
    *          the canvas
    */
-  public LoadActionListener(DrawingEngine engine, Gui guiWindow, JPanel panel,
-      DrawingBoard canvas) {
+  public LoadActionListener(MyEngine engine, Gui guiWindow, JPanel panel, DrawingBoard canvas) {
     this.engine = engine;
     this.guiWindow = guiWindow;
     this.panel = panel;

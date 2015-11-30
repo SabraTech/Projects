@@ -1,7 +1,7 @@
 package eg.edu.alexu.csd.oop.draw.gui.listners;
 
 import eg.edu.alexu.csd.oop.draw.DrawingBoard;
-import eg.edu.alexu.csd.oop.draw.DrawingEngine;
+import eg.edu.alexu.csd.oop.draw.MyEngine;
 import eg.edu.alexu.csd.oop.draw.gui.Gui;
 
 import java.awt.event.ActionEvent;
@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  */
 public class RedoActionListener implements ActionListener {
   /** The engine. */
-  private DrawingEngine engine;
+  private MyEngine engine;
 
   /** The gui window. */
   private Gui guiWindow;
@@ -46,8 +46,8 @@ public class RedoActionListener implements ActionListener {
    * @param menu
    *          the menu
    */
-  public RedoActionListener(DrawingEngine engine, Gui guiWindow, JPanel panel,
-      DrawingBoard canvas, JComboBox<Object> menu) {
+  public RedoActionListener(MyEngine engine, Gui guiWindow, JPanel panel, DrawingBoard canvas,
+      JComboBox<Object> menu) {
     this.engine = engine;
     this.guiWindow = guiWindow;
     this.panel = panel;

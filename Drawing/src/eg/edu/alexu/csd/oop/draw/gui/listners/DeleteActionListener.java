@@ -1,7 +1,7 @@
 package eg.edu.alexu.csd.oop.draw.gui.listners;
 
 import eg.edu.alexu.csd.oop.draw.DrawingBoard;
-import eg.edu.alexu.csd.oop.draw.DrawingEngine;
+import eg.edu.alexu.csd.oop.draw.MyEngine;
 import eg.edu.alexu.csd.oop.draw.Shape;
 import eg.edu.alexu.csd.oop.draw.gui.Gui;
 
@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 public class DeleteActionListener implements ActionListener {
 
   /** The engine. */
-  private DrawingEngine engine;
+  private MyEngine engine;
 
   /** The gui window. */
   private Gui guiWindow;
@@ -50,8 +50,8 @@ public class DeleteActionListener implements ActionListener {
    * @param menu
    *          the menu
    */
-  public DeleteActionListener(DrawingEngine engine, Gui guiWindow, JPanel panel,
-      DrawingBoard canvas, JComboBox<Object> menu) {
+  public DeleteActionListener(MyEngine engine, Gui guiWindow, JPanel panel, DrawingBoard canvas,
+      JComboBox<Object> menu) {
     this.engine = engine;
     this.guiWindow = guiWindow;
     this.panel = panel;

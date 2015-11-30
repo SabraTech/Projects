@@ -1,7 +1,5 @@
 package eg.edu.alexu.csd.oop.draw.shapes;
 
-import eg.edu.alexu.csd.oop.draw.Shape;
-
 import java.awt.Color;
 import java.awt.Point;
 import java.util.HashMap;
@@ -10,7 +8,7 @@ import java.util.Map;
 /**
  * The Class Circle.
  */
-public class Circle extends Ellipse implements Shape, Cloneable {
+public class Circle extends Ellipse {
 
   /**
    * Instantiates a new circle.

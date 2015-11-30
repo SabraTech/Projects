@@ -15,12 +15,12 @@ public class DrawingBoard extends Canvas {
    * 
    */
   private static final long serialVersionUID = 1L;
-  private DrawingEngine engine;
+  private MyEngine engine;
 
   /**
    * Instantiates a new drawing board.
    */
-  public DrawingBoard(DrawingEngine engine) {
+  public DrawingBoard(MyEngine engine) {
     super();
     super.setSize(962, 680);
     super.setBackground(Color.white);

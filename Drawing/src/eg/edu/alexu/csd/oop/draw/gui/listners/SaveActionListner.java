@@ -1,6 +1,6 @@
 package eg.edu.alexu.csd.oop.draw.gui.listners;
 
-import eg.edu.alexu.csd.oop.draw.DrawingEngine;
+import eg.edu.alexu.csd.oop.draw.MyEngine;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +15,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class SaveActionListner implements ActionListener {
 
   /** The engine. */
-  private DrawingEngine engine;
+  private MyEngine engine;
 
   /**
    * Instantiates a new save action listner.
@@ -23,7 +23,7 @@ public class SaveActionListner implements ActionListener {
    * @param engine
    *          the engine
    */
-  public SaveActionListner(DrawingEngine engine) {
+  public SaveActionListner(MyEngine engine) {
     this.engine = engine;
   }
 

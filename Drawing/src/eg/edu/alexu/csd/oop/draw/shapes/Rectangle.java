@@ -1,20 +1,17 @@
 package eg.edu.alexu.csd.oop.draw.shapes;
 
-import eg.edu.alexu.csd.oop.draw.Shape;
-import eg.edu.alexu.csd.oop.draw.map.cloner.MapCloner;
-
 import java.awt.Color;
 import java.awt.Graphics;
-
 import java.awt.Point;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import eg.edu.alexu.csd.oop.draw.map.cloner.MapCloner;
 
 /**
  * The Class Rectangle.
  */
-public class Rectangle extends MyShape implements Shape, Cloneable {
+public class Rectangle extends MyShape {
 
   /** The properties. */
   private Map<String, Double> properties;
