@@ -138,7 +138,6 @@ public class Gui {
     }
     frame.getContentPane().add(shapesBox);
     shapesBox.setVisible(true);
-    // frame.repaint();
   }
 
   /**
@@ -251,7 +250,6 @@ public class Gui {
     frame.getContentPane().add(buttonsPanel);
     buttonsPanel.setLayout(null);
     menu = new JComboBox<Object>(new Object[] { "Choose Shape" });
-
     menu.setBounds(10, 146, 186, 23);
     buttonsPanel.add(menu);
     addButtons(buttonsPanel);
