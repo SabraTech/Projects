@@ -188,7 +188,7 @@ public class ClassFinder {
    *          the name
    * @return true, if is jar
    */
-  protected boolean isJar(String name) {
+  private boolean isJar(String name) {
     try {
       String dummy = name.substring(name.length() - 4, name.length());
       if (dummy.equalsIgnoreCase(".jar")) {
@@ -208,7 +208,7 @@ public class ClassFinder {
    *          the file name
    * @return the class name
    */
-  protected String getClassName(String fileName) {
+  private String getClassName(String fileName) {
     String newName = fileName.replace(File.separatorChar, '.');
     newName = newName.replace('/', '.');
     return newName.substring(0, fileName.length() - 6);
