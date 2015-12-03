@@ -5,9 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 
 public class StatementImp implements Statement {
-
 	@Override
 	public boolean isWrapperFor(Class<?> iface) throws SQLException {
 
@@ -22,7 +23,7 @@ public class StatementImp implements Statement {
 
 	@Override
 	public void addBatch(String sql) throws SQLException {
-
+	  // check that sql query is correct and then add it to listarray
 		
 	}
 
@@ -34,8 +35,8 @@ public class StatementImp implements Statement {
 
 	@Override
 	public void clearBatch() throws SQLException {
-
-		
+	  //Clear the list
+	  
 	}
 
 	@Override
