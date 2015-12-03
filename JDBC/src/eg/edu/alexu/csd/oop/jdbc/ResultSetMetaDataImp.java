@@ -86,7 +86,7 @@ public class ResultSetMetaDataImp implements ResultSetMetaData {
 	@Override
 	public String getTableName(int arg0) throws SQLException {
 		// TODO Auto-generated method stub
-		throw new java.lang.UnsupportedOperationException();
+	  throw new java.lang.UnsupportedOperationException();
 	}
 
 	@Override
