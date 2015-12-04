@@ -17,8 +17,8 @@ public class StatementImp implements Statement {
   private ArrayList<MyEntry<String,Integer>> batchList;
   private int time;
   
-  public StatementImp(String path){
-    dbPath = path;
+  public StatementImp(Object path){
+    dbPath = String.valueOf(path);
     engine = new DBEngine(dbPath);
     batchList = new ArrayList<MyEntry<String, Integer>>();
     time = 0; // means no limit

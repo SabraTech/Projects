@@ -21,9 +21,9 @@ import java.util.concurrent.Executor;
 
 public class ConnectionImp implements Connection {
   
-  private String dbPath;
+  private Object dbPath;
   
-  public ConnectionImp(String path){
+  public ConnectionImp(Object path){
     dbPath = path;
   }
 
