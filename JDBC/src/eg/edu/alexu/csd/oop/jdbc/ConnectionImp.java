@@ -20,6 +20,12 @@ import java.util.Properties;
 import java.util.concurrent.Executor;
 
 public class ConnectionImp implements Connection {
+  
+  private String dbPath;
+  
+  public ConnectionImp(String path){
+    dbPath = path;
+  }
 
   @Override
   public boolean isWrapperFor(Class<?> iface) throws SQLException {
@@ -89,8 +95,8 @@ public class ConnectionImp implements Connection {
 
   @Override
   public Statement createStatement() throws SQLException {
-
-    return null;
+    Statement stat = new StatementImp(dbPath);
+    return stat;
   }
 
   @Override

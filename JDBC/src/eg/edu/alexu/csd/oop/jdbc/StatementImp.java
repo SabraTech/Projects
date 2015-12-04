@@ -7,8 +7,20 @@ import java.sql.SQLWarning;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
+
 
 public class StatementImp implements Statement {
+  
+  private String dbPath;
+  private DBEngine engine;
+  private ArrayList<MyEntry<String,Integer>> batchList;
+  
+  public StatementImp(String path){
+    dbPath = path;
+    engine = new DBEngine(dbPath);
+    batchList = new ArrayList<MyEntry<String, Integer>>(); 
+  }
 	@Override
 	public boolean isWrapperFor(Class<?> iface) throws SQLException {
 
@@ -24,7 +36,14 @@ public class StatementImp implements Statement {
 	@Override
 	public void addBatch(String sql) throws SQLException {
 	  // check that sql query is correct and then add it to listarray
-		
+	  int type = engine.isValidQuery(sql);
+	  if(type == 1){
+	    batchList.add(new MyEntry<String, Integer>(sql,1));
+	  }else if(type == 2){
+	    batchList.add(new MyEntry<String, Integer>(sql,2));
+	  }else if(type == 3){
+	    batchList.add(new MyEntry<String, Integer>(sql,3));
+	  }
 	}
 
 	@Override
@@ -36,7 +55,7 @@ public class StatementImp implements Statement {
 	@Override
 	public void clearBatch() throws SQLException {
 	  //Clear the list
-	  
+	  batchList.clear();
 	}
 
 	@Override
@@ -59,8 +78,7 @@ public class StatementImp implements Statement {
 
 	@Override
 	public boolean execute(String sql) throws SQLException {
-
-		return false;
+		return engine.executeStructureQuery(sql);
 	}
 
 	@Override
@@ -83,20 +101,34 @@ public class StatementImp implements Statement {
 
 	@Override
 	public int[] executeBatch() throws SQLException {
-
-		return null;
+	  // all queries should be update i think
+	  // need to check it again 
+	  int[] updateCount = new int[batchList.size()];
+	  int counter = 0;
+	  for(MyEntry<String,Integer> query : batchList){
+	    String sql = query.getFirst();
+	    int type = query.getSecond();
+	    if(type == 1){
+	      execute(sql);
+	    }else if(type == 2){
+	      updateCount[counter] = executeUpdate(sql);
+	    }else if(type == 3){
+	      executeQuery(sql);
+	    }
+	    counter++;
+	  }
+		return updateCount;
 	}
 
 	@Override
 	public ResultSet executeQuery(String sql) throws SQLException {
-
+	  
 		return null;
 	}
 
 	@Override
 	public int executeUpdate(String sql) throws SQLException {
-
-		return 0;
+		return engine.executeUpdateQuery(sql);
 	}
 
 	@Override
