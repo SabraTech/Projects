@@ -17,9 +17,9 @@ public class DriverImp implements Driver {
 	}
 
 	@Override
-	public Connection connect(String arg0, Properties info) throws SQLException {
+	public Connection connect(String url, Properties info) throws SQLException {
 	  
-	  Object path = info.get("path");
+	  String path = url + String.valueOf(info.get("path"));
 		Connection connect = new ConnectionImp(path);
 	  return connect;
 	}
