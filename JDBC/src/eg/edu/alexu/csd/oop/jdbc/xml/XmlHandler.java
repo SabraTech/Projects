@@ -23,6 +23,8 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import eg.edu.alexu.csd.oop.jdbc.DBEngine;
+
 public class XmlHandler {
   /** The fields names. */
   private String[] fieldsNames;
@@ -43,8 +45,10 @@ public class XmlHandler {
   public Object[][] readXml(String path, String name) {
     // dataBasePath should have .xml at the end
     String filePath = path + name + ".xml";
+    DBEngine.print(filePath);
     try {
       File fXmlFile = new File(filePath);
+      DBEngine.print("make file");
       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
       dbFactory.setValidating(true);
       dbFactory.setNamespaceAware(true);
@@ -72,7 +76,9 @@ public class XmlHandler {
         }
 
       });
+      DBEngine.print("validat the file done");
       Document doc = dBuilder.parse(fXmlFile);
+      DBEngine.print("parse the file done");
       doc.getDocumentElement().normalize();
 
       // get the root name which is the table name
