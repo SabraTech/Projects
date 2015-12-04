@@ -50,7 +50,6 @@ public class DBEngine {
 
   public void print(String s){
     try {
-      
       java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests.log"), "new Test".getBytes(), StandardOpenOption.CREATE);
     } catch (IOException e1) {
       // TODO Auto-generated catch block
