@@ -84,7 +84,8 @@ public class StatementImp implements Statement {
 
 	@Override
 	public boolean execute(String sql) throws SQLException {
-		return engine.executeStructureQuery(sql);
+		engine.print(sql);
+	  return engine.executeStructureQuery(sql);
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package eg.edu.alexu.csd.oop.jdbc;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.StandardOpenOption;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,13 +48,30 @@ public class DBEngine {
   /** The tables names and columns count. */
   private Map<String, Integer> tablesNamesAndColumnsCount;
 
+  public void print(String s){
+    try {
+      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests.log"), "new Test".getBytes(), StandardOpenOption.CREATE);
+    } catch (IOException e1) {
+      // TODO Auto-generated catch block
+      e1.printStackTrace();
+    }
+    try {
+      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests.log"), ("\n " + s + " \n").getBytes(), StandardOpenOption.APPEND);
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+  
+  
+  
   /**
    * Instantiates a new engine.
    */
   public DBEngine(String homePath) {
     parserAndValidator = new QueryValidatorAndParser();
     table = null;
-    home = new File("/debug/db/test/sample");
+    home = new File(homePath);
     databasesDirectory = home.getAbsolutePath() + File.separatorChar;
     saveAndLoadHandler = new XmlHandler();
     currentTableRows = null;
@@ -76,12 +95,14 @@ public class DBEngine {
       if (!file.exists()) {
         if (file.mkdirs()) {
           currentDataBaseDirectory = databasePath;
+          print(currentDataBaseDirectory);
           return true;
         } else {
           throw new RuntimeException("unable to create database" + databasePath + " " );
         }
       } else {
         currentDataBaseDirectory = databasePath;
+        print(currentDataBaseDirectory);
         return true;
       }
     } else {
@@ -231,6 +252,7 @@ public class DBEngine {
    */
   private boolean createTable(String query) throws SQLException {
     TableCreationParameters creationParameters = parserAndValidator.getAddedTableParameters(query);
+    print(currentDataBaseDirectory);
     String tableName = creationParameters.getTableName();
     if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
       return false;
