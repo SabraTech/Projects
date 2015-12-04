@@ -15,11 +15,13 @@ public class StatementImp implements Statement {
   private String dbPath;
   private DBEngine engine;
   private ArrayList<MyEntry<String,Integer>> batchList;
+  private int time;
   
   public StatementImp(String path){
     dbPath = path;
     engine = new DBEngine(dbPath);
-    batchList = new ArrayList<MyEntry<String, Integer>>(); 
+    batchList = new ArrayList<MyEntry<String, Integer>>();
+    time = 0; // means no limit
   }
 	@Override
 	public boolean isWrapperFor(Class<?> iface) throws SQLException {

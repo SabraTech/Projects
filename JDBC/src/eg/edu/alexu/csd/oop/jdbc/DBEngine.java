@@ -68,20 +68,20 @@ public class DBEngine {
    *          case it exists.
    * @return the string
    */
-  public String createDatabase(String databaseName, boolean dropIfExists) {
+  public boolean createDatabase(String databaseName, boolean dropIfExists) {
     String databasePath = databasesDirectory + databaseName + File.separatorChar;
     File file = new File(databasePath);
     if (!dropIfExists) {
       if (!file.exists()) {
         if (file.mkdir()) {
           currentDataBaseDirectory = databasePath;
-          return currentDataBaseDirectory;
+          return true;
         } else {
           throw new RuntimeException("unable to create database");
         }
       } else {
         currentDataBaseDirectory = databasePath;
-        return currentDataBaseDirectory;
+        return true;
       }
     } else {
       if (file.exists()) {
@@ -94,14 +94,15 @@ public class DBEngine {
           }
         }
         currentDataBaseDirectory = databasePath;
-        return currentDataBaseDirectory;
+        return true;
       } else {
-        if (file.mkdir()) {
+        return false;
+        /*if (file.mkdir()) {
           currentDataBaseDirectory = databasePath;
           return currentDataBaseDirectory;
         } else {
-          throw new RuntimeException("unable to create database");
-        }
+          throw new RuntimeException("unable to create database" + databasePath + " " );
+        }*/
       }
     }
   }
@@ -118,13 +119,11 @@ public class DBEngine {
   public boolean executeStructureQuery(String query) throws SQLException {
     if (parserAndValidator.queryIsCreateDataBase(query)) {
       String databaseName = parserAndValidator.getDatabaseName(query);
-      createDatabase(databaseName, false);
-      return true;
+      return createDatabase(databaseName, false);
     }
     if (parserAndValidator.queryIsDropDataBase(query)) {
       String databaseName = parserAndValidator.getDataBaseNameToDrop(query);
-      createDatabase(databaseName, true);
-      return true;
+      return createDatabase(databaseName, true);
     }
     if (parserAndValidator.queryIsCreateTable(query)) {
       return createTable(query);
