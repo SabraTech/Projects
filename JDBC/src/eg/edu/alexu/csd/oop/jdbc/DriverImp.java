@@ -22,9 +22,8 @@ public class DriverImp implements Driver {
 	  
 	  File dir = (File) info.get("path");
 	  String path = dir.getAbsolutePath();
-	  throw new RuntimeException(path);
-		//Connection connect = new ConnectionImp(path);
-	  //return connect;
+		Connection connect = new ConnectionImp(path);
+	  return connect;
 	}
 
 	@Override
