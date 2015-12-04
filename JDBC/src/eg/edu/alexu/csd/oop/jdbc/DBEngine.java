@@ -52,7 +52,7 @@ public class DBEngine {
   public DBEngine(String homePath) {
     parserAndValidator = new QueryValidatorAndParser();
     table = null;
-    home = new File(homePath);
+    home = new File("/debug/db/test/sample");
     databasesDirectory = home.getAbsolutePath() + File.separatorChar;
     saveAndLoadHandler = new XmlHandler();
     currentTableRows = null;
