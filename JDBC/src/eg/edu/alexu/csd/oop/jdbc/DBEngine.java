@@ -74,7 +74,7 @@ public class DBEngine {
     File file = new File(databasePath);
     if (!dropIfExists) {
       if (!file.exists()) {
-        if (file.mkdir()) {
+        if (file.mkdirs()) {
           currentDataBaseDirectory = databasePath;
           return true;
         } else {
