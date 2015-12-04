@@ -95,7 +95,7 @@ public class ConnectionImp implements Connection {
 
   @Override
   public Statement createStatement() throws SQLException {
-    Statement stat = new StatementImp(dbPath);
+    Statement stat = new StatementImp(dbPath,this);
     return stat;
   }
 

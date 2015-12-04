@@ -29,11 +29,13 @@ public class ResultSetImp implements ResultSet {
   private Object[][] dataTable;
   private String[] columnsNames;
   private String[] columnsDatatypes;
+  private Statement currentStatement;
   
-  public ResultSetImp(ResultSetParameters data){
+  public ResultSetImp(ResultSetParameters data, Statement stat){
     this.dataTable = data.getSelectedData();
     this.columnsNames = data.getColumnsNames();
     this.columnsDatatypes = data.getColumnsDatatypes();
+    this.currentStatement = stat;
   }
 
 	@Override

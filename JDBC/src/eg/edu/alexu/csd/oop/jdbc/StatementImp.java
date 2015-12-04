@@ -17,11 +17,14 @@ public class StatementImp implements Statement {
   private DBEngine engine;
   private ArrayList<MyEntry<String,Integer>> batchList;
   private int time;
+  private Connection currentConnection;
   
-  public StatementImp(String path){
-    engine = new DBEngine(path);
+  public StatementImp(String path, Connection conct){
+    dbPath = path;
+    engine = new DBEngine(dbPath);
     batchList = new ArrayList<MyEntry<String, Integer>>();
     time = 0; // means no limit
+    this.currentConnection = conct;
   }
 	@Override
 	public boolean isWrapperFor(Class<?> iface) throws SQLException {
@@ -125,7 +128,7 @@ public class StatementImp implements Statement {
 	@Override
 	public ResultSet executeQuery(String sql) throws SQLException {
 	  ResultSetParameters data = engine.executeQuery(sql) ;
-	  ResultSet resultData = new ResultSetImp(data);
+	  ResultSet resultData = new ResultSetImp(data, this);
 		return resultData;
 	}
 
@@ -154,8 +157,7 @@ public class StatementImp implements Statement {
 
 	@Override
 	public Connection getConnection() throws SQLException {
-
-		return null;
+		return this.currentConnection;
 	}
 
 	@Override
@@ -202,8 +204,7 @@ public class StatementImp implements Statement {
 
 	@Override
 	public int getQueryTimeout() throws SQLException {
-
-		return 0;
+		return this.time;
 	}
 
 	@Override
@@ -304,8 +305,7 @@ public class StatementImp implements Statement {
 
 	@Override
 	public void setQueryTimeout(int seconds) throws SQLException {
-
-		
+	  this.time = seconds;
 	}
 	
 
