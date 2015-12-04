@@ -153,7 +153,8 @@ public class StatementImp implements Statement {
 
 	@Override
 	public int executeUpdate(String sql) throws SQLException {
-		return engine.executeUpdateQuery(sql);
+		engine.print(sql);
+	  return engine.executeUpdateQuery(sql);
 	}
 
 	@Override

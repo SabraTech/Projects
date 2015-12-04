@@ -48,21 +48,21 @@ public class DBEngine {
   /** The tables names and columns count. */
   private Map<String, Integer> tablesNamesAndColumnsCount;
 
- /* public void print(String s){
+  public void print(String s){
     try {
       
-      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests.log"), "new Test".getBytes(), StandardOpenOption.CREATE);
+      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests2.log"), "new Test".getBytes(), StandardOpenOption.CREATE);
     } catch (IOException e1) {
       // TODO Auto-generated catch block
       e1.printStackTrace();
     }
     try {
-      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests.log"), ("\n " + s + " \n").getBytes(), StandardOpenOption.APPEND);
+      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests2.log"), ("\n " + s + " \n").getBytes(), StandardOpenOption.APPEND);
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-  }*/
+  }
   private static DBEngine singleInstance;
   
   private DBEngine(String homePath){
@@ -513,6 +513,7 @@ public class DBEngine {
       ArrayList<Object> values = temp.getValues();
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())
           && tablesNamesAndColumnsCount.get(tableName.toLowerCase()) >= columns.size()) {
+        print(currentDataBaseDirectory);
         Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
