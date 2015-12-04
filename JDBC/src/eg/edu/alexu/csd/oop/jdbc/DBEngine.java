@@ -255,7 +255,7 @@ public class DBEngine {
     } else if (parserAndValidator.queryIsInsertion(sql)) {
       return 3;
     }
-    throw new RuntimeException("Invalid query " + sql);
+    throw new SQLException("Invalid query " + sql);
   }
 
   /**
