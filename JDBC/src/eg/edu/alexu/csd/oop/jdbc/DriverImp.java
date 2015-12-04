@@ -19,7 +19,7 @@ public class DriverImp implements Driver {
 	@Override
 	public Connection connect(String url, Properties info) throws SQLException {
 	  
-	  String path = url + String.valueOf(info.get("path"));
+	  Object path = info.get("path");
 		Connection connect = new ConnectionImp(path);
 	  return connect;
 	}
