@@ -63,13 +63,9 @@ public class DBEngine {
       e.printStackTrace();
     }
   }
+  private static DBEngine singleInstance;
   
-  
-  
-  /**
-   * Instantiates a new engine.
-   */
-  public DBEngine(String homePath) {
+  private DBEngine(String homePath){
     parserAndValidator = new QueryValidatorAndParser();
     table = null;
     home = new File(homePath);
@@ -78,7 +74,27 @@ public class DBEngine {
     currentTableRows = null;
     tablesNamesAndColumnsCount = new HashMap<String, Integer>();
   }
-
+  
+  public static DBEngine getInstance(String path){
+    if (singleInstance == null) {
+      singleInstance = new DBEngine(path);
+    }
+    return singleInstance;
+  }
+  
+  /**
+   * Instantiates a new engine.
+   */
+  /*public DBEngine(String homePath) {
+    parserAndValidator = new QueryValidatorAndParser();
+    table = null;
+    home = new File(homePath);
+    databasesDirectory = home.getAbsolutePath() + File.separatorChar;
+    saveAndLoadHandler = new XmlHandler();
+    currentTableRows = null;
+    tablesNamesAndColumnsCount = new HashMap<String, Integer>();
+  }
+*/
   /**
    * creates database. returns true in case of success, false otherwise.
    *

@@ -22,7 +22,7 @@ public class StatementImp implements Statement {
   public StatementImp(String path, Connection conct){
     
     dbPath = path;
-    engine = new DBEngine(dbPath);
+    engine = DBEngine.getInstance(dbPath);
     batchList = new ArrayList<MyEntry<String, Integer>>();
     time = 0; // means no limit
     this.currentConnection = conct;
