@@ -21,9 +21,9 @@ public class DriverImp implements Driver {
 	  
 	  Object path = info.get("path");
 	  throw new RuntimeException(String.valueOf(path));
-		Connection connect = new ConnectionImp(path);
+		//Connection connect = new ConnectionImp(path);
 		
-	  return connect;
+	  //return null;
 	}
 
 	@Override
