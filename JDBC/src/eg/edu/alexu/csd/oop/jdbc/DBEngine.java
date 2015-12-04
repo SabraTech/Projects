@@ -77,7 +77,7 @@ public class DBEngine {
           currentDataBaseDirectory = databasePath;
           return true;
         } else {
-          throw new RuntimeException("unable to create database");
+          throw new RuntimeException("unable to create database" + databasePath + " " );
         }
       } else {
         currentDataBaseDirectory = databasePath;
