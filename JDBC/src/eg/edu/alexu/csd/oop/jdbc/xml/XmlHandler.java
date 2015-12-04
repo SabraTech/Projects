@@ -58,6 +58,7 @@ public class XmlHandler {
         @Override
         public void error(SAXParseException arg0) throws SAXException {
           // TODO Auto-generated method stub
+          DBEngine.print("ERROR : " + arg0.getMessage());
           System.out.println("ERROR : " + arg0.getMessage());
           throw arg0;
         }
@@ -65,6 +66,7 @@ public class XmlHandler {
         @Override
         public void fatalError(SAXParseException arg0) throws SAXException {
           // TODO Auto-generated method stub
+          DBEngine.print("FATAL : " + arg0.getCause());
           System.out.println("FATAL : " + arg0.getCause());
           throw arg0;
         }
@@ -72,6 +74,7 @@ public class XmlHandler {
         @Override
         public void warning(SAXParseException arg0) throws SAXException {
           // TODO Auto-generated method stub
+          DBEngine.print("WARNING : " + arg0.getMessage());
           System.out.println("WARNING : " + arg0.getMessage());
         }
 
