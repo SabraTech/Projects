@@ -20,10 +20,8 @@ public class DriverImp implements Driver {
 	public Connection connect(String arg0, Properties info) throws SQLException {
 	  
 	  Object path = info.get("path");
-	  throw new RuntimeException(String.valueOf(path));
-		//Connection connect = new ConnectionImp(path);
-		
-	  //return null;
+		Connection connect = new ConnectionImp(path);
+	  return connect;
 	}
 
 	@Override
