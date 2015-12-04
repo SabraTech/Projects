@@ -84,8 +84,25 @@ public class StatementImp implements Statement {
 
 	@Override
 	public boolean execute(String sql) throws SQLException {
-		engine.print(sql);
-	  return engine.executeStructureQuery(sql);
+	  int type = engine.isValidQuery(sql);
+    if (type == 1) {
+        return engine.executeStructureQuery(sql);
+    } else if (type == 2) {
+        int updateCount = engine.executeUpdateQuery(sql);
+        if(updateCount > 0){
+            return true;
+        }else{
+            return false;
+        }
+    } else if (type == 3) {
+        ResultSetParameters result = engine.executeQuery(sql);
+        if(result != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    return false;
 	}
 
 	@Override
