@@ -20,6 +20,7 @@ public class StatementImp implements Statement {
   private Connection currentConnection;
   
   public StatementImp(String path, Connection conct){
+    
     dbPath = path;
     engine = new DBEngine(dbPath);
     batchList = new ArrayList<MyEntry<String, Integer>>();
