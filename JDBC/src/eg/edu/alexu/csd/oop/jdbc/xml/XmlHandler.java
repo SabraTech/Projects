@@ -66,6 +66,7 @@ public class XmlHandler {
         @Override
         public void fatalError(SAXParseException arg0) throws SAXException {
           // TODO Auto-generated method stub
+          
           DBEngine.print("FATAL : " + arg0.getCause());
           System.out.println("FATAL : " + arg0.getCause());
           throw arg0;
