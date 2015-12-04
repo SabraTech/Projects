@@ -48,10 +48,10 @@ public class DBEngine {
   /**
    * Instantiates a new engine.
    */
-  public DBEngine(Object homePath) {
+  public DBEngine(String homePath) {
     parserAndValidator = new QueryValidatorAndParser();
     table = null;
-    home = (File) homePath;
+    home = new File(homePath);
     databasesDirectory = home.getAbsolutePath() + File.separatorChar;
     saveAndLoadHandler = new XmlHandler();
     currentTableRows = null;

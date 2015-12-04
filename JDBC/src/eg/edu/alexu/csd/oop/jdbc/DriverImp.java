@@ -1,5 +1,6 @@
 package eg.edu.alexu.csd.oop.jdbc;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverPropertyInfo;
@@ -19,7 +20,8 @@ public class DriverImp implements Driver {
 	@Override
 	public Connection connect(String url, Properties info) throws SQLException {
 	  
-	  Object path = info.get("path");
+	  File dir = (File) info.get("path");
+	  String path = dir.getAbsolutePath();
 		Connection connect = new ConnectionImp(path);
 	  return connect;
 	}
