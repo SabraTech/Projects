@@ -22,7 +22,19 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Map;
 
+import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ResultSetParameters;
+
 public class ResultSetImp implements ResultSet {
+  
+  private Object[][] dataTable;
+  private String[] columnsNames;
+  private String[] columnsDatatypes;
+  
+  public ResultSetImp(ResultSetParameters data){
+    this.dataTable = data.getSelectedData();
+    this.columnsNames = data.getColumnsNames();
+    this.columnsDatatypes = data.getColumnsDatatypes();
+  }
 
 	@Override
 	public boolean isWrapperFor(Class<?> iface) throws SQLException {

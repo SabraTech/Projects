@@ -11,6 +11,7 @@ import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ConditionalDeleteParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.InsertionParameters;
+import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ResultSetParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.SelectionParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.TableCreationParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.UpdateParameters;
@@ -153,7 +154,7 @@ public class DBEngine {
    * @throws SQLException
    *           the SQL exception
    */
-  public Object[][] executeQuery(String query) throws SQLException {
+  public ResultSetParameters executeQuery(String query) throws SQLException {
     if (parserAndValidator.queryIsSelection(query)) {
       return carrySelectionQuery(query);
     } else {
@@ -266,7 +267,7 @@ public class DBEngine {
    * @throws SQLException
    *           the SQL exception
    */
-  private Object[][] carrySelectionQuery(String query) throws SQLException {
+  private ResultSetParameters carrySelectionQuery(String query) throws SQLException {
     if (parserAndValidator.queryIsSelectAll(query)) {
       String tableName = parserAndValidator.getSelectAllFromTableParameters(query);
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
@@ -278,7 +279,7 @@ public class DBEngine {
             returnedTable[counter - 1][counter2] = dataTable[counter][counter2];
           }
         }
-        return returnedTable;
+        return new ResultSetParameters(returnedTable, columnsNames, columnsDataTypes);
       }
     } else if (parserAndValidator.queryIsSelectWithCondition(query)) {
       SelectionParameters temp = parserAndValidator.getSelectColumnWithConditionParameters(query);
@@ -326,7 +327,7 @@ public class DBEngine {
         for (int counter = 0; counter < selected.size(); counter++) {
           finalTable[counter][0] = selected.get(counter);
         }
-        return finalTable;
+        return new ResultSetParameters(finalTable, columnsNames, columnsDataTypes);
       } else {
         int compareInt = Integer.parseInt(value);
         if (compareChar.equals("<")) {
@@ -352,7 +353,7 @@ public class DBEngine {
         for (int counter = 0; counter < selected.size(); counter++) {
           finalTable[counter][0] = selected.get(counter);
         }
-        return finalTable;
+        return new ResultSetParameters(finalTable, columnsNames, columnsDataTypes);
       }
 
     } else if (parserAndValidator.queryIsSelectAllWithCondition(query)) {
@@ -395,7 +396,7 @@ public class DBEngine {
         for (int counter = 0; counter < selected.size(); counter++) {
           finalTable[counter] = selected.get(counter);
         }
-        return finalTable;
+        return new ResultSetParameters(finalTable, columnsNames, columnsDataTypes);
       } else {
         int compareInt = Integer.parseInt(value);
         if (compareChar.equals("<")) {
@@ -421,7 +422,7 @@ public class DBEngine {
         for (int counter = 0; counter < selected.size(); counter++) {
           finalTable[counter] = selected.get(counter);
         }
-        return finalTable;
+        return new ResultSetParameters(finalTable, columnsNames, columnsDataTypes);
       }
 
     } else if (parserAndValidator.queryIsSelectWithNames(query)) {
@@ -449,7 +450,7 @@ public class DBEngine {
             requiredTable[counter - 1][counter2] = tableData[counter][index[counter2]];
           }
         }
-        return requiredTable;
+        return new ResultSetParameters(requiredTable, columnsNames, columnsDataTypes);
       }
     }
     return null;

@@ -13,8 +13,7 @@ public class DriverImp implements Driver {
 
 	@Override
 	public boolean acceptsURL(String arg0) throws SQLException {
-
-		return false;
+		return true;
 	}
 
 	@Override
@@ -46,8 +45,9 @@ public class DriverImp implements Driver {
 
 	@Override
 	public DriverPropertyInfo[] getPropertyInfo(String arg0, Properties arg1) throws SQLException {
-
-		return null;
+	  DriverPropertyInfo[] usedMap = new DriverPropertyInfo[1];
+	  usedMap[0] = new DriverPropertyInfo("path", " ");
+		return usedMap;
 	}
 
 	@Override

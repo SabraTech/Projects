@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
+import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ResultSetParameters;
 
 
 public class StatementImp implements Statement {
@@ -123,8 +124,9 @@ public class StatementImp implements Statement {
 
 	@Override
 	public ResultSet executeQuery(String sql) throws SQLException {
-	  
-		return null;
+	  ResultSetParameters data = engine.executeQuery(sql) ;
+	  ResultSet resultData = new ResultSetImp(data);
+		return resultData;
 	}
 
 	@Override
