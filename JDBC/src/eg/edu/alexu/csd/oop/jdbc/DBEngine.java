@@ -51,13 +51,13 @@ public class DBEngine {
   public static void print(String s){
     try {
       
-      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests3.log"), "new Test".getBytes(), StandardOpenOption.CREATE);
+      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests4.log"), "new Test".getBytes(), StandardOpenOption.CREATE);
     } catch (IOException e1) {
       // TODO Auto-generated catch block
       e1.printStackTrace();
     }
     try {
-      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests3.log"), ("\n " + s + " \n").getBytes(), StandardOpenOption.APPEND);
+      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests4.log"), ("\n " + s + " \n").getBytes(), StandardOpenOption.APPEND);
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -156,6 +156,7 @@ public class DBEngine {
   public boolean executeStructureQuery(String query) throws SQLException {
     if (parserAndValidator.queryIsCreateDataBase(query)) {
       String databaseName = parserAndValidator.getDatabaseName(query);
+      DBEngine.print(databaseName);
       return createDatabase(databaseName, false);
     }
     if (parserAndValidator.queryIsDropDataBase(query)) {
@@ -267,6 +268,7 @@ public class DBEngine {
   private boolean createTable(String query) throws SQLException {
     TableCreationParameters creationParameters = parserAndValidator.getAddedTableParameters(query);
     String tableName = creationParameters.getTableName();
+    DBEngine.print(tableName);
     if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
       return false;
     }
