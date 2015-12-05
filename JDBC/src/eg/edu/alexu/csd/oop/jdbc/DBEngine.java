@@ -114,14 +114,12 @@ public class DBEngine {
       if (!file.exists()) {
         if (file.mkdirs()) {
           currentDataBaseDirectory = databasePath;
-          print(currentDataBaseDirectory +"*");
           return true;
         } else {
           throw new RuntimeException("unable to create database" + databasePath + " ");
         }
       } else {
         currentDataBaseDirectory = databasePath;
-        print(currentDataBaseDirectory+"*");
         return true;
       }
     } else {
@@ -135,11 +133,10 @@ public class DBEngine {
           }
         }
         currentDataBaseDirectory = databasePath;
-        print(currentDataBaseDirectory+"*");
         return true;
       } else {
-        print(currentDataBaseDirectory+"*");
-        return false;
+        currentDataBaseDirectory = databasePath;
+        return true;
         /*
          * if (file.mkdir()) { currentDataBaseDirectory = databasePath; return
          * currentDataBaseDirectory; } else { throw new RuntimeException(
