@@ -41,6 +41,7 @@ public class ResultSetImp implements ResultSet {
     this.columnsDatatypes = data.getColumnsDatatypes();
     this.tableName = data.getTableName();
     this.currentStatement = stat;
+    tableName = data.getTableName();
     currentRow = 0;
     isClosed = false;
   }
@@ -165,7 +166,7 @@ public class ResultSetImp implements ResultSet {
     if (isClosed) {
       throw new SQLException();
     }
-    return new ResultSetMetaDataImp(columnsNames, columnsDatatypes, "");
+    return new ResultSetMetaDataImp(columnsNames, columnsDatatypes, tableName);
   }
 
   @Override
