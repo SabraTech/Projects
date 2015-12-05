@@ -66,6 +66,7 @@ public class DBEngine {
   private static DBEngine singleInstance;
 
   private DBEngine(String homePath) {
+    homePath = homePath.toLowerCase();
     parserAndValidator = new QueryValidatorAndParser();
     table = null;
     home = new File(homePath);
