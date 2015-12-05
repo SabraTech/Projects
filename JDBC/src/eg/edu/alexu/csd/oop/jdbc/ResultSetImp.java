@@ -30,6 +30,7 @@ public class ResultSetImp implements ResultSet {
   private Object[][] dataTable;
   private String[] columnsNames;
   private String[] columnsDatatypes;
+  private String tableName;
   private Statement currentStatement;
   private boolean isClosed;
   private int currentRow;
@@ -38,6 +39,7 @@ public class ResultSetImp implements ResultSet {
     this.dataTable = data.getSelectedData();
     this.columnsNames = data.getColumnsNames();
     this.columnsDatatypes = data.getColumnsDatatypes();
+    this.tableName = data.getTableName();
     this.currentStatement = stat;
     currentRow = 0;
     isClosed = false;

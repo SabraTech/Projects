@@ -32,6 +32,9 @@ public class XmlHandler {
   /** The fields types. */
   private String[] fieldsTypes;
   
+  /** The table name. */
+  private String tableName;
+  
   /** The data. */
   private Object[][] data;
 
@@ -86,7 +89,8 @@ public class XmlHandler {
       doc.getDocumentElement().normalize();
 
       // get the root name which is the table name
-
+      tableName = doc.getDocumentElement().getNodeName();
+      
       // get how many rows saved in the file
       NodeList nList = doc.getElementsByTagName("Row");
       Node oneRow = nList.item(0);
@@ -151,6 +155,16 @@ public class XmlHandler {
   public String[] getFieldsTypes() {
     return fieldsTypes;
   }
+  
+  /**
+   * Gets the table name.
+   *
+   * @return the table name
+   */
+  public String getTableName() {
+    return tableName;
+  }
+  
 
   /**
    * Write xml.
