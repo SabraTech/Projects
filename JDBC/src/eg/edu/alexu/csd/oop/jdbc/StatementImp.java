@@ -84,7 +84,6 @@ public class StatementImp implements Statement {
 
 	@Override
 	public boolean execute(String sql) throws SQLException {
-	  DBEngine.print(sql);
 	  int type = engine.isValidQuery(sql);
     if (type == 1) {
         return engine.executeStructureQuery(sql);
@@ -97,8 +96,13 @@ public class StatementImp implements Statement {
         }
     } else if (type == 3) {
         ResultSetParameters result = engine.executeQuery(sql);
-        if(result != null){
+        if(result != null ){
+          Object[][] tableData = result.getSelectedData();
+          if(tableData.length != 0){
             return true;
+          }else{
+            return false;
+          }
         }else{
             return false;
         }
@@ -147,7 +151,6 @@ public class StatementImp implements Statement {
 
 	@Override
 	public ResultSet executeQuery(String sql) throws SQLException {
-	  DBEngine.print(sql);
 	  ResultSetParameters data = engine.executeQuery(sql) ;
 	  ResultSet resultData = new ResultSetImp(data, this);
 		return resultData;
@@ -155,7 +158,6 @@ public class StatementImp implements Statement {
 
 	@Override
 	public int executeUpdate(String sql) throws SQLException {
-	  DBEngine.print(sql);
 	  return engine.executeUpdateQuery(sql);
 	}
 

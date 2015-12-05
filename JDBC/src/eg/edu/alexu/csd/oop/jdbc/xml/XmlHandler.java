@@ -48,10 +48,8 @@ public class XmlHandler {
   public Object[][] readXml(String path, String name) {
     // dataBasePath should have .xml at the end
     String filePath = path + name + ".xml";
-    DBEngine.print(filePath);
     try {
       File fXmlFile = new File(filePath);
-      DBEngine.print("make file");
       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
       dbFactory.setValidating(true);
       dbFactory.setNamespaceAware(true);
@@ -61,7 +59,6 @@ public class XmlHandler {
         @Override
         public void error(SAXParseException arg0) throws SAXException {
           // TODO Auto-generated method stub
-          DBEngine.print("ERROR : " + arg0.getMessage());
           System.out.println("ERROR : " + arg0.getMessage());
           throw arg0;
         }
@@ -70,7 +67,6 @@ public class XmlHandler {
         public void fatalError(SAXParseException arg0) throws SAXException {
           // TODO Auto-generated method stub
           
-          DBEngine.print("FATAL : " + arg0.getCause());
           System.out.println("FATAL : " + arg0.getCause());
           throw arg0;
         }
@@ -78,14 +74,11 @@ public class XmlHandler {
         @Override
         public void warning(SAXParseException arg0) throws SAXException {
           // TODO Auto-generated method stub
-          DBEngine.print("WARNING : " + arg0.getMessage());
           System.out.println("WARNING : " + arg0.getMessage());
         }
 
       });
-      DBEngine.print("validat the file done");
       Document doc = dBuilder.parse(fXmlFile);
-      DBEngine.print("parse the file done");
       doc.getDocumentElement().normalize();
 
       // get the root name which is the table name

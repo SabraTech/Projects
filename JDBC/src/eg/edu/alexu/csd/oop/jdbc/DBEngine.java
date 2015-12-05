@@ -51,7 +51,7 @@ public class DBEngine {
   /** The tables names and columns count. */
   private Map<String, Integer> tablesNamesAndColumnsCount;
 
-  public static void print(String s){
+  /*public static void print(String s){
     try {
       
       java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests5.log"), "new Test".getBytes(), StandardOpenOption.CREATE);
@@ -65,7 +65,7 @@ public class DBEngine {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-  }
+  }*/
   private static DBEngine singleInstance;
   
   private DBEngine(String homePath){
@@ -160,7 +160,6 @@ public class DBEngine {
   public boolean executeStructureQuery(String query) throws SQLException {
     if (parserAndValidator.queryIsCreateDataBase(query)) {
       String databaseName = parserAndValidator.getDatabaseName(query);
-      DBEngine.print(databaseName);
       return createDatabase(databaseName, false);
     }
     if (parserAndValidator.queryIsDropDataBase(query)) {
@@ -272,7 +271,6 @@ public class DBEngine {
   private boolean createTable(String query) throws SQLException {
     TableCreationParameters creationParameters = parserAndValidator.getAddedTableParameters(query);
     String tableName = creationParameters.getTableName();
-    DBEngine.print(tableName);
     if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
       return false;
     }
@@ -521,7 +519,6 @@ public class DBEngine {
       ArrayList<Object> values = temp.getValues();
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())
           && tablesNamesAndColumnsCount.get(tableName.toLowerCase()) >= columns.size()) {
-        print("enter xml from carryInsertion");
         Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
