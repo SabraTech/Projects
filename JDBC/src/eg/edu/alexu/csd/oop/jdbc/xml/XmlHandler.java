@@ -47,7 +47,7 @@ public class XmlHandler {
    */
   public Object[][] readXml(String path, String name) {
     // dataBasePath should have .xml at the end
-    String filePath = path + name + ".xml";
+    String filePath = path + File.separatorChar + name + ".xml";
     try {
       File fXmlFile = new File(filePath);
       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
