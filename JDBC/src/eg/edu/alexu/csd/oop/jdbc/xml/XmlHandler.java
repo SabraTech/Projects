@@ -133,7 +133,7 @@ public class XmlHandler {
       return data;
     } catch (Exception e) {
       // TODO Auto-generated catch block
-      throw new RuntimeException();
+      throw new RuntimeException(filePath + " " + name);
     }
 
   }

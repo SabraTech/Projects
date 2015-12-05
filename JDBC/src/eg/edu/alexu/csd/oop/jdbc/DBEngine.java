@@ -54,13 +54,13 @@ public class DBEngine {
   public static void print(String s){
     try {
       
-      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests4.log"), "new Test".getBytes(), StandardOpenOption.CREATE);
+      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests5.log"), "new Test".getBytes(), StandardOpenOption.CREATE);
     } catch (IOException e1) {
       // TODO Auto-generated catch block
       e1.printStackTrace();
     }
     try {
-      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests4.log"), ("\n " + s + " \n").getBytes(), StandardOpenOption.APPEND);
+      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests5.log"), ("\n " + s + " \n").getBytes(), StandardOpenOption.APPEND);
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
