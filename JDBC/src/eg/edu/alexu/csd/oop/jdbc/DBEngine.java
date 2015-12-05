@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sun.scenario.effect.DelegateEffect;
+
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ConditionalDeleteParameters;
@@ -110,7 +112,29 @@ public class DBEngine {
     databasePath = databasePath.toLowerCase();
     tablesNamesAndColumnsCount.clear();
     File file = new File(databasePath);
-    if (!dropIfExists) {
+    if(file.exists() && dropIfExists){
+      deleteFolder(file);
+      }else if(!file.exists()){
+        file.mkdirs();
+        currentDataBaseDirectory = file.getAbsolutePath();
+      }
+    return true;
+  }
+  
+  private void deleteFolder(File folder){
+    File[] files = folder.listFiles();
+    if(files!=null) { //some JVMs return null for empty dirs
+        for(File f: files) {
+            if(f.isDirectory()) {
+                deleteFolder(f);
+            } else {
+                f.delete();
+            }
+        }
+    }
+    folder.delete();
+  }
+    /*if (!dropIfExists) {
       if (!file.exists()) {
         if (file.mkdirs()) {
           currentDataBaseDirectory = databasePath;
@@ -136,15 +160,13 @@ public class DBEngine {
         return true;
       } else {
         currentDataBaseDirectory = databasePath;
-        return true;
+        return true;*/
         /*
          * if (file.mkdir()) { currentDataBaseDirectory = databasePath; return
          * currentDataBaseDirectory; } else { throw new RuntimeException(
          * "unable to create database" + databasePath + " " ); }
          */
-      }
-    }
-  }
+  
 
   /**
    * executes structure query. returns true in case of success, false otherwise.
