@@ -44,31 +44,28 @@ public class DBEngine {
 
   /** The columns and their data types. */
   private String[] columnsNames, columnsDataTypes;
-  
+
   /** The table name. */
   private String currentTableName;
 
   /** The tables names and columns count. */
   private Map<String, Integer> tablesNamesAndColumnsCount;
 
-  /*public static void print(String s){
-    try {
-      
-      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests5.log"), "new Test".getBytes(), StandardOpenOption.CREATE);
-    } catch (IOException e1) {
-      // TODO Auto-generated catch block
-      e1.printStackTrace();
-    }
-    try {
-      java.nio.file.Files.write( java.nio.file.Paths.get("/debug/jdbctests5.log"), ("\n " + s + " \n").getBytes(), StandardOpenOption.APPEND);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }*/
+  /*
+   * public static void print(String s){ try {
+   * 
+   * java.nio.file.Files.write(
+   * java.nio.file.Paths.get("/debug/jdbctests5.log"), "new Test".getBytes(),
+   * StandardOpenOption.CREATE); } catch (IOException e1) { // TODO
+   * Auto-generated catch block e1.printStackTrace(); } try {
+   * java.nio.file.Files.write(
+   * java.nio.file.Paths.get("/debug/jdbctests5.log"), ("\n " + s + " \n"
+   * ).getBytes(), StandardOpenOption.APPEND); } catch (IOException e) { // TODO
+   * Auto-generated catch block e.printStackTrace(); } }
+   */
   private static DBEngine singleInstance;
-  
-  private DBEngine(String homePath){
+
+  private DBEngine(String homePath) {
     parserAndValidator = new QueryValidatorAndParser();
     table = null;
     home = new File(homePath);
@@ -77,27 +74,24 @@ public class DBEngine {
     currentTableRows = null;
     tablesNamesAndColumnsCount = new HashMap<String, Integer>();
   }
-  
-  public static DBEngine getInstance(String path){
+
+  public static DBEngine getInstance(String path) {
     if (singleInstance == null) {
       singleInstance = new DBEngine(path);
     }
     return singleInstance;
   }
-  
+
   /**
    * Instantiates a new engine.
    */
-  /*public DBEngine(String homePath) {
-    parserAndValidator = new QueryValidatorAndParser();
-    table = null;
-    home = new File(homePath);
-    databasesDirectory = home.getAbsolutePath() + File.separatorChar;
-    saveAndLoadHandler = new XmlHandler();
-    currentTableRows = null;
-    tablesNamesAndColumnsCount = new HashMap<String, Integer>();
-  }
-*/
+  /*
+   * public DBEngine(String homePath) { parserAndValidator = new
+   * QueryValidatorAndParser(); table = null; home = new File(homePath);
+   * databasesDirectory = home.getAbsolutePath() + File.separatorChar;
+   * saveAndLoadHandler = new XmlHandler(); currentTableRows = null;
+   * tablesNamesAndColumnsCount = new HashMap<String, Integer>(); }
+   */
   /**
    * creates database. returns true in case of success, false otherwise.
    *
@@ -118,7 +112,7 @@ public class DBEngine {
           currentDataBaseDirectory = databasePath;
           return true;
         } else {
-          throw new RuntimeException("unable to create database" + databasePath + " " );
+          throw new RuntimeException("unable to create database" + databasePath + " ");
         }
       } else {
         currentDataBaseDirectory = databasePath;
@@ -138,12 +132,11 @@ public class DBEngine {
         return true;
       } else {
         return false;
-        /*if (file.mkdir()) {
-          currentDataBaseDirectory = databasePath;
-          return currentDataBaseDirectory;
-        } else {
-          throw new RuntimeException("unable to create database" + databasePath + " " );
-        }*/
+        /*
+         * if (file.mkdir()) { currentDataBaseDirectory = databasePath; return
+         * currentDataBaseDirectory; } else { throw new RuntimeException(
+         * "unable to create database" + databasePath + " " ); }
+         */
       }
     }
   }
@@ -234,10 +227,8 @@ public class DBEngine {
    */
   public int isValidQuery(String sql) throws SQLException {
     /**
-     * int value for which method is the query
-     * type 1 = execute()
-     * type 2 = executeUpdate()
-     * type 3 = executeQuery()
+     * int value for which method is the query type 1 = execute() type 2 =
+     * executeUpdate() type 3 = executeQuery()
      */
     if (parserAndValidator.queryIsCreateDataBase(sql)) {
       return 1;
@@ -277,7 +268,8 @@ public class DBEngine {
     if (currentDataBaseDirectory == null) {
       throw new RuntimeException("No database exist");
     }
-    ArrayList<MyEntry<String, Class<?>>> columnsNamesAndClasses = creationParameters.getColumnsNamesAndClasses();
+    ArrayList<MyEntry<String, Class<?>>> columnsNamesAndClasses = creationParameters
+        .getColumnsNamesAndClasses();
     columnsNames = new String[columnsNamesAndClasses.size()];
     columnsDataTypes = new String[columnsNamesAndClasses.size()];
     int counter = 0;
@@ -311,7 +303,8 @@ public class DBEngine {
     if (parserAndValidator.queryIsSelectAll(query)) {
       String tableName = parserAndValidator.getSelectAllFromTableParameters(query);
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
-        Object[][] dataTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
+        Object[][] dataTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName
+            .toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
         currentTableName = saveAndLoadHandler.getTableName();
@@ -321,7 +314,8 @@ public class DBEngine {
             returnedTable[counter - 1][counter2] = dataTable[counter][counter2];
           }
         }
-        return new ResultSetParameters(returnedTable, columnsNames, columnsDataTypes,currentTableName);
+        return new ResultSetParameters(returnedTable, columnsNames, columnsDataTypes,
+            currentTableName);
       }
     } else if (parserAndValidator.queryIsSelectWithCondition(query)) {
       SelectionParameters temp = parserAndValidator.getSelectColumnWithConditionParameters(query);
@@ -330,8 +324,11 @@ public class DBEngine {
       String columnToCompareWithName = temp.getColumnToCompareName();
       String compareChar = temp.getComparingChar();
       String value = temp.getValueToCompareTo();
+      String[] columnName = new String[] { columnToSelect };
+      String[] columnDataType = null;
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
-        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
+        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName
+            .toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
         currentTableName = saveAndLoadHandler.getTableName();
@@ -347,9 +344,11 @@ public class DBEngine {
       for (int counter2 = 0; counter2 < columnsNames.length; counter2++) {
         if (columnsNames[counter2].equalsIgnoreCase(columnToCompareWithName)) {
           columnToCompareWithIndex = counter2;
+          columnDataType = new String[] { columnsDataTypes[counter2] };
         }
         if (columnsNames[counter2].equalsIgnoreCase(columnToSelect)) {
           columnToSelectIndex = counter2;
+
         }
       }
       if (columnToCompareWithIndex == -1) {
@@ -362,7 +361,8 @@ public class DBEngine {
       ArrayList<Object> selected = new ArrayList<Object>();
       if (typeOfColumnToCompareWith.equalsIgnoreCase("varChar")) {
         for (int counter = 1; counter < currentTableRows.size(); counter++) {
-          if (((String) currentTableRows.get(counter)[columnToCompareWithIndex]).equalsIgnoreCase(value)) {
+          if (((String) currentTableRows.get(counter)[columnToCompareWithIndex]).equalsIgnoreCase(
+              value)) {
             selected.add((String) currentTableRows.get(counter)[columnToSelectIndex]);
           }
         }
@@ -370,7 +370,7 @@ public class DBEngine {
         for (int counter = 0; counter < selected.size(); counter++) {
           finalTable[counter][0] = selected.get(counter);
         }
-        return new ResultSetParameters(finalTable, columnsNames, columnsDataTypes, currentTableName);
+        return new ResultSetParameters(finalTable, columnName, columnDataType, currentTableName);
       } else {
         int compareInt = Integer.parseInt(value);
         if (compareChar.equals("<")) {
@@ -396,7 +396,7 @@ public class DBEngine {
         for (int counter = 0; counter < selected.size(); counter++) {
           finalTable[counter][0] = selected.get(counter);
         }
-        return new ResultSetParameters(finalTable, columnsNames, columnsDataTypes, currentTableName);
+        return new ResultSetParameters(finalTable, columnName, columnDataType, currentTableName);
       }
 
     } else if (parserAndValidator.queryIsSelectAllWithCondition(query)) {
@@ -408,7 +408,8 @@ public class DBEngine {
       String value = temp.getValueToCompareTo();
       value = value.replace(" ", "");
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
-        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
+        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName
+            .toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
         currentTableName = saveAndLoadHandler.getTableName();
@@ -432,7 +433,8 @@ public class DBEngine {
       ArrayList<Object[]> selected = new ArrayList<Object[]>();
       if (typeOfColumnToCompareWith.equalsIgnoreCase("varChar")) {
         for (int counter = 1; counter < currentTableRows.size(); counter++) {
-          if (((String) currentTableRows.get(counter)[columnToCompareWithIndex]).equalsIgnoreCase(value)) {
+          if (((String) currentTableRows.get(counter)[columnToCompareWithIndex]).equalsIgnoreCase(
+              value)) {
             selected.add(currentTableRows.get(counter));
           }
         }
@@ -440,7 +442,8 @@ public class DBEngine {
         for (int counter = 0; counter < selected.size(); counter++) {
           finalTable[counter] = selected.get(counter);
         }
-        return new ResultSetParameters(finalTable, columnsNames, columnsDataTypes, currentTableName);
+        return new ResultSetParameters(finalTable, columnsNames, columnsDataTypes,
+            currentTableName);
       } else {
         int compareInt = Integer.parseInt(value);
         if (compareChar.equals("<")) {
@@ -466,15 +469,20 @@ public class DBEngine {
         for (int counter = 0; counter < selected.size(); counter++) {
           finalTable[counter] = selected.get(counter);
         }
-        return new ResultSetParameters(finalTable, columnsNames, columnsDataTypes, currentTableName);
+        return new ResultSetParameters(finalTable, columnsNames, columnsDataTypes,
+            currentTableName);
       }
 
     } else if (parserAndValidator.queryIsSelectWithNames(query)) {
       SelectionParameters queryParameters = parserAndValidator.getSelectWithNameParameters(query);
       ArrayList<String> columnsToBeSelectedNames = queryParameters.getColumnsToSelectNames();
+      String[] selectedColumnsNames = new String[columnsToBeSelectedNames.size()];
+      String[] selectedColumnsDatatypes = new String[columnsToBeSelectedNames.size()];
+      selectedColumnsNames = columnsToBeSelectedNames.toArray(selectedColumnsNames);
       String tableName = queryParameters.getTableName();
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
-        Object[][] tableData = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
+        Object[][] tableData = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName
+            .toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
         currentTableName = saveAndLoadHandler.getTableName();
@@ -484,19 +492,22 @@ public class DBEngine {
           for (int counter2 = 0; counter2 < columnsNames.length; counter2++) {
             if (columnsToBeSelectedNames.get(counter).equalsIgnoreCase(columnsNames[counter2])) {
               index[counter] = counter2;
+              selectedColumnsDatatypes[counter] = columnsDataTypes[counter2];
             }
           }
           if (index[counter] == -1) {
             throw new SQLException("invalid column name " + columnsToBeSelectedNames.get(counter));
           }
         }
-        Object[][] requiredTable = new Object[tableData.length - 1][columnsToBeSelectedNames.size()];
+        Object[][] requiredTable = new Object[tableData.length - 1][columnsToBeSelectedNames
+            .size()];
         for (int counter = 1; counter < columnsNames.length; counter++) {
           for (int counter2 = 0; counter2 < index.length; counter2++) {
             requiredTable[counter - 1][counter2] = tableData[counter][index[counter2]];
           }
         }
-        return new ResultSetParameters(requiredTable, columnsNames, columnsDataTypes, currentTableName);
+        return new ResultSetParameters(requiredTable, selectedColumnsNames,
+            selectedColumnsDatatypes, currentTableName);
       }
     }
     return null;
@@ -513,13 +524,15 @@ public class DBEngine {
    */
   private int carryInsertionQuery(String query) throws SQLException {
     if (parserAndValidator.queryIsInsertIntoTableColumnWithValues(query)) {
-      InsertionParameters temp = parserAndValidator.getInsertIntoTableColumnsWithValuesParameters(query);
+      InsertionParameters temp = parserAndValidator.getInsertIntoTableColumnsWithValuesParameters(
+          query);
       String tableName = temp.getTableName();
       ArrayList<String> columns = temp.getColumnsNames();
       ArrayList<Object> values = temp.getValues();
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())
           && tablesNamesAndColumnsCount.get(tableName.toLowerCase()) >= columns.size()) {
-        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
+        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName
+            .toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
         currentTableRows.clear();
@@ -544,8 +557,8 @@ public class DBEngine {
         for (int counteri = 0; counteri < currentTableRows.size(); counteri++) {
           newTable[counteri] = currentTableRows.get(counteri);
         }
-        saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory, newTable,
-            tableName.toLowerCase());
+        saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory,
+            newTable, tableName.toLowerCase());
         return 1;
       }
     } else if (parserAndValidator.queryIsInsertIntoTableValues(query)) {
@@ -554,7 +567,8 @@ public class DBEngine {
       ArrayList<Object> values = temp.getValues();
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())
           && tablesNamesAndColumnsCount.get(tableName.toLowerCase()) == values.size()) {
-        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
+        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName
+            .toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
         currentTableRows.clear();
@@ -571,8 +585,8 @@ public class DBEngine {
         for (int counter = 0; counter < currentTableRows.size(); counter++) {
           newTable[counter] = currentTableRows.get(counter);
         }
-        saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory, newTable,
-            tableName.toLowerCase());
+        saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory,
+            newTable, tableName.toLowerCase());
         return 1;
       }
 
@@ -597,7 +611,8 @@ public class DBEngine {
       String compareChar = temp.getComparingChar();
       String value = temp.getValueToCompareTo();
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
-        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
+        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName
+            .toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
         currentTableRows.clear();
@@ -627,8 +642,8 @@ public class DBEngine {
           for (int counter = 0; counter < currentTableRows.size(); counter++) {
             newTable[counter] = currentTableRows.get(counter);
           }
-          saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory, newTable,
-              tableName.toLowerCase());
+          saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory,
+              newTable, tableName.toLowerCase());
           return tempTable.length - currentTableRows.size();
         } else {
           int compareInt = Integer.parseInt(value);
@@ -673,8 +688,8 @@ public class DBEngine {
           for (int counter = 0; counter < currentTableRows.size(); counter++) {
             newTable[counter] = currentTableRows.get(counter);
           }
-          saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory, newTable,
-              tableName.toLowerCase());
+          saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory,
+              newTable, tableName.toLowerCase());
           return tempTable.length - currentTableRows.size();
         }
       }
@@ -682,13 +697,14 @@ public class DBEngine {
     } else if (parserAndValidator.queryIsDeleteAll(query)) {
       String tableName = parserAndValidator.getTableNameToDeleteAll(query);
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
-        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
+        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName
+            .toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
         int size = tempTable.length;
         Object[][] newTable = new Object[1][columnsNames.length];
-        saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory, newTable,
-            tableName.toLowerCase());
+        saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory,
+            newTable, tableName.toLowerCase());
         return size - 1;
       }
 
@@ -708,7 +724,8 @@ public class DBEngine {
   private int carryUpdateQuery(String query) throws SQLException {
     if (parserAndValidator.queryIsConditionalUpdate(query)) {
       UpdateParameters parameters = parserAndValidator.getUpdateParameters(query);
-      ArrayList<MyEntry<String, String>> columnsAndValues = parameters.getRequiredColumnsNamesAndValues();
+      ArrayList<MyEntry<String, String>> columnsAndValues = parameters
+          .getRequiredColumnsNamesAndValues();
       String[] columnsToChange = new String[columnsAndValues.size()];
       String[] newValues = new String[columnsAndValues.size()];
       int dummyCounter = 0;
@@ -722,7 +739,8 @@ public class DBEngine {
       String compareChar = parameters.getComparingChar();
       String value = parameters.getValueToCompareTo();
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
-        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
+        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName
+            .toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
         currentTableRows.clear();
@@ -758,7 +776,8 @@ public class DBEngine {
       if (typeOfColumnToCompareWith.equalsIgnoreCase("varChar")) {
         int edited = 0;
         for (int counter = 1; counter < currentTableRows.size(); counter++) {
-          if (((String) currentTableRows.get(counter)[columnToCompareWithIndex]).equalsIgnoreCase(value)) {
+          if (((String) currentTableRows.get(counter)[columnToCompareWithIndex]).equalsIgnoreCase(
+              value)) {
             edited++;
             Object[] dummy = currentTableRows.get(counter);
             for (int counter2 = 0; counter2 < columnsToChange.length; counter2++) {
@@ -771,8 +790,8 @@ public class DBEngine {
         for (int counter = 0; counter < currentTableRows.size(); counter++) {
           finalTable[counter] = currentTableRows.get(counter);
         }
-        saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory, finalTable,
-            tableName.toLowerCase());
+        saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory,
+            finalTable, tableName.toLowerCase());
         return edited;
       } else {
         int compareInt = Integer.parseInt(value);
@@ -815,13 +834,14 @@ public class DBEngine {
         for (int counter = 0; counter < currentTableRows.size(); counter++) {
           finalTable[counter] = currentTableRows.get(counter);
         }
-        saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory, finalTable,
-            tableName.toLowerCase());
+        saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory,
+            finalTable, tableName.toLowerCase());
         return edited;
       }
     } else if (parserAndValidator.queryIsUpdateWithoutCondition(query)) {
       UpdateParameters parameters = parserAndValidator.getUpdateWithoutConditionParameters(query);
-      ArrayList<MyEntry<String, String>> columnsAndValues = parameters.getRequiredColumnsNamesAndValues();
+      ArrayList<MyEntry<String, String>> columnsAndValues = parameters
+          .getRequiredColumnsNamesAndValues();
       String[] columnsToChange = new String[columnsAndValues.size()];
       String[] newValues = new String[columnsAndValues.size()];
       int dummyCounter = 0;
@@ -832,7 +852,8 @@ public class DBEngine {
       }
       String tableName = parameters.getTableName();
       if (tablesNamesAndColumnsCount.containsKey(tableName.toLowerCase())) {
-        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName.toLowerCase());
+        Object[][] tempTable = saveAndLoadHandler.readXml(currentDataBaseDirectory, tableName
+            .toLowerCase());
         columnsNames = saveAndLoadHandler.getFieldsNames();
         columnsDataTypes = saveAndLoadHandler.getFieldsTypes();
         currentTableRows.clear();
@@ -867,8 +888,8 @@ public class DBEngine {
       for (int counter = 0; counter < currentTableRows.size(); counter++) {
         finalTable[counter] = currentTableRows.get(counter);
       }
-      saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory, finalTable,
-          tableName.toLowerCase());
+      saveAndLoadHandler.writeXml(columnsNames, columnsDataTypes, currentDataBaseDirectory,
+          finalTable, tableName.toLowerCase());
       return edited;
     }
     return 0;
