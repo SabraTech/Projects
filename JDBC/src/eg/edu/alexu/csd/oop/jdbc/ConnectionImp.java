@@ -22,9 +22,11 @@ import java.util.concurrent.Executor;
 public class ConnectionImp implements Connection {
   
   private String dbPath;
+  private boolean isClosed;
   
   public ConnectionImp(String path){
     dbPath = path;
+    isClosed = false;
   }
 
   @Override
@@ -53,8 +55,7 @@ public class ConnectionImp implements Connection {
 
   @Override
   public void close() throws SQLException {
-
-
+    isClosed = true;
   }
 
   @Override
@@ -95,8 +96,13 @@ public class ConnectionImp implements Connection {
 
   @Override
   public Statement createStatement() throws SQLException {
-    Statement stat = new StatementImp(dbPath,this);
-    return stat;
+    if(isClosed){
+      throw new SQLException();
+    }else{
+      Statement stat = new StatementImp(dbPath,this);
+      return stat;
+    }
+    
   }
 
   @Override

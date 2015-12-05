@@ -18,9 +18,10 @@ public class StatementImp implements Statement {
   private ArrayList<MyEntry<String,Integer>> batchList;
   private int time;
   private Connection currentConnection;
+  private boolean isClosed;
   
   public StatementImp(String path, Connection conct){
-    
+    isClosed = false;
     dbPath = path;
     engine = DBEngine.getInstance(dbPath);
     batchList = new ArrayList<MyEntry<String, Integer>>();
@@ -42,14 +43,19 @@ public class StatementImp implements Statement {
 	@Override
 	public void addBatch(String sql) throws SQLException {
 	  // check that sql query is correct and then add it to listarray
-	  int type = engine.isValidQuery(sql);
-	  if(type == 1){
-	    batchList.add(new MyEntry<String, Integer>(sql,1));
-	  }else if(type == 2){
-	    batchList.add(new MyEntry<String, Integer>(sql,2));
-	  }else if(type == 3){
-	    batchList.add(new MyEntry<String, Integer>(sql,3));
+	  if(isClosed){
+	    throw new SQLException();
+	  }else{
+	    int type = engine.isValidQuery(sql);
+	    if(type == 1){
+	      batchList.add(new MyEntry<String, Integer>(sql,1));
+	    }else if(type == 2){
+	      batchList.add(new MyEntry<String, Integer>(sql,2));
+	    }else if(type == 3){
+	      batchList.add(new MyEntry<String, Integer>(sql,3));
+	    }
 	  }
+	  
 	}
 
 	@Override
@@ -61,7 +67,12 @@ public class StatementImp implements Statement {
 	@Override
 	public void clearBatch() throws SQLException {
 	  //Clear the list
-	  batchList.clear();
+	  if(isClosed){
+	    throw new SQLException();
+	  }else{
+	    batchList.clear();
+	  }
+	  
 	}
 
 	@Override
@@ -72,8 +83,7 @@ public class StatementImp implements Statement {
 
 	@Override
 	public void close() throws SQLException {
-
-		
+	  isClosed = true;
 	}
 
 	@Override
@@ -84,30 +94,35 @@ public class StatementImp implements Statement {
 
 	@Override
 	public boolean execute(String sql) throws SQLException {
-	  int type = engine.isValidQuery(sql);
-    if (type == 1) {
-        return engine.executeStructureQuery(sql);
-    } else if (type == 2) {
-        int updateCount = engine.executeUpdateQuery(sql);
-        if(updateCount > 0){
-            return true;
-        }else{
-            return false;
-        }
-    } else if (type == 3) {
-        ResultSetParameters result = engine.executeQuery(sql);
-        if(result != null ){
-          Object[][] tableData = result.getSelectedData();
-          if(tableData.length != 0){
-            return true;
-          }else{
-            return false;
-          }
-        }else{
-            return false;
-        }
-    }
-    return false;
+	  if(isClosed){
+	    throw new SQLException();
+	  }else{
+	    int type = engine.isValidQuery(sql);
+	    if (type == 1) {
+	        return engine.executeStructureQuery(sql);
+	    } else if (type == 2) {
+	        int updateCount = engine.executeUpdateQuery(sql);
+	        if(updateCount > 0){
+	            return true;
+	        }else{
+	            return false;
+	        }
+	    } else if (type == 3) {
+	        ResultSetParameters result = engine.executeQuery(sql);
+	        if(result != null ){
+	          Object[][] tableData = result.getSelectedData();
+	          if(tableData.length != 0){
+	            return true;
+	          }else{
+	            return false;
+	          }
+	        }else{
+	            return false;
+	        }
+	    }
+	    return false;
+	  }
+	  
 	}
 
 	@Override
@@ -130,30 +145,38 @@ public class StatementImp implements Statement {
 
 	@Override
 	public int[] executeBatch() throws SQLException {
-	  // all queries should be update i think
-	  // need to check it again 
-	  int[] updateCount = new int[batchList.size()];
-	  int counter = 0;
-	  for(MyEntry<String,Integer> query : batchList){
-	    String sql = query.getFirst();
-	    int type = query.getSecond();
-	    if(type == 1){
-	      execute(sql);
-	    }else if(type == 2){
-	      updateCount[counter] = executeUpdate(sql);
-	    }else if(type == 3){
-	      executeQuery(sql);
+	  if(isClosed){
+	    throw new SQLException();
+	  }else{
+	    int[] updateCount = new int[batchList.size()];
+	    int counter = 0;
+	    for(MyEntry<String,Integer> query : batchList){
+	      String sql = query.getFirst();
+	      int type = query.getSecond();
+	      if(type == 1){
+	        execute(sql);
+	      }else if(type == 2){
+	        updateCount[counter] = executeUpdate(sql);
+	      }else if(type == 3){
+	        executeQuery(sql);
+	      }
+	      counter++;
 	    }
-	    counter++;
+	    return updateCount;
 	  }
-		return updateCount;
+	  
 	}
 
 	@Override
 	public ResultSet executeQuery(String sql) throws SQLException {
-	  ResultSetParameters data = engine.executeQuery(sql) ;
-	  ResultSet resultData = new ResultSetImp(data, this);
-		return resultData;
+	  if(isClosed){
+	    throw new SQLException();
+	  }else{
+	    ResultSetParameters data = engine.executeQuery(sql) ;
+	    ResultSet resultData = new ResultSetImp(data, this);
+	    return resultData;
+	  }
+	  
 	}
 
 	@Override
@@ -228,7 +251,12 @@ public class StatementImp implements Statement {
 
 	@Override
 	public int getQueryTimeout() throws SQLException {
-		return this.time;
+		if(isClosed){
+		  throw new SQLException();
+		}else{
+		  return this.time;
+		}
+	  
 	}
 
 	@Override
@@ -329,7 +357,12 @@ public class StatementImp implements Statement {
 
 	@Override
 	public void setQueryTimeout(int seconds) throws SQLException {
-	  this.time = seconds;
+	  if(isClosed){
+	    throw new SQLException();
+	  }else{
+	    this.time = seconds;
+	  }
+	  
 	}
 	
 
