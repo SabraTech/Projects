@@ -128,14 +128,15 @@ public class DBEngine {
     File[] files = folder.listFiles();
     if (files != null) { // some JVMs return null for empty dirs
       for (File f : files) {
-        if (f.isDirectory()) {
-          deleteFolder(f);
-        } else {
+        // if (f.isDirectory()) {
+        // deleteFolder(f);
+        // } else {
+        if (!f.isDirectory())
           f.delete();
-        }
+        // }
       }
     }
-    folder.delete();
+    // folder.delete();
   }
   /*
    * if (!dropIfExists) { if (!file.exists()) { if (file.mkdirs()) {
