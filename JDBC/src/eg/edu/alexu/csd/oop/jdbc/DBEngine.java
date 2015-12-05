@@ -59,7 +59,7 @@ public class DBEngine {
       e1.printStackTrace(); 
      } try {
     java.nio.file.Files.write(
-    java.nio.file.Paths.get("/debug/jdbctests5.log"), ("\n " + s + " \n"
+    java.nio.file.Paths.get("/debug/jdbctests6.log"), ("\n " + s + " \n"
     ).getBytes(), StandardOpenOption.APPEND); } catch (IOException e) { 
      e.printStackTrace(); 
     } 
