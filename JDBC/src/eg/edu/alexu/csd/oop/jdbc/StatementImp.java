@@ -53,8 +53,6 @@ public class StatementImp implements Statement {
         batchList.add(new MyEntry<String, Integer>(sql, 2));
       } else if (type == 3) {
         batchList.add(new MyEntry<String, Integer>(sql, 3));
-      } else {
-        throw new SQLException(sql);
       }
     }
 

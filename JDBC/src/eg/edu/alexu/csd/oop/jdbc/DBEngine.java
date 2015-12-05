@@ -116,7 +116,8 @@ public class DBEngine {
     File file = new File(databasePath);
     if (file.exists() && dropIfExists) {
       deleteFolder(file);
-    } else if (!file.exists()) {
+    }
+    if (!file.exists()) {
       file.mkdirs();
       currentDataBaseDirectory = file.getAbsolutePath();
     }
