@@ -171,7 +171,7 @@ public class XmlHandler {
   public void writeXml(String[] columnsNames, String[] datatypes, String path, Object[][] table,
       String name) {
     String dtdFile = writeDtd(columnsNames, path, name);
-    String filePath = path + name + ".xml";
+    String filePath = path + File.separatorChar + name + ".xml";
     try {
       DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
       DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
