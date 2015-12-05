@@ -223,7 +223,7 @@ public class XmlHandler {
    * @return the string
    */
   private String writeDtd(String[] names, String path, String name) {
-    String filePath = path + name + ".dtd";
+    String filePath = path + File.separatorChar + name + ".dtd";
     try {
       Formatter format = new Formatter(filePath);
       format.format("<!ELEMENT %s (Row*)>%n", name);
@@ -251,8 +251,8 @@ public class XmlHandler {
    * @return true, if successful
    */
   public boolean clearTable(String path, String name) {
-    String xmlPath = path + name + ".xml";
-    String dtdPath = path + name + ".dtd";
+    String xmlPath = path + File.separatorChar  + name + ".xml";
+    String dtdPath = path + File.separatorChar + name + ".dtd";
     File xmlFile = new File(xmlPath);
     File dtdFile = new File(dtdPath);
     if (xmlFile.exists() && dtdFile.exists()) {
