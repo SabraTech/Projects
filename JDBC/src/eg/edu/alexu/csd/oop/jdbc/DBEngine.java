@@ -104,6 +104,7 @@ public class DBEngine {
    */
   public boolean createDatabase(String databaseName, boolean dropIfExists) {
     String databasePath = databasesDirectory + databaseName;
+    databasePath = databasePath.toLowerCase();
     tablesNamesAndColumnsCount.clear();
     File file = new File(databasePath);
     if (!dropIfExists) {
