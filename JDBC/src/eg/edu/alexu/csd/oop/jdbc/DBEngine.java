@@ -250,7 +250,7 @@ public class DBEngine {
       return 2;
     } else if (parserAndValidator.queryIsUpdate(sql)) {
       return 2;
-    } else if (parserAndValidator.queryIsInsertion(sql)) {
+    } else if (parserAndValidator.queryIsSelection(sql)) {
       return 3;
     }
     throw new SQLException("Invalid query " + sql);
