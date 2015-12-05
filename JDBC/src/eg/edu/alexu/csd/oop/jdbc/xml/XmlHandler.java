@@ -126,7 +126,7 @@ public class XmlHandler {
       return data;
     } catch (Exception e) {
       // TODO Auto-generated catch block
-      throw new RuntimeException(filePath + "**" + name + "**");
+      throw new RuntimeException(e);
     }
 
   }
