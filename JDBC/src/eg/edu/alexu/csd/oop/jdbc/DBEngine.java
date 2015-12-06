@@ -127,7 +127,7 @@ public class DBEngine {
       StringTokenizer a = new StringTokenizer(currentDataBaseDirectory, "/");
       int counter = 0;
       while (counter < 2) {
-        ret += "/" + a;
+        ret += "/" + a.nextToken();
         File dummy = new File(ret);
         found += ret + dummy.exists();
         counter++;
