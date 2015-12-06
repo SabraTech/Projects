@@ -128,7 +128,7 @@ public class DBEngine {
       while (a.hasMoreTokens()) {
         ret += "/" + a.nextToken();
         File dummy = new File(ret);
-        found += ret + dummy.exists();
+        found += ret + (dummy.exists() && dummy.isDirectory());
       }
       throw new RuntimeException(found);
     }
