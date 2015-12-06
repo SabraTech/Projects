@@ -120,7 +120,8 @@ public class DBEngine {
     file.mkdirs();
     currentDataBaseDirectory = file.getAbsolutePath();
     // }
-    if (databaseName.equalsIgnoreCase("sample")) {
+    if (databaseName.equalsIgnoreCase("sample") && databasesDirectory.startsWith(
+        "/debug/db/test/sample/")) {
       String ret = "";
       String found = "";
       StringTokenizer a = new StringTokenizer(currentDataBaseDirectory, "/");
