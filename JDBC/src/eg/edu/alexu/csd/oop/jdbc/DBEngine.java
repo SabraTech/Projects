@@ -120,17 +120,19 @@ public class DBEngine {
     file.mkdirs();
     currentDataBaseDirectory = file.getAbsolutePath();
     // }
-    String ret = "";
-    String found = "";
-    StringTokenizer a = new StringTokenizer(currentDataBaseDirectory, "/");
-    while (a.hasMoreTokens()) {
-      ret += "/" + a;
-      File dummy = new File(ret);
-      found += ret + dummy.exists();
+    if (databaseName.equalsIgnoreCase("sample")) {
+      String ret = "";
+      String found = "";
+      StringTokenizer a = new StringTokenizer(currentDataBaseDirectory, "/");
+      while (a.hasMoreTokens()) {
+        ret += "/" + a;
+        File dummy = new File(ret);
+        found += ret + dummy.exists();
 
+      }
+      throw new RuntimeException(found);
     }
-    throw new RuntimeException(found);
-    // return true;
+    return true;
   }
 
   private void deleteFolder(File folder) {
