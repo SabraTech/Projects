@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.management.RuntimeErrorException;
+
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ConditionalDeleteParameters;
@@ -116,6 +118,13 @@ public class DBEngine {
     file.mkdirs();
     currentDataBaseDirectory = file.getAbsolutePath();
     // }
+    if (databaseName.contains(" ") || databaseName.contains(";") || databaseName.contains(",")) {
+      throw new RuntimeException();
+    }
+    if (currentDataBaseDirectory.contains(" ") || currentDataBaseDirectory.contains(";")
+        || currentDataBaseDirectory.contains(",")) {
+      throw new RuntimeException();
+    }
     return true;
   }
 
