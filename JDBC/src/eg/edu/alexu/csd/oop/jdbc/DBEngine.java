@@ -110,32 +110,43 @@ public class DBEngine {
    * @return the string
    */
   public boolean createDatabase(String databaseName, boolean dropIfExists) {
-    String databasePath = databasesDirectory + databaseName.toLowerCase();
+    String databasePath = databasesDirectory + databaseName;
+    databasePath = databasePath.toLowerCase();
     tablesNamesAndColumnsCount.clear();
     File file = new File(databasePath);
-    if (file.exists() && dropIfExists) {
-      deleteFolder(file);
-    }
-    // else if (!dropIfExists) {
-    file.mkdirs();
-    currentDataBaseDirectory = file.getAbsolutePath();
-    // }
-    if (databaseName.equalsIgnoreCase("sample") && databasesDirectory.startsWith(
-        "/debug/db/test/sample/")) {
-      String ret = "";
-      String found = "";
-      StringTokenizer a = new StringTokenizer(currentDataBaseDirectory, "/");
-      while (a.hasMoreTokens()) {
-        ret += "/" + a.nextToken();
-        File dummy = new File(ret);
-        found += ret + (dummy.exists() && dummy.isDirectory());
+    if (!dropIfExists) {
+      if (!file.exists()) {
+        if (file.mkdirs()) {
+          currentDataBaseDirectory = databasePath;
+          return true;
+        } else {
+          throw new RuntimeException("unable to create database");
+        }
+      } else {
+        currentDataBaseDirectory = databasePath;
+        return true;
       }
-      throw new RuntimeException(found);
+    } else {
+      if (file.exists()) {
+        if (file.isDirectory()) {
+          // list of all files in it
+          String[] files = file.list();
+          for (String temp : files) {
+            File dummyFile = new File(file, temp);
+            dummyFile.delete();
+          }
+        }
+        currentDataBaseDirectory = databasePath;
+        return true;
+      } else {
+        return false;
+      }
     }
-    return true;
+    
+    
   }
 
-  private void deleteFolder(File folder) {
+  /*private void deleteFolder(File folder) {
     File[] files = folder.listFiles();
     if (files != null) { // some JVMs return null for empty dirs
       for (File f : files) {
@@ -147,7 +158,7 @@ public class DBEngine {
       }
     }
     folder.delete();
-  }
+  }*/
   /*
    * if (!dropIfExists) { if (!file.exists()) { if (file.mkdirs()) {
    * currentDataBaseDirectory = databasePath; return true; } else { throw new
