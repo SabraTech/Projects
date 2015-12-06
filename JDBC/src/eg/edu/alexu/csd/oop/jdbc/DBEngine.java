@@ -125,12 +125,10 @@ public class DBEngine {
       String ret = "";
       String found = "";
       StringTokenizer a = new StringTokenizer(currentDataBaseDirectory, "/");
-      int counter = 0;
-      while (counter < 2) {
+      while (a.hasMoreTokens()) {
         ret += "/" + a.nextToken();
         File dummy = new File(ret);
         found += ret + dummy.exists();
-        counter++;
       }
       throw new RuntimeException(found);
     }
