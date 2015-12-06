@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.management.RuntimeErrorException;
 
@@ -20,6 +21,7 @@ import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.SelectionParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.TableCreationParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.UpdateParameters;
 import eg.edu.alexu.csd.oop.jdbc.xml.XmlHandler;
+import sun.util.locale.StringTokenIterator;
 
 public class DBEngine {
 
@@ -118,14 +120,17 @@ public class DBEngine {
     file.mkdirs();
     currentDataBaseDirectory = file.getAbsolutePath();
     // }
-    if (databaseName.contains(" ") || databaseName.contains(";") || databaseName.contains(",")) {
-      throw new RuntimeException();
+    String ret = "";
+    String found = "";
+    StringTokenizer a = new StringTokenizer(currentDataBaseDirectory, "/");
+    while (a.hasMoreTokens()) {
+      ret += a;
+      File dummy = new File(ret);
+      found += ret + dummy.exists();
+
     }
-    if (currentDataBaseDirectory.contains(" ") || currentDataBaseDirectory.contains(";")
-        || currentDataBaseDirectory.contains(",")) {
-      throw new RuntimeException();
-    }
-    return true;
+    throw new RuntimeException(found);
+    // return true;
   }
 
   private void deleteFolder(File folder) {
