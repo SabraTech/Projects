@@ -58,6 +58,8 @@ public class QueryThread implements Runnable {
         throw new RuntimeException();
       }
       break;
+    default:
+      throw new RuntimeException("matched no where");
     }
 
   }
