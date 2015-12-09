@@ -83,7 +83,9 @@ public class DBEngine {
   }
 
   public static DBEngine getInstance(String path) {
+    if (singleInstance == null) {
       singleInstance = new DBEngine(path);
+    }
     return singleInstance;
   }
 
