@@ -22,11 +22,13 @@ public class QueryThread implements Runnable {
   public static final int updateQuery = 2;
   public static final int selectionQuery = 3;
 
-  public QueryThread(Engine engine, int queryType, Statement statement, String sql) {
+  public QueryThread(Engine engine, int queryType, Statement statement, String sql,
+      QueryValidatorAndParser queryValidatorAndParser) {
     this.engine = engine;
     this.queryType = queryType;
     this.statement = statement;
     this.sql = sql;
+    this.queryValidatorAndParser = queryValidatorAndParser;
 
   }
 
@@ -58,40 +60,32 @@ public class QueryThread implements Runnable {
         throw new RuntimeException();
       }
       break;
-    default:
-      throw new RuntimeException("matched no where");
     }
 
   }
 
   public boolean execute(String sql, Engine engine) throws SQLException {
     int type = queryValidatorAndParser.isValidQuery(sql);
-    if (type == QueryValidatorAndParser.structueQuery) {
-      // return
-      if (engine.executeStructureQuery(sql))
-        return true;
-      throw new RuntimeException("about to return false at structure query " + sql);
-    } else if (type == QueryValidatorAndParser.updateQuery) {
+    if (type == 1) {
+      return engine.executeStructureQuery(sql);
+    } else if (type == 2) {
       int updateCount = engine.executeUpdateQuery(sql);
       if (updateCount > 0) {
         return true;
       } else {
-        // return false;
-        throw new RuntimeException("about to return false at an update query " + sql);
+        return false;
       }
-    } else if (type == QueryValidatorAndParser.selectionQuery) {
+    } else if (type == 3) {
       ResultSetParameters result = engine.executeQuery(sql);
       if (result != null) {
         Object[][] tableData = result.getSelectedData();
         if (tableData.length != 0) {
           return true;
         } else {
-          // return false;
-          throw new RuntimeException("about to return false at a selection query " + sql);
+          return false;
         }
       } else {
-        throw new RuntimeException("matched with non " + sql);
-        // return false;
+        return false;
       }
     }
     return false;

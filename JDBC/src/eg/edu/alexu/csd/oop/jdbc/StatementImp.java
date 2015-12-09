@@ -100,7 +100,8 @@ public class StatementImp implements Statement {
     if (isClosed) {
       throw new SQLException();
     } else {
-      QueryThread queryCode = new QueryThread(currentEngine, QueryThread.generalQuery, this, sql);
+      QueryThread queryCode = new QueryThread(currentEngine, QueryThread.generalQuery, this, sql,
+          queryValidatorAndParser);
       Thread queryThread = new Thread(queryCode);
       queryThread.start();
       try {
