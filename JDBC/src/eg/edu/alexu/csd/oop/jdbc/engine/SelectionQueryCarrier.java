@@ -11,16 +11,16 @@ import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.SelectionParameters;
 import eg.edu.alexu.csd.oop.jdbc.xml.XmlHandler;
 
 //class for select tables
-public class Selection {
-  private static Selection singleInstance;
+public class SelectionQueryCarrier {
+  private static SelectionQueryCarrier singleInstance;
 
-  private Selection() {
+  private SelectionQueryCarrier() {
 
   }
 
-  public static Selection getInst() {
+  public static SelectionQueryCarrier getInst() {
     if (singleInstance == null) {
-      singleInstance = new Selection();
+      singleInstance = new SelectionQueryCarrier();
     }
     return singleInstance;
   }

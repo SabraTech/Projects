@@ -19,7 +19,7 @@ public class Engine {
   private Map<String, Integer> tablesNamesAndColumnsCount;
   private XmlHandler saveAndLoadHandler;
   // objects to perform update, select, insert and delete operations
-  private Selection selectObj;
+  private SelectionQueryCarrier selectObj;
   private InsertionQueryCarrier insertObj;
   private DeletionQueryCarrier deleteObj;
   private UpdateQueryCarrier updateObj;
@@ -30,7 +30,7 @@ public class Engine {
     parserAndValidator = new QueryValidatorAndParser();
     tablesNamesAndColumnsCount = new HashMap<String, Integer>();
     saveAndLoadHandler = new XmlHandler();
-    selectObj = Selection.getInst();
+    selectObj = SelectionQueryCarrier.getInst();
     updateObj = UpdateQueryCarrier.getInst();
     deleteObj = DeletionQueryCarrier.getInst();
     insertObj = InsertionQueryCarrier.getInst();
