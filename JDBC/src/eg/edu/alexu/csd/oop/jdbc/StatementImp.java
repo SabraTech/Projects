@@ -112,7 +112,7 @@ public class StatementImp implements Statement {
         }
       } catch (InterruptedException e) {
         // shouldn't happen
-        throw new RuntimeException("Interrupted");
+        // throw new RuntimeException("Interrupted");
       }
       // execution continued normally
       return queryCode.getExecutionResult();
