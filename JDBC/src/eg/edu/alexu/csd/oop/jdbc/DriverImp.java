@@ -15,10 +15,15 @@ public class DriverImp implements Driver {
 	public boolean acceptsURL(String arg0) throws SQLException {
 		return true;
 	}
+	@Override
+	public DriverPropertyInfo[] getPropertyInfo(String arg0, Properties arg1) throws SQLException {
+	  DriverPropertyInfo[] usedMap = new DriverPropertyInfo[1];
+	  usedMap[0] = new DriverPropertyInfo("path", " ");
+		return usedMap;
+	}
 
 	@Override
 	public Connection connect(String url, Properties info) throws SQLException {
-	  
 	  File dir = (File) info.get("path");
 	  String path = dir.getAbsolutePath();
 		Connection connect = new ConnectionImp(path);
@@ -43,12 +48,7 @@ public class DriverImp implements Driver {
 		throw new java.lang.UnsupportedOperationException();
 	}
 
-	@Override
-	public DriverPropertyInfo[] getPropertyInfo(String arg0, Properties arg1) throws SQLException {
-	  DriverPropertyInfo[] usedMap = new DriverPropertyInfo[1];
-	  usedMap[0] = new DriverPropertyInfo("path", " ");
-		return usedMap;
-	}
+	
 
 	@Override
 	public boolean jdbcCompliant() {

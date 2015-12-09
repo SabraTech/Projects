@@ -23,26 +23,26 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import eg.edu.alexu.csd.oop.jdbc.DBEngine;
-
 public class XmlHandler {
   /** The fields names. */
   private String[] fieldsNames;
-  
+
   /** The fields types. */
   private String[] fieldsTypes;
-  
+
   /** The table name. */
   private String tableName;
-  
+
   /** The data. */
   private Object[][] data;
 
   /**
    * Read xml.
    *
-   * @param path the path
-   * @param name the name
+   * @param path
+   *          the path
+   * @param name
+   *          the name
    * @return the object[][]
    */
   public Object[][] readXml(String path, String name) {
@@ -66,7 +66,7 @@ public class XmlHandler {
         @Override
         public void fatalError(SAXParseException arg0) throws SAXException {
           // TODO Auto-generated method stub
-          
+
           System.out.println("FATAL : " + arg0.getCause());
           throw arg0;
         }
@@ -83,7 +83,7 @@ public class XmlHandler {
 
       // get the root name which is the table name
       tableName = doc.getDocumentElement().getNodeName();
-      
+
       // get how many rows saved in the file
       NodeList nList = doc.getElementsByTagName("Row");
       Node oneRow = nList.item(0);
@@ -148,7 +148,7 @@ public class XmlHandler {
   public String[] getFieldsTypes() {
     return fieldsTypes;
   }
-  
+
   /**
    * Gets the table name.
    *
@@ -157,16 +157,20 @@ public class XmlHandler {
   public String getTableName() {
     return tableName;
   }
-  
 
   /**
    * Write xml.
    *
-   * @param columnsNames the columns names
-   * @param datatypes the datatypes
-   * @param path the path
-   * @param table the table
-   * @param name the name
+   * @param columnsNames
+   *          the columns names
+   * @param datatypes
+   *          the datatypes
+   * @param path
+   *          the path
+   * @param table
+   *          the table
+   * @param name
+   *          the name
    */
   public void writeXml(String[] columnsNames, String[] datatypes, String path, Object[][] table,
       String name) {
@@ -217,9 +221,12 @@ public class XmlHandler {
   /**
    * Write dtd.
    *
-   * @param names the names
-   * @param path the path
-   * @param name the name
+   * @param names
+   *          the names
+   * @param path
+   *          the path
+   * @param name
+   *          the name
    * @return the string
    */
   private String writeDtd(String[] names, String path, String name) {
@@ -246,12 +253,14 @@ public class XmlHandler {
   /**
    * Clear table.
    *
-   * @param path the path
-   * @param name the name
+   * @param path
+   *          the path
+   * @param name
+   *          the name
    * @return true, if successful
    */
   public boolean clearTable(String path, String name) {
-    String xmlPath = path + File.separatorChar  + name + ".xml";
+    String xmlPath = path + File.separatorChar + name + ".xml";
     String dtdPath = path + File.separatorChar + name + ".dtd";
     File xmlFile = new File(xmlPath);
     File dtdFile = new File(dtdPath);
