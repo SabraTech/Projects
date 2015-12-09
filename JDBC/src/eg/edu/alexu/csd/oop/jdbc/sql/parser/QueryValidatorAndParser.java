@@ -313,7 +313,8 @@ public class QueryValidatorAndParser {
     } else if (queryIsSelection(sql)) {
       return selectionQuery;
     }
-    throw new SQLException("Invalid query " + sql);
+    // throw new SQLException("Invalid query " + sql);
+    throw new RuntimeException();
   }
 
   /**
