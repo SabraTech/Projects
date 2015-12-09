@@ -11,7 +11,6 @@ import eg.edu.alexu.csd.oop.jdbc.engine.Engine;
 import eg.edu.alexu.csd.oop.jdbc.query.thread.QueryThread;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
-import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ResultSetParameters;
 
 /**
  * The Class StatementImp.
@@ -186,7 +185,26 @@ public class StatementImp implements Statement {
 
   @Override
   public int executeUpdate(String sql) throws SQLException {
-    return currentEngine.executeUpdateQuery(sql);
+    if (isClosed) {
+      throw new SQLException();
+    } else {
+      QueryThread queryCode = new QueryThread(currentEngine, QueryThread.updateQuery, this, sql,
+          queryValidatorAndParser);
+      Thread queryThread = new Thread(queryCode);
+      queryThread.start();
+      try {
+        queryThread.join(((long) time) * 1000);
+        if (queryThread.isAlive()) {
+          queryThread.interrupt();
+          throw new RuntimeException("query timed-out");
+        }
+      } catch (InterruptedException e) {
+        // shouldn't happen
+        // throw new RuntimeException("Interrupted");
+      }
+      // execution continued normally
+      return queryCode.getIntegerExecutionResult();
+    }
   }
 
   @Override
