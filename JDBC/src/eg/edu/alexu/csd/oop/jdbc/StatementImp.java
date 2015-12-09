@@ -102,7 +102,7 @@ public class StatementImp implements Statement {
       Thread queryThread = new Thread(queryCode);
       queryThread.start();
       try {
-        queryThread.join(time * 1000);
+        queryThread.join(((long) time) * 1000);
       } catch (InterruptedException e) {
         // shouldn't happen
       }
