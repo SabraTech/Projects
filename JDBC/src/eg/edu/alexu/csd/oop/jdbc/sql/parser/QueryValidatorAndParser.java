@@ -314,7 +314,7 @@ public class QueryValidatorAndParser {
       return selectionQuery;
     }
     // throw new SQLException("Invalid query " + sql);
-    throw new RuntimeException();
+    return 100;
   }
 
   /**
