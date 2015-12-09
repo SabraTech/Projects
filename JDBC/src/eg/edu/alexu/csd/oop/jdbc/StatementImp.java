@@ -101,7 +101,11 @@ public class StatementImp implements Statement {
       QueryThread queryCode = new QueryThread(currentEngine, QueryThread.generalQuery, this, sql,
           queryValidatorAndParser);
       Thread queryThread = new Thread(queryCode);
-      queryThread.start();
+      try {
+        queryThread.start();
+      } catch (Exception e1) {
+        throw new SQLException();
+      }
       try {
         queryThread.join(((long) time) * 1000);
         if (queryThread.isAlive()) {
