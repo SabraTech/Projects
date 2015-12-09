@@ -3,12 +3,12 @@ package eg.edu.alexu.csd.oop.jdbc;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-public class ResultSetMetaDataImp implements ResultSetMetaData {
+public class MyResultSetMetaData implements ResultSetMetaData {
   private String[] columnsNames;
   private String[] columnsDataTypes;
   private String tableName;
 
-  public ResultSetMetaDataImp(String[] columnsNames, String[] dataTypes, String tableName) {
+  public MyResultSetMetaData(String[] columnsNames, String[] dataTypes, String tableName) {
     // TODO Auto-generated constructor stub
     this.columnsNames = columnsNames;
     this.columnsDataTypes = dataTypes;

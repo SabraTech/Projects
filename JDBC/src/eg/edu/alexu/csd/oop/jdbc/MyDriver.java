@@ -9,7 +9,7 @@ import java.sql.SQLFeatureNotSupportedException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-public class DriverImp implements Driver {
+public class MyDriver implements Driver {
 
   @Override
   public boolean acceptsURL(String arg0) throws SQLException {
@@ -27,7 +27,7 @@ public class DriverImp implements Driver {
   public Connection connect(String url, Properties info) throws SQLException {
     File dir = (File) info.get("path");
     String path = dir.getAbsolutePath();
-    Connection connect = new ConnectionImp(path);
+    Connection connect = new MyConnection(path);
     return connect;
   }
 

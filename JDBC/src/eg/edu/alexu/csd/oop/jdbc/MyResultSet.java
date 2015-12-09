@@ -24,7 +24,7 @@ import java.util.Map;
 
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ResultSetParameters;
 
-public class ResultSetImp implements ResultSet {
+public class MyResultSet implements ResultSet {
   private Object[][] dataTable;
   private String[] columnsNames;
   private String[] columnsDatatypes;
@@ -33,7 +33,7 @@ public class ResultSetImp implements ResultSet {
   private boolean isClosed;
   private int currentRow;
 
-  public ResultSetImp(ResultSetParameters data, Statement stat) {
+  public MyResultSet(ResultSetParameters data, Statement stat) {
     this.dataTable = data.getSelectedData();
     this.columnsNames = data.getColumnsNames();
     this.columnsDatatypes = data.getColumnsDatatypes();
@@ -164,7 +164,7 @@ public class ResultSetImp implements ResultSet {
     if (isClosed) {
       throw new SQLException();
     }
-    return new ResultSetMetaDataImp(columnsNames, columnsDatatypes, tableName);
+    return new MyResultSetMetaData(columnsNames, columnsDatatypes, tableName);
   }
 
   @Override

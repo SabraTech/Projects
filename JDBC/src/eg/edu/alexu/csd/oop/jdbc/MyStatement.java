@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import eg.edu.alexu.csd.oop.jdbc.engine.Engine;
-import eg.edu.alexu.csd.oop.jdbc.query.thread.QueryThread;
+import eg.edu.alexu.csd.oop.jdbc.query.code.QueryRunnableCode;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
 
@@ -16,7 +16,7 @@ import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
  * The Class StatementImp.
  */
 
-public class StatementImp implements Statement {
+public class MyStatement implements Statement {
 
   private Engine currentEngine;
   private Connection currentConnection;
@@ -25,7 +25,7 @@ public class StatementImp implements Statement {
   private QueryValidatorAndParser queryValidatorAndParser;
   private boolean isClosed;
 
-  public StatementImp(Engine engine, Connection conct) {
+  public MyStatement(Engine engine, Connection conct) {
     isClosed = false;
     currentEngine = engine;
     currentConnection = conct;
@@ -97,8 +97,8 @@ public class StatementImp implements Statement {
     if (isClosed) {
       throw new SQLException();
     } else {
-      QueryThread queryCode = new QueryThread(currentEngine, QueryThread.generalQuery, this, sql,
-          queryValidatorAndParser);
+      QueryRunnableCode queryCode = new QueryRunnableCode(currentEngine,
+          QueryRunnableCode.generalQuery, this, sql, queryValidatorAndParser);
       Thread queryThread = new Thread(queryCode);
       queryThread.start();
       try {
@@ -163,8 +163,8 @@ public class StatementImp implements Statement {
     if (isClosed) {
       throw new SQLException();
     } else {
-      QueryThread queryCode = new QueryThread(currentEngine, QueryThread.selectionQuery, this, sql,
-          queryValidatorAndParser);
+      QueryRunnableCode queryCode = new QueryRunnableCode(currentEngine,
+          QueryRunnableCode.selectionQuery, this, sql, queryValidatorAndParser);
       Thread queryThread = new Thread(queryCode);
       queryThread.start();
       try {
@@ -188,8 +188,8 @@ public class StatementImp implements Statement {
     if (isClosed) {
       throw new SQLException();
     } else {
-      QueryThread queryCode = new QueryThread(currentEngine, QueryThread.updateQuery, this, sql,
-          queryValidatorAndParser);
+      QueryRunnableCode queryCode = new QueryRunnableCode(currentEngine,
+          QueryRunnableCode.updateQuery, this, sql, queryValidatorAndParser);
       Thread queryThread = new Thread(queryCode);
       queryThread.start();
       try {

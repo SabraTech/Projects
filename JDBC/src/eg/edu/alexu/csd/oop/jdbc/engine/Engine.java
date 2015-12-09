@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import eg.edu.alexu.csd.oop.jdbc.engine.query.carriers.DeletionQueryCarrier;
+import eg.edu.alexu.csd.oop.jdbc.engine.query.carriers.InsertionQueryCarrier;
+import eg.edu.alexu.csd.oop.jdbc.engine.query.carriers.SelectionQueryCarrier;
+import eg.edu.alexu.csd.oop.jdbc.engine.query.carriers.UpdateQueryCarrier;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ResultSetParameters;

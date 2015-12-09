@@ -21,12 +21,12 @@ import java.util.concurrent.Executor;
 
 import eg.edu.alexu.csd.oop.jdbc.engine.Engine;
 
-public class ConnectionImp implements Connection {
+public class MyConnection implements Connection {
 	  
 	  private Engine engine;
 	  private boolean isClosed;
 	  
-	  public ConnectionImp(String path){
+	  public MyConnection(String path){
 	    isClosed = false;
 	    engine = new Engine(path);
 	  }
@@ -101,7 +101,7 @@ public class ConnectionImp implements Connection {
 	    if(isClosed){
 	      throw new SQLException();
 	    }else{
-	      Statement stat = new StatementImp(engine,this);
+	      Statement stat = new MyStatement(engine,this);
 	      return stat;
 	    }
 	    

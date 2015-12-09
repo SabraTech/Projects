@@ -1,17 +1,15 @@
-package eg.edu.alexu.csd.oop.jdbc.query.thread;
+package eg.edu.alexu.csd.oop.jdbc.query.code;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.management.Query;
-
-import eg.edu.alexu.csd.oop.jdbc.ResultSetImp;
+import eg.edu.alexu.csd.oop.jdbc.MyResultSet;
 import eg.edu.alexu.csd.oop.jdbc.engine.Engine;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ResultSetParameters;
 
-public class QueryThread implements Runnable {
+public class QueryRunnableCode implements Runnable {
   private Engine engine;
   private int queryType;
   private Statement statement;
@@ -25,7 +23,7 @@ public class QueryThread implements Runnable {
   public static final int updateQuery = 2;
   public static final int selectionQuery = 3;
 
-  public QueryThread(Engine engine, int queryType, Statement statement, String sql,
+  public QueryRunnableCode(Engine engine, int queryType, Statement statement, String sql,
       QueryValidatorAndParser queryValidatorAndParser) {
     this.engine = engine;
     this.queryType = queryType;
@@ -39,7 +37,7 @@ public class QueryThread implements Runnable {
   public void run() {
     // TODO Auto-generated method stub
     switch (queryType) {
-    case QueryThread.generalQuery:
+    case QueryRunnableCode.generalQuery:
       try {
         executionResult = execute(sql, engine);
       } catch (SQLException e) {
@@ -47,7 +45,7 @@ public class QueryThread implements Runnable {
         errorFlag = true;
       }
       break;
-    case QueryThread.updateQuery:
+    case QueryRunnableCode.updateQuery:
       try {
         executionIntegerResult = executeUpdate(sql, engine);
       } catch (SQLException e) {
@@ -55,7 +53,7 @@ public class QueryThread implements Runnable {
         errorFlag = true;
       }
       break;
-    case QueryThread.selectionQuery:
+    case QueryRunnableCode.selectionQuery:
       try {
         executionResultSet = executeQuery(sql, statement, engine);
       } catch (SQLException e) {
@@ -101,12 +99,12 @@ public class QueryThread implements Runnable {
   public ResultSet executeQuery(String sql, Statement statement, Engine engine)
       throws SQLException {
     ResultSetParameters data = engine.executeQuery(sql);
-    ResultSet resultData = new ResultSetImp(data, statement);
+    ResultSet resultData = new MyResultSet(data, statement);
     return resultData;
   }
 
   public boolean getExecutionResult() throws SQLException {
-    if (queryType != QueryThread.generalQuery) {
+    if (queryType != QueryRunnableCode.generalQuery) {
       throw new RuntimeException();
     }
     if (errorFlag) {
@@ -116,7 +114,7 @@ public class QueryThread implements Runnable {
   }
 
   public int getIntegerExecutionResult() throws SQLException {
-    if (queryType != QueryThread.updateQuery) {
+    if (queryType != QueryRunnableCode.updateQuery) {
       throw new RuntimeException();
     }
     if (errorFlag) {
@@ -126,7 +124,7 @@ public class QueryThread implements Runnable {
   }
 
   public ResultSet getResultSetExecutionResult() throws SQLException {
-    if (queryType != QueryThread.selectionQuery) {
+    if (queryType != QueryRunnableCode.selectionQuery) {
       throw new RuntimeException();
     }
     if (errorFlag) {
