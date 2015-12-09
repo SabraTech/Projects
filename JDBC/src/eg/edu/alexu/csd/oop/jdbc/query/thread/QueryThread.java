@@ -65,13 +65,17 @@ public class QueryThread implements Runnable {
   public boolean execute(String sql, Engine engine) throws SQLException {
     int type = queryValidatorAndParser.isValidQuery(sql);
     if (type == QueryValidatorAndParser.structueQuery) {
-      return engine.executeStructureQuery(sql);
+      // return
+      if (engine.executeStructureQuery(sql))
+        return true;
+      throw new RuntimeException("about to return false at structure query " + sql);
     } else if (type == QueryValidatorAndParser.updateQuery) {
       int updateCount = engine.executeUpdateQuery(sql);
       if (updateCount > 0) {
         return true;
       } else {
-        return false;
+        // return false;
+        throw new RuntimeException("about to return false at an update query " + sql);
       }
     } else if (type == QueryValidatorAndParser.selectionQuery) {
       ResultSetParameters result = engine.executeQuery(sql);
@@ -80,10 +84,12 @@ public class QueryThread implements Runnable {
         if (tableData.length != 0) {
           return true;
         } else {
-          return false;
+          // return false;
+          throw new RuntimeException("about to return false at a selection query " + sql);
         }
       } else {
-        return false;
+        throw new RuntimeException("matched with non " + sql);
+        // return false;
       }
     }
     return false;
