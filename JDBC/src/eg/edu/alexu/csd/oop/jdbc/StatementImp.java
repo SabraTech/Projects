@@ -164,9 +164,22 @@ public class StatementImp implements Statement {
     if (isClosed) {
       throw new SQLException();
     } else {
-      ResultSetParameters data = currentEngine.executeQuery(sql);
-      ResultSet resultData = new ResultSetImp(data, this);
-      return resultData;
+      QueryThread queryCode = new QueryThread(currentEngine, QueryThread.selectionQuery, this, sql,
+          queryValidatorAndParser);
+      Thread queryThread = new Thread(queryCode);
+      queryThread.start();
+      try {
+        queryThread.join(((long) time) * 1000);
+        if (queryThread.isAlive()) {
+          queryThread.interrupt();
+          throw new RuntimeException("query timed-out");
+        }
+      } catch (InterruptedException e) {
+        // shouldn't happen
+        // throw new RuntimeException("Interrupted");
+      }
+      // execution continued normally
+      return queryCode.getResultSetExecutionResult();
     }
 
   }

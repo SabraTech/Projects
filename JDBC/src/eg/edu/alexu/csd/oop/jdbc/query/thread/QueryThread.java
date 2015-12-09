@@ -113,16 +113,22 @@ public class QueryThread implements Runnable {
     return executionResult;
   }
 
-  public int getIntegerExecutionResult() {
+  public int getIntegerExecutionResult() throws SQLException {
     if (queryType != QueryThread.updateQuery) {
       throw new RuntimeException();
+    }
+    if (errorFlag) {
+      throw new SQLException();
     }
     return executionIntegerResult;
   }
 
-  public ResultSet getResultSetExecutionResult() {
+  public ResultSet getResultSetExecutionResult() throws SQLException {
     if (queryType != QueryThread.selectionQuery) {
       throw new RuntimeException();
+    }
+    if (errorFlag) {
+      throw new SQLException();
     }
     return executionResultSet;
   }
