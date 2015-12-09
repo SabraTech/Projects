@@ -18,7 +18,7 @@ public class QueryRunnableCode implements Runnable {
   private int executionIntegerResult;
   private ResultSet executionResultSet;
   private QueryValidatorAndParser queryValidatorAndParser;
-  private boolean errorFlag;// indicates that a sql exception was thrown
+  private boolean errorFlag;// indicates that an sql exception was thrown
   // three integers for outer classes to use when calling the constructor
   // to indicate the exact
   // code that should be executed
@@ -43,21 +43,21 @@ public class QueryRunnableCode implements Runnable {
       try {
         executionResult = execute(sql, engine);
       } catch (SQLException e) {
-        errorFlag = true;// sql exception
+        errorFlag = true;// an sql exception
       }
       break;
     case QueryRunnableCode.updateQuery:
       try {
         executionIntegerResult = executeUpdate(sql, engine);
       } catch (SQLException e) {
-        errorFlag = true;// sql exception
+        errorFlag = true;// an sql exception
       }
       break;
     case QueryRunnableCode.selectionQuery:
       try {
         executionResultSet = executeQuery(sql, statement, engine);
       } catch (SQLException e) {
-        errorFlag = true;// sql exception
+        errorFlag = true;// an sql exception
       }
       break;
     }

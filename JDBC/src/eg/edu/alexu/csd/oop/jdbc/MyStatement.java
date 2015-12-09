@@ -109,9 +109,9 @@ public class MyStatement implements Statement {
         }
       } catch (InterruptedException e) {
         // shouldn't happen
-        // throw new RuntimeException("Interrupted");
       }
       // execution continued normally
+      // an sql exception may be throw on executing this statement
       return queryCode.getExecutionResult();
     }
   }
@@ -144,11 +144,11 @@ public class MyStatement implements Statement {
       for (MyEntry<String, Integer> query : batchList) {
         String sql = query.getFirst();
         int type = query.getSecond();
-        if (type == 1) {
+        if (type == QueryValidatorAndParser.structueQuery) {
           execute(sql);
-        } else if (type == 2) {
+        } else if (type == QueryValidatorAndParser.updateQuery) {
           updateCount[counter] = executeUpdate(sql);
-        } else if (type == 3) {
+        } else if (type == QueryValidatorAndParser.selectionQuery) {
           executeQuery(sql);
         }
         counter++;
@@ -175,9 +175,9 @@ public class MyStatement implements Statement {
         }
       } catch (InterruptedException e) {
         // shouldn't happen
-        // throw new RuntimeException("Interrupted");
       }
       // execution continued normally
+      // an sql exception may be thrown right here
       return queryCode.getResultSetExecutionResult();
     }
 
@@ -200,9 +200,9 @@ public class MyStatement implements Statement {
         }
       } catch (InterruptedException e) {
         // shouldn't happen
-        // throw new RuntimeException("Interrupted");
       }
       // execution continued normally
+      // an sql exception may be thrown right here
       return queryCode.getIntegerExecutionResult();
     }
   }
