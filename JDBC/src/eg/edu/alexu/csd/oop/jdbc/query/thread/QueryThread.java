@@ -18,6 +18,7 @@ public class QueryThread implements Runnable {
   private int executionIntegerResult;
   private ResultSet executionResultSet;
   private QueryValidatorAndParser queryValidatorAndParser;
+  private boolean errorFlag;
   public static final int generalQuery = 1;
   public static final int updateQuery = 2;
   public static final int selectionQuery = 3;
@@ -41,7 +42,7 @@ public class QueryThread implements Runnable {
         executionResult = execute(sql, engine);
       } catch (SQLException e) {
         // TODO Auto-generated catch block
-        throw new RuntimeException();
+        errorFlag = true;
       }
       break;
     case QueryThread.updateQuery:
@@ -49,7 +50,7 @@ public class QueryThread implements Runnable {
         executionIntegerResult = executeUpdate(sql, engine);
       } catch (SQLException e) {
         // TODO Auto-generated catch block
-        throw new RuntimeException();
+        errorFlag = true;
       }
       break;
     case QueryThread.selectionQuery:
@@ -57,7 +58,7 @@ public class QueryThread implements Runnable {
         executionResultSet = executeQuery(sql, statement, engine);
       } catch (SQLException e) {
         // TODO Auto-generated catch block
-        throw new RuntimeException();
+        errorFlag = true;
       }
       break;
     }
@@ -102,9 +103,12 @@ public class QueryThread implements Runnable {
     return resultData;
   }
 
-  public boolean getExecutionResult() {
+  public boolean getExecutionResult() throws SQLException {
     if (queryType != QueryThread.generalQuery) {
       throw new RuntimeException();
+    }
+    if (errorFlag) {
+      throw new SQLException();
     }
     return executionResult;
   }
