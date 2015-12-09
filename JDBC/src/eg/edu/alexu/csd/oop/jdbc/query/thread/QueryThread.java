@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.management.Query;
+
 import eg.edu.alexu.csd.oop.jdbc.ResultSetImp;
 import eg.edu.alexu.csd.oop.jdbc.engine.Engine;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
@@ -67,16 +69,16 @@ public class QueryThread implements Runnable {
 
   public boolean execute(String sql, Engine engine) throws SQLException {
     int type = queryValidatorAndParser.isValidQuery(sql);
-    if (type == 1) {
+    if (type == QueryValidatorAndParser.structueQuery) {
       return engine.executeStructureQuery(sql);
-    } else if (type == 2) {
+    } else if (type == QueryValidatorAndParser.updateQuery) {
       int updateCount = engine.executeUpdateQuery(sql);
       if (updateCount > 0) {
         return true;
       } else {
         return false;
       }
-    } else if (type == 3) {
+    } else if (type == QueryValidatorAndParser.selectionQuery) {
       ResultSetParameters result = engine.executeQuery(sql);
       if (result != null) {
         Object[][] tableData = result.getSelectedData();
