@@ -7,12 +7,14 @@ import java.sql.SQLWarning;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.management.RuntimeErrorException;
+
 import eg.edu.alexu.csd.oop.jdbc.engine.Engine;
+import eg.edu.alexu.csd.oop.jdbc.query.thread.QueryThread;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ResultSetParameters;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class StatementImp.
  */
@@ -31,7 +33,7 @@ public class StatementImp implements Statement {
     currentEngine = engine;
     currentConnection = conct;
     batchList = new ArrayList<MyEntry<String, Integer>>();
-    time = 0; // means no limit
+    time = Integer.MAX_VALUE; // means no limit
     queryValidatorAndParser = new QueryValidatorAndParser();
   }
 
@@ -98,33 +100,22 @@ public class StatementImp implements Statement {
     if (isClosed) {
       throw new SQLException();
     } else {
-      int type = queryValidatorAndParser.isValidQuery(sql);
-      if (type == QueryValidatorAndParser.structueQuery) {
-        return currentEngine.executeStructureQuery(sql);
-
-      } else if (type == QueryValidatorAndParser.updateQuery) {
-        int updateCount = currentEngine.executeUpdateQuery(sql);
-        if (updateCount > 0) {
-          return true;
-        } else {
-          return false;
+      QueryThread queryCode = new QueryThread(currentEngine, QueryThread.generalQuery, this, sql);
+      Thread queryThread = new Thread(queryCode);
+      queryThread.start();
+      try {
+        queryThread.join(time * 1000);
+        if (queryThread.isAlive()) {
+          queryThread.interrupt();
+          throw new RuntimeException("query timed-out");
         }
-      } else if (type == QueryValidatorAndParser.selectionQuery) {
-        ResultSetParameters result = currentEngine.executeQuery(sql);
-        if (result != null) {
-          Object[][] tableData = result.getSelectedData();
-          if (tableData.length != 0) {
-            return true;
-          } else {
-            return false;
-          }
-        } else {
-          return false;
-        }
+      } catch (InterruptedException e) {
+        // shouldn't happen
+        throw new RuntimeException("Interrupted");
       }
-      return false;
+      // execution continued normally
+      return queryCode.getExecutionResult();
     }
-
   }
 
   @Override
@@ -362,6 +353,9 @@ public class StatementImp implements Statement {
     if (isClosed) {
       throw new SQLException();
     } else {
+      if (seconds > Integer.MAX_VALUE / 1000 || seconds <= 0) {
+        throw new IllegalArgumentException();
+      }
       this.time = seconds;
     }
 
