@@ -22,6 +22,8 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Map;
 
+import javax.management.RuntimeErrorException;
+
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ResultSetParameters;
 
 public class ResultSetImp implements ResultSet {
