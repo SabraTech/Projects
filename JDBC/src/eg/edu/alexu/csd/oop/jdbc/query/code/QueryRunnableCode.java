@@ -18,7 +18,10 @@ public class QueryRunnableCode implements Runnable {
   private int executionIntegerResult;
   private ResultSet executionResultSet;
   private QueryValidatorAndParser queryValidatorAndParser;
-  private boolean errorFlag;
+  private boolean errorFlag;// indicates that a sql exception was thrown
+  // three integers for outer classes to use when calling the constructor
+  // to indicate the exact
+  // code that should be executed
   public static final int generalQuery = 1;
   public static final int updateQuery = 2;
   public static final int selectionQuery = 3;
@@ -35,30 +38,26 @@ public class QueryRunnableCode implements Runnable {
 
   @Override
   public void run() {
-    // TODO Auto-generated method stub
     switch (queryType) {
     case QueryRunnableCode.generalQuery:
       try {
         executionResult = execute(sql, engine);
       } catch (SQLException e) {
-        // TODO Auto-generated catch block
-        errorFlag = true;
+        errorFlag = true;// sql exception
       }
       break;
     case QueryRunnableCode.updateQuery:
       try {
         executionIntegerResult = executeUpdate(sql, engine);
       } catch (SQLException e) {
-        // TODO Auto-generated catch block
-        errorFlag = true;
+        errorFlag = true;// sql exception
       }
       break;
     case QueryRunnableCode.selectionQuery:
       try {
         executionResultSet = executeQuery(sql, statement, engine);
       } catch (SQLException e) {
-        // TODO Auto-generated catch block
-        errorFlag = true;
+        errorFlag = true;// sql exception
       }
       break;
     }
@@ -108,7 +107,7 @@ public class QueryRunnableCode implements Runnable {
       throw new RuntimeException();
     }
     if (errorFlag) {
-      throw new SQLException();
+      throw new SQLException();// indicate you have an exception
     }
     return executionResult;
   }
@@ -118,7 +117,7 @@ public class QueryRunnableCode implements Runnable {
       throw new RuntimeException();
     }
     if (errorFlag) {
-      throw new SQLException();
+      throw new SQLException();// indicate you have an exception
     }
     return executionIntegerResult;
   }
@@ -128,7 +127,7 @@ public class QueryRunnableCode implements Runnable {
       throw new RuntimeException();
     }
     if (errorFlag) {
-      throw new SQLException();
+      throw new SQLException();// indicate you have an exception
     }
     return executionResultSet;
   }
