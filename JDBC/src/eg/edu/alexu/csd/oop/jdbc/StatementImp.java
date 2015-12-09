@@ -104,7 +104,7 @@ public class StatementImp implements Statement {
       Thread queryThread = new Thread(queryCode);
       queryThread.start();
       try {
-        queryThread.join(time * 1000);
+        queryThread.join(((long) time) * 1000);
         if (queryThread.isAlive()) {
           queryThread.interrupt();
           throw new RuntimeException("query timed-out");
