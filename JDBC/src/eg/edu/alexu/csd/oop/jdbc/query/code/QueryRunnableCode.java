@@ -65,7 +65,7 @@ public class QueryRunnableCode implements Runnable {
   }
 
   public boolean execute(String sql, Engine engine) throws SQLException {
-    int type = queryValidatorAndParser.isValidQuery(sql);
+    int type = queryValidatorAndParser.getQueryType(sql);
     if (type == QueryValidatorAndParser.structueQuery) {
       return engine.executeStructureQuery(sql);
     } else if (type == QueryValidatorAndParser.updateQuery) {

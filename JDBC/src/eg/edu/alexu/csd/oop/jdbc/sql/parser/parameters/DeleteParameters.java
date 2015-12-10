@@ -4,7 +4,7 @@ package eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters;
 /**
  * The Class ConditionalDeleteParameters.
  */
-public class ConditionalDeleteParameters {
+public class DeleteParameters {
 
   /** The table name. */
   private String tableName;
@@ -30,7 +30,7 @@ public class ConditionalDeleteParameters {
    * @param valueToCompareTo
    *          the value to compare to
    */
-  public ConditionalDeleteParameters(String tableName, String columnToCompareName,
+  public DeleteParameters(String tableName, String columnToCompareName,
       String comparingChar, String valueToCompareTo) {
     this.tableName = tableName;
     this.columnToCompareName = columnToCompareName;

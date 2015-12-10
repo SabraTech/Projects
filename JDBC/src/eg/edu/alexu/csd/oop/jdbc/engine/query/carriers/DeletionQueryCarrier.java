@@ -32,7 +32,7 @@ public class DeletionQueryCarrier {
     ArrayList<Object[]> currentTableRows = new ArrayList<Object[]>();
 
     if (parserAndValidator.queryIsConditionalDelete(query)) {
-      ConditionalDeleteParameters temp = parserAndValidator.getConditionalDeleteParameters(query);
+      DeleteParameters temp = parserAndValidator.getConditionalDeleteParameters(query);
       String tableName = temp.getTableName();
       String columnToCompareTo = temp.getColumnToCompareToName();
       String compareChar = temp.getComparingChar();

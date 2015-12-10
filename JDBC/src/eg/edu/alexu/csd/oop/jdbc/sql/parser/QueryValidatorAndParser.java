@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ConditionalDeleteParameters;
+import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.DeleteParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.InsertionParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.SelectionParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.TableCreationParameters;
@@ -300,10 +300,9 @@ public class QueryValidatorAndParser {
     return queryIsConditionalUpdate(query) || queryIsUpdateWithoutCondition(query);
   }
 
-  public int isValidQuery(String sql) throws SQLException {
+  public int getQueryType(String sql) throws SQLException {
     /**
-     * int value for which method is the query type 1 = execute() type 2 =
-     * executeUpdate() type 3 = executeQuery()
+     * integer value for which type the query is
      */
     if (queryIsCreateDataBase(sql) || queryIsDropDataBase(sql) || queryIsCreateTable(sql)
         || queryIsDropTable(sql)) {
@@ -313,7 +312,7 @@ public class QueryValidatorAndParser {
     } else if (queryIsSelection(sql)) {
       return selectionQuery;
     }
-    throw new SQLException("Invalid query " + sql);
+    throw new SQLException("Invalid query" + sql);
   }
 
   /**
@@ -398,8 +397,7 @@ public class QueryValidatorAndParser {
    * @throws SQLException
    *           the SQL exception
    */
-  public ConditionalDeleteParameters getConditionalDeleteParameters(String query)
-      throws SQLException {
+  public DeleteParameters getConditionalDeleteParameters(String query) throws SQLException {
     if (!queryIsConditionalDelete(query)) {
       return null;
     }
@@ -412,7 +410,7 @@ public class QueryValidatorAndParser {
       String columnName = matcher.group(1);
       String compareChar = matcher.group(2);
       String value = matcher.group(3);
-      return new ConditionalDeleteParameters(tableName, columnName, compareChar, value);
+      return new DeleteParameters(tableName, columnName, compareChar, value);
     } catch (Exception e) {
       // TODO Auto-generated catch block
       throw new RuntimeException(e + " query = " + query);

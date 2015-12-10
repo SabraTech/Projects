@@ -38,7 +38,7 @@ public class MyStatement implements Statement {
     if (isClosed) {
       throw new SQLException();
     } else {
-      int type = queryValidatorAndParser.isValidQuery(sql);
+      int type = queryValidatorAndParser.getQueryType(sql);
       batchList.add(new MyEntry<String, Integer>(sql, type));
     }
 
