@@ -71,7 +71,7 @@ public class MyStatement implements Statement {
     } else {
       QueryRunnableCode queryCode = new QueryRunnableCode(currentEngine,
           QueryRunnableCode.generalQuery, this, sql, queryValidatorAndParser);
-      Thread queryThread = new Thread(queryCode);
+      Thread queryThread = new Thread(queryCode, "Query Thread");
       queryThread.start();
       try {
         queryThread.join(((long) time) * 1000);
@@ -151,7 +151,7 @@ public class MyStatement implements Statement {
     } else {
       QueryRunnableCode queryCode = new QueryRunnableCode(currentEngine,
           QueryRunnableCode.updateQuery, this, sql, queryValidatorAndParser);
-      Thread queryThread = new Thread(queryCode);
+      Thread queryThread = new Thread(queryCode, "Query Thread");
       queryThread.start();
       try {
         queryThread.join(((long) time) * 1000);
