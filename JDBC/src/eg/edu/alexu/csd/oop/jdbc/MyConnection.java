@@ -20,20 +20,21 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+import eg.edu.alexu.csd.oop.jdbc.connection.handler.ConnectionGetter;
 import eg.edu.alexu.csd.oop.jdbc.engine.Engine;
-import eg.edu.alexu.csd.oop.jdbc.pool.ConnectionGetter;
 
 public class MyConnection implements Connection {
 
   private Engine engine;
   private String path;
 
-  private MyConnection(String path) {
+  private MyConnection(String path) {// no outer classes can instantiate the
+                                     // connection Class
     engine = new Engine(path);
     this.path = path;
   }
 
-  public String getPath() {
+  public String getPath() {// to get the path on releasing the connection
     return path;
   }
 
@@ -339,7 +340,7 @@ public class MyConnection implements Connection {
 
     public void setMaximumStoredConnections(int max) {// sets the maximum number
                                                       // of
-      // stored connections
+                                                      // stored connections
       if (max < 0) {
         throw new IllegalArgumentException();
       }
@@ -349,13 +350,14 @@ public class MyConnection implements Connection {
     // call when required connection return connection with required path
     public Connection getConnection(String path) {
       if (pool.containsKey(path)) {
-        return pool.remove(path);
+        return pool.remove(path);// remove it from the map so as not to be given
+                                 // to another client
       }
       // no matching path, so create new connection with specified path
       return new MyConnection(path);
     }
 
-    // call when connection is closed, re-add it to the pool
+    // called when connection is closed, re-add it to the pool
     public void releaseConnection(MyConnection releasedConnection) {
       if (pool.size() < maximumConnections)
         pool.put(releasedConnection.getPath(), releasedConnection);

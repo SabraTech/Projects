@@ -9,7 +9,7 @@ import java.sql.SQLFeatureNotSupportedException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import eg.edu.alexu.csd.oop.jdbc.pool.ConnectionGetter;
+import eg.edu.alexu.csd.oop.jdbc.connection.handler.ConnectionGetter;
 
 public class MyDriver implements Driver {
   ConnectionGetter connectionGetter;
@@ -38,7 +38,9 @@ public class MyDriver implements Driver {
   public Connection connect(String url, Properties info) throws SQLException {
     File dir = (File) info.get("path");
     String path = dir.getAbsolutePath();
-    return connectionGetter.getConnection(path);
+    return connectionGetter.getConnection(path);// connectionGetter is
+                                                // responsible for dealing with
+                                                // the connection pool
   }
 
   @Override

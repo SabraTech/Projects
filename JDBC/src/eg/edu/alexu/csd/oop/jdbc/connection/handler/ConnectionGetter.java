@@ -1,16 +1,16 @@
-package eg.edu.alexu.csd.oop.jdbc.pool;
+package eg.edu.alexu.csd.oop.jdbc.connection.handler;
 
 import java.sql.Connection;
 
 import eg.edu.alexu.csd.oop.jdbc.MyConnection;
 import eg.edu.alexu.csd.oop.jdbc.MyConnection.ConnectionPool;
 
-public class ConnectionGetter {
+public class ConnectionGetter {// singleton
 
-  // class for requires a connection
+  // class getting connections from the pool
 
-  private ConnectionPool connectionPool;
-  private static ConnectionGetter singleInst;
+  private ConnectionPool connectionPool;// the pool
+  private static ConnectionGetter singleInst;// the single instance
 
   // Constructor
   private ConnectionGetter() {
@@ -23,13 +23,12 @@ public class ConnectionGetter {
     return singleInst;
   }
 
-  // call when want to get a connection
+  // called on requiring a connection
   public Connection getConnection(String path) {
-
     return connectionPool.getConnection(path);
   }
 
-  // call when close connection
+  // called on closing connection
   public void releaseConnection(MyConnection connection) {
     connectionPool.releaseConnection(connection);
   }
