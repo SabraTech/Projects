@@ -49,7 +49,7 @@ public class MyResultSetMetaData implements ResultSetMetaData {
 		if (column < 1 || column > columnsNames.length) {
 			throw new RuntimeException("invalid index");
 		}
-		if (columnsDataTypes[column].equalsIgnoreCase("varChar")) {
+		if (columnsDataTypes[column - 1].equalsIgnoreCase("varChar")) {
 			return java.sql.Types.VARCHAR;
 		} else {
 			return java.sql.Types.INTEGER;

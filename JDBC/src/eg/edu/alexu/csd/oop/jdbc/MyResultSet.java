@@ -124,10 +124,10 @@ public class MyResultSet implements ResultSet {
 		if (isClosed) {
 			throw new SQLException();
 		}
-		if (columnIndex < 1 || columnIndex > dataTable.length) {
+		if (columnIndex < 1 || columnIndex > dataTable[0].length) {
 			throw new SQLException();
 		}
-		if (!columnsDatatypes[columnIndex - 1].equals("int")) {
+		if (!columnsDatatypes[columnIndex - 1].equalsIgnoreCase("int")) {
 			throw new SQLException();
 		}
 		return (int) dataTable[currentRow - 1][columnIndex - 1];
@@ -174,7 +174,7 @@ public class MyResultSet implements ResultSet {
 		if (isClosed) {
 			throw new SQLException();
 		}
-		if (columnIndex < 1 || columnIndex > dataTable.length) {
+		if (columnIndex < 1 || columnIndex > dataTable[0].length) {
 			throw new SQLException();
 		}
 		return dataTable[currentRow - 1][columnIndex - 1];
@@ -194,10 +194,10 @@ public class MyResultSet implements ResultSet {
 		if (isClosed) {
 			throw new SQLException();
 		}
-		if (columnIndex < 1 || columnIndex > dataTable.length) {
+		if (columnIndex < 1 || columnIndex > dataTable[0].length) {
 			throw new SQLException();
 		}
-		if (!columnsDatatypes[columnIndex - 1].equals("varChar")) {
+		if (!columnsDatatypes[columnIndex - 1].equalsIgnoreCase("varChar")) {
 			throw new SQLException();
 		}
 		return (String) dataTable[currentRow - 1][columnIndex - 1];
