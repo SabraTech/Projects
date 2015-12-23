@@ -2,7 +2,6 @@ package eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SelectionParameters.
  */

@@ -1,30 +1,56 @@
 package eg.edu.alexu.csd.oop.jdbc.engine.query.carriers;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
-
 import eg.edu.alexu.csd.oop.jdbc.handler.Facade;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
 import eg.edu.alexu.csd.oop.jdbc.xml.XmlHandler;
 
-//class for update tables
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+
+/**
+ * The Class UpdateQueryCarrier.
+ */
+// class for update tables
 public class UpdateQueryCarrier {
+
+  /** The single instance. */
   private static UpdateQueryCarrier singleInstance;
 
+  /**
+   * Instantiates a new update query carrier.
+   */
   private UpdateQueryCarrier() {
 
   }
 
-  public static UpdateQueryCarrier getInst() {
+  /**
+   * Gets the instance.
+   *
+   * @return the single instance
+   */
+  public static UpdateQueryCarrier getInstance() {
     if (singleInstance == null) {
       singleInstance = new UpdateQueryCarrier();
     }
     return singleInstance;
   }
 
+  /**
+   * Carry update query.
+   *
+   * @param query
+   *          the query
+   * @param tablesNamesAndColumnsCount
+   *          the tables names and columns count
+   * @param currentDataBaseDirectory
+   *          the current data base directory
+   * @return the int
+   * @throws SQLException
+   *           the SQL exception
+   */
   public int carryUpdateQuery(String query, Map<String, Integer> tablesNamesAndColumnsCount,
       String currentDataBaseDirectory) throws SQLException {
 

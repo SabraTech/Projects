@@ -1,10 +1,9 @@
 package eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters;
 
-import java.util.ArrayList;
-
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
 
-// TODO: Auto-generated Javadoc
+import java.util.ArrayList;
+
 /**
  * The Class UpdateParameters.
  */
@@ -111,7 +110,13 @@ public class UpdateParameters {
     return valueToCompareTo;
   }
 
-  public boolean getQueryIsConditional() {
+  /**
+   * query is conditional.
+   * 
+   *
+   * @return true if the query is conditional
+   */
+  public boolean queryIsConditional() {
     return queryIsConditional;
   }
 }

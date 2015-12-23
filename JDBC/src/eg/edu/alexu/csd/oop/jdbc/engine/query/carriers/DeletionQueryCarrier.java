@@ -1,28 +1,55 @@
 package eg.edu.alexu.csd.oop.jdbc.engine.query.carriers;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Map;
-
+//done
 import eg.edu.alexu.csd.oop.jdbc.handler.Facade;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
 import eg.edu.alexu.csd.oop.jdbc.xml.XmlHandler;
 
-//class for delete from tables
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Map;
+
+/**
+ * The Class DeletionQueryCarrier.
+ */
+// class for delete from tables
 public class DeletionQueryCarrier {
+
+  /** The single instance. */
   private static DeletionQueryCarrier singleInstance;
 
+  /**
+   * Instantiates a new deletion query carrier.
+   */
   private DeletionQueryCarrier() {
 
   }
 
-  public static DeletionQueryCarrier getInst() {
+  /**
+   * Gets the instance.
+   *
+   * @return the single instance
+   */
+  public static DeletionQueryCarrier getInstance() {
     if (singleInstance == null) {
       singleInstance = new DeletionQueryCarrier();
     }
     return singleInstance;
   }
 
+  /**
+   * Carry delete query.
+   *
+   * @param query
+   *          the query
+   * @param tablesNamesAndColumnsCount
+   *          the tables names and columns count
+   * @param currentDataBaseDirectory
+   *          the current data base directory
+   * @return the integer indicating number of deleted columns
+   * @throws SQLException
+   *           the SQL exception
+   */
   public int carryDeleteQuery(String query, Map<String, Integer> tablesNamesAndColumnsCount,
       String currentDataBaseDirectory) throws SQLException {
 

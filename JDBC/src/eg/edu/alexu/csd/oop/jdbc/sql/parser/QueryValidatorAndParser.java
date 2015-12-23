@@ -1,9 +1,5 @@
 package eg.edu.alexu.csd.oop.jdbc.sql.parser;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+//done
 
 import eg.edu.alexu.csd.oop.jdbc.handler.Facade;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.DeleteParameters;
@@ -12,13 +8,24 @@ import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.SelectionParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.TableCreationParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.UpdateParameters;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * The Class QueryValidatorAndParser.
  */
 public class QueryValidatorAndParser {
-  public static final int structueQuery = 1;
-  public static final int updateQuery = 2;
-  public static final int selectionQuery = 3;
+
+  /** The Constant STRUCTURE_QUERY. */
+  public static final int STRUCTURE_QUERY = 1;
+
+  /** The Constant UPDATE_QUERY. */
+  public static final int UPDATE_QUERY = 2;
+
+  /** The Constant SELECTION_QUERY. */
+  public static final int SELECTION_QUERY = 3;
 
   /** The compare column to value pattern. */
   private final Pattern compareColumnToValue = Pattern.compile(
@@ -149,7 +156,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return true, if successful
+   * @return true, if query matches any deletion pattern
    */
   public boolean queryIsDeletion(String query) {
     return queryIsDeleteAll(query) || queryIsConditionalDelete(query);
@@ -205,7 +212,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return true, if successful
+   * @return true, if query matches any insertion pattern
    */
   public boolean queryIsInsertion(String query) {
     return queryIsInsertIntoTableColumnWithValues(query) || queryIsInsertIntoTableValues(query);
@@ -260,7 +267,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return true, if successful
+   * @return true, if query matches any selection pattern
    */
   public boolean queryIsSelection(String query) {
     return queryIsSelectAll(query) || queryIsSelectAllWithCondition(query)
@@ -295,23 +302,30 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return true, if successful
+   * @return true, if query matches any update pattern
    */
   public boolean queryIsUpdate(String query) {
     return queryIsConditionalUpdate(query) || queryIsUpdateWithoutCondition(query);
   }
 
+  /**
+   * Gets the query type.
+   *
+   * @param sql
+   *          the sql
+   * @return an integer representing the query type
+   * @throws SQLException
+   *           the SQL exception
+   */
   public int getQueryType(String sql) throws SQLException {
-    /**
-     * integer value for which type the query is
-     */
+
     if (queryIsCreateDataBase(sql) || queryIsDropDataBase(sql) || queryIsCreateTable(sql)
         || queryIsDropTable(sql)) {
-      return structueQuery;
+      return STRUCTURE_QUERY;
     } else if (queryIsInsertion(sql) || queryIsDeletion(sql) || queryIsUpdate(sql)) {
-      return updateQuery;
+      return UPDATE_QUERY;
     } else if (queryIsSelection(sql)) {
-      return selectionQuery;
+      return SELECTION_QUERY;
     }
     throw new SQLException("Invalid query" + sql);
   }
@@ -335,9 +349,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return an object array, the first entry is the table name, the second
-   *         entry is an arrayList of myEntries containing the column name and
-   *         it's class
+   * @return facade object containing the parameters
    * @throws SQLException
    *           the SQL exception
    */
@@ -392,10 +404,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return an object array, the first entry is the table name, the second
-   *         entry is the compared column name, the third entry is the comparing
-   *         character < , = or >, the fourth is the value to compare to. all
-   *         are strings
+   * @return facade object containing the parameters
    * @throws SQLException
    *           the SQL exception
    */
@@ -464,9 +473,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return an object[] , the first entry is the table name, the second is an
-   *         arrayList containing the columns names, the third is an arrayList
-   *         containing the values
+   * @return facade object containing the parameters
    * @throws SQLException
    *           the SQL exception
    */
@@ -511,8 +518,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return an object [], the first entry is the table name, the second entry
-   *         is the values
+   * @return facade object containing the parameters
    * @throws SQLException
    *           the SQL exception
    */
@@ -555,10 +561,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return an object[], the column name, the table name, the column to be
-   *         compared's name, the comparing character, the value, all are
-   *         strings
-   * 
+   * @return facade object containing the parameters
    * @throws SQLException
    *           the SQL exception
    */
@@ -585,8 +588,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return an object[], the first entry is an arrayList of strings the columns
-   *         to be selected Names, the second is the table name
+   * @return facade object containing the parameters
    */
   public Facade getSelectWithNameParameters(String query) {
     if (!queryIsSelectWithNames(query)) {
@@ -609,8 +611,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return an object [], the table name, the column to be compared name, the
-   *         comparing character, the value to compare to, all are strings
+   * @return facade object containing the parameters
    */
   public Facade getSelectAllWithConditionParameters(String query) {
     if (!queryIsSelectAllWithCondition(query)) {
@@ -632,10 +633,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return an object[], an arrayList of myEntry contatining the required
-   *         columns to update and their values, the table name, the column to
-   *         be compared's name, the comparing character, the value to compare
-   *         to
+   * @return facade object containing the parameters
    * @throws SQLException
    *           the SQL exception
    */
@@ -663,9 +661,7 @@ public class QueryValidatorAndParser {
    *
    * @param query
    *          the query
-   * @return an object[], the first entry is an arrayList containing the columns
-   *         to be updated names and the new values, the second is the table
-   *         name
+   * @return facade object containing the parameters
    */
   public Facade getUpdateWithoutConditionParameters(String query) {
     if (!queryIsUpdateWithoutCondition(query)) {

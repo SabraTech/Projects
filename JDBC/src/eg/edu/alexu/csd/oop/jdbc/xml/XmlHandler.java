@@ -1,5 +1,14 @@
 package eg.edu.alexu.csd.oop.jdbc.xml;
 
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Formatter;
@@ -13,15 +22,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 
 /**
  * The Class XmlHandler.
@@ -52,12 +52,12 @@ public class XmlHandler {
     // dataBasePath should have .xml at the end
     String filePath = path + File.separatorChar + name + ".xml";
     try {
-      File fXmlFile = new File(filePath);
+      File xmlFile = new File(filePath);
       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
       dbFactory.setValidating(true);
       dbFactory.setNamespaceAware(true);
-      DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-      dBuilder.setErrorHandler(new ErrorHandler() {
+      DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
+      documentBuilder.setErrorHandler(new ErrorHandler() {
 
         @Override
         public void error(SAXParseException arg0) throws SAXException {
@@ -78,35 +78,35 @@ public class XmlHandler {
         }
 
       });
-      Document doc = dBuilder.parse(fXmlFile);
+      Document doc = documentBuilder.parse(xmlFile);
       doc.getDocumentElement().normalize();
 
       // get the root name which is the table name
       tableName = doc.getDocumentElement().getNodeName();
 
       // get how many rows saved in the file
-      NodeList nList = doc.getElementsByTagName("Row");
-      Node oneRow = nList.item(0);
+      NodeList nodeList = doc.getElementsByTagName("Row");
+      Node oneRow = nodeList.item(0);
       NodeList numOfFields = oneRow.getChildNodes();
       fieldsNames = new String[numOfFields.getLength()];
       fieldsTypes = new String[numOfFields.getLength()];
-      data = new Object[nList.getLength()][numOfFields.getLength()];
+      data = new Object[nodeList.getLength()][numOfFields.getLength()];
 
       // loop for each row tag
-      for (int temp = 0; temp < nList.getLength(); temp++) {
+      for (int temp = 0; temp < nodeList.getLength(); temp++) {
 
         // catch the row[i] tag
-        Node nNode = nList.item(temp);
+        Node dummyNode = nodeList.item(temp);
 
-        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+        if (dummyNode.getNodeType() == Node.ELEMENT_NODE) {
 
-          NodeList columns = nNode.getChildNodes();
+          NodeList columns = dummyNode.getChildNodes();
           for (int i = 0; i < columns.getLength(); i++) {
             Node childNode = columns.item(i);
-            Element eElement = (Element) childNode;
-            fieldsNames[i] = eElement.getTagName();
+            Element dummyElement = (Element) childNode;
+            fieldsNames[i] = dummyElement.getTagName();
             String value = childNode.getTextContent();
-            String datatype = eElement.getAttribute("datatype");
+            String datatype = dummyElement.getAttribute("datatype");
             fieldsTypes[i] = datatype;
             if (value.equals("null")) {
               data[temp][i] = null;

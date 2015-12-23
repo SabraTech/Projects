@@ -1,5 +1,9 @@
 package eg.edu.alexu.csd.oop.jdbc;
 
+import eg.edu.alexu.csd.oop.jdbc.engine.Engine;
+import eg.edu.alexu.csd.oop.jdbc.query.code.QueryRunnableCode;
+import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
+
 import java.sql.BatchUpdateException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,19 +13,37 @@ import java.sql.SQLWarning;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import eg.edu.alexu.csd.oop.jdbc.engine.Engine;
-import eg.edu.alexu.csd.oop.jdbc.query.code.QueryRunnableCode;
-import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
-
+/**
+ * The Class MyStatement.
+ */
 public class MyStatement implements Statement {
 
+  /** The current engine. */
   private Engine currentEngine;
+
+  /** The current connection. */
   private Connection currentConnection;
+
+  /** The batch. */
   private ArrayList<String> batch;
+
+  /** The time. */
   private int time;
+
+  /** The query validator and parser. */
   private QueryValidatorAndParser queryValidatorAndParser;
+
+  /** The is closed. */
   private boolean isClosed;
 
+  /**
+   * Instantiates a new my statement.
+   *
+   * @param engine
+   *          the engine
+   * @param connection
+   *          the connection
+   */
   public MyStatement(Engine engine, Connection connection) {
     isClosed = false;
     currentEngine = engine;
@@ -31,6 +53,11 @@ public class MyStatement implements Statement {
     queryValidatorAndParser = new QueryValidatorAndParser();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#addBatch(java.lang.String)
+   */
   @Override
   // Adds the given SQL command to the current list of commands for this
   // Statement object.
@@ -43,9 +70,16 @@ public class MyStatement implements Statement {
     }
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#clearBatch()
+   */
   @Override
-  // Empties this Statement object's current list of SQL commands.
-  public void clearBatch() throws SQLException {
+  public void clearBatch() throws SQLException { // Empties this Statement
+                                                 // object's current list of SQL
+                                                 // commands.
+
     // Clear the list
     if (isClosed) {
       throw new SQLException();
@@ -55,6 +89,11 @@ public class MyStatement implements Statement {
 
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#close()
+   */
   @Override
   // Releases this Statement object's database and JDBC resources immediately
   // instead of waiting for this to happen when it is automatically closed.
@@ -62,6 +101,11 @@ public class MyStatement implements Statement {
     isClosed = true;
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#execute(java.lang.String)
+   */
   @Override
   // Executes the given SQL statement, which may return multiple results.
   public boolean execute(String sql) throws SQLException {
@@ -69,9 +113,9 @@ public class MyStatement implements Statement {
       throw new SQLException();
     } else {
       QueryRunnableCode queryCode = new QueryRunnableCode(currentEngine,
-          QueryRunnableCode.generalQuery, this, sql, queryValidatorAndParser);// the
-                                                                              // query
-                                                                              // code
+          QueryRunnableCode.GENERAL_QUERY, this, sql, queryValidatorAndParser);// the
+                                                                               // query
+                                                                               // code
       Thread queryThread = new Thread(queryCode, "Query Thread");// it's
                                                                  // executing
                                                                  // thread
@@ -94,6 +138,11 @@ public class MyStatement implements Statement {
     }
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#executeBatch()
+   */
   @Override
   // Submits a batch of commands to the database for execution and if all
   // commands execute successfully, returns an array of update counts.
@@ -124,6 +173,11 @@ public class MyStatement implements Statement {
 
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#executeQuery(java.lang.String)
+   */
   @Override
   // Executes the given SQL statement, which returns a single ResultSet
   // object.
@@ -132,7 +186,7 @@ public class MyStatement implements Statement {
       throw new SQLException();
     } else {
       QueryRunnableCode queryCode = new QueryRunnableCode(currentEngine,
-          QueryRunnableCode.selectionQuery, this, sql, queryValidatorAndParser);
+          QueryRunnableCode.SELECTION_QUERY, this, sql, queryValidatorAndParser);
       Thread queryThread = new Thread(queryCode, "Query Thread");
       queryThread.start();
       try {
@@ -151,6 +205,11 @@ public class MyStatement implements Statement {
 
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#executeUpdate(java.lang.String)
+   */
   @Override
   // Executes the given SQL statement, which may be an INSERT, UPDATE, or
   // DELETE statement or an SQL statement that returns nothing, such as an SQL
@@ -160,7 +219,7 @@ public class MyStatement implements Statement {
       throw new SQLException();
     } else {
       QueryRunnableCode queryCode = new QueryRunnableCode(currentEngine,
-          QueryRunnableCode.updateQuery, this, sql, queryValidatorAndParser);
+          QueryRunnableCode.UPDATE_QUERY, this, sql, queryValidatorAndParser);
       Thread queryThread = new Thread(queryCode, "Query Thread");
       queryThread.start();
       try {
@@ -178,12 +237,22 @@ public class MyStatement implements Statement {
     }
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getConnection()
+   */
   @Override
   // Retrieves the Connection object that produced this Statement object.
   public Connection getConnection() throws SQLException {
     return this.currentConnection;
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getQueryTimeout()
+   */
   @Override
   // Retrieves the number of seconds the driver will wait for a Statement
   // object to execute.
@@ -195,6 +264,11 @@ public class MyStatement implements Statement {
     }
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#setQueryTimeout(int)
+   */
   @Override
   // Sets the number of seconds the driver will wait for a Statement object to
   // execute to the given number of seconds.
@@ -210,203 +284,373 @@ public class MyStatement implements Statement {
 
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Wrapper#isWrapperFor(java.lang.Class)
+   */
   @Override
   public boolean isWrapperFor(Class<?> iface) throws SQLException {
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Wrapper#unwrap(java.lang.Class)
+   */
   @Override
   public <T> T unwrap(Class<T> iface) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#cancel()
+   */
   @Override
   public void cancel() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#clearWarnings()
+   */
   @Override
   public void clearWarnings() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#closeOnCompletion()
+   */
   @Override
   public void closeOnCompletion() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#execute(java.lang.String, int)
+   */
   @Override
   public boolean execute(String sql, int autoGeneratedKeys) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#execute(java.lang.String, int[])
+   */
   @Override
   public boolean execute(String sql, int[] columnIndexes) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#execute(java.lang.String, java.lang.String[])
+   */
   @Override
   public boolean execute(String sql, String[] columnNames) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#executeUpdate(java.lang.String, int)
+   */
   @Override
   public int executeUpdate(String sql, int autoGeneratedKeys) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#executeUpdate(java.lang.String, int[])
+   */
   @Override
   public int executeUpdate(String sql, int[] columnIndexes) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#executeUpdate(java.lang.String, java.lang.String[])
+   */
   @Override
   public int executeUpdate(String sql, String[] columnNames) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getFetchDirection()
+   */
   @Override
   public int getFetchDirection() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getFetchSize()
+   */
   @Override
   public int getFetchSize() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getGeneratedKeys()
+   */
   @Override
   public ResultSet getGeneratedKeys() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getMaxFieldSize()
+   */
   @Override
   public int getMaxFieldSize() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getMaxRows()
+   */
   @Override
   public int getMaxRows() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getMoreResults()
+   */
   @Override
   public boolean getMoreResults() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getMoreResults(int)
+   */
   @Override
   public boolean getMoreResults(int current) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getResultSet()
+   */
   @Override
   public ResultSet getResultSet() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getResultSetConcurrency()
+   */
   @Override
   public int getResultSetConcurrency() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getResultSetHoldability()
+   */
   @Override
   public int getResultSetHoldability() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getResultSetType()
+   */
   @Override
   public int getResultSetType() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getUpdateCount()
+   */
   @Override
   public int getUpdateCount() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#getWarnings()
+   */
   @Override
   public SQLWarning getWarnings() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#isCloseOnCompletion()
+   */
   @Override
   public boolean isCloseOnCompletion() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#isClosed()
+   */
   @Override
   public boolean isClosed() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#isPoolable()
+   */
   @Override
   public boolean isPoolable() throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#setCursorName(java.lang.String)
+   */
   @Override
   public void setCursorName(String name) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#setEscapeProcessing(boolean)
+   */
   @Override
   public void setEscapeProcessing(boolean enable) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#setFetchDirection(int)
+   */
   @Override
   public void setFetchDirection(int direction) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#setFetchSize(int)
+   */
   @Override
   public void setFetchSize(int rows) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#setMaxFieldSize(int)
+   */
   @Override
   public void setMaxFieldSize(int max) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#setMaxRows(int)
+   */
   @Override
   public void setMaxRows(int max) throws SQLException {
 
     throw new java.lang.UnsupportedOperationException();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.sql.Statement#setPoolable(boolean)
+   */
   @Override
   public void setPoolable(boolean poolable) throws SQLException {
 

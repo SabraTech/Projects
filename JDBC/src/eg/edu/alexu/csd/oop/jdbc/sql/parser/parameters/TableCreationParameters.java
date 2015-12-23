@@ -1,10 +1,9 @@
 package eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters;
 
-import java.util.ArrayList;
-
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
 
-// TODO: Auto-generated Javadoc
+import java.util.ArrayList;
+
 /**
  * The Class TableCreationParameters.
  */

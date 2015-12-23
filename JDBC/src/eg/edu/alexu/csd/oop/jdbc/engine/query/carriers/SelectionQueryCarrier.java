@@ -1,30 +1,56 @@
 package eg.edu.alexu.csd.oop.jdbc.engine.query.carriers;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
-
 import eg.edu.alexu.csd.oop.jdbc.handler.Facade;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.ResultSetParameters;
 import eg.edu.alexu.csd.oop.jdbc.xml.XmlHandler;
 
-//class for select tables
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+
+/**
+ * The Class SelectionQueryCarrier.
+ */
+// class for select tables
 public class SelectionQueryCarrier {
+
+  /** The single instance. */
   private static SelectionQueryCarrier singleInstance;
 
+  /**
+   * Instantiates a new selection query carrier.
+   */
   private SelectionQueryCarrier() {
 
   }
 
-  public static SelectionQueryCarrier getInst() {
+  /**
+   * Gets the instance.
+   *
+   * @return the single instance
+   */
+  public static SelectionQueryCarrier getInstance() {
     if (singleInstance == null) {
       singleInstance = new SelectionQueryCarrier();
     }
     return singleInstance;
   }
 
+  /**
+   * Carry selection query.
+   *
+   * @param query
+   *          the query
+   * @param tablesNamesAndColumnsCount
+   *          the tables names and columns count
+   * @param currentDataBaseDirectory
+   *          the current data base directory
+   * @return the result set parameters
+   * @throws SQLException
+   *           the SQL exception
+   */
   public ResultSetParameters carrySelectionQuery(String query,
       Map<String, Integer> tablesNamesAndColumnsCount, String currentDataBaseDirectory)
           throws SQLException {

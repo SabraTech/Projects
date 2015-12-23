@@ -1,28 +1,54 @@
 package eg.edu.alexu.csd.oop.jdbc.engine.query.carriers;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Map;
-
 import eg.edu.alexu.csd.oop.jdbc.handler.Facade;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.QueryValidatorAndParser;
 import eg.edu.alexu.csd.oop.jdbc.xml.XmlHandler;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Map;
+
+/**
+ * The Class InsertionQueryCarrier.
+ */
 // class for insertion in tables
 public class InsertionQueryCarrier {
+
+  /** The single instance. */
   private static InsertionQueryCarrier singleInstance;
 
+  /**
+   * Instantiates a new insertion query carrier.
+   */
   private InsertionQueryCarrier() {
 
   }
 
-  public static InsertionQueryCarrier getInst() {
+  /**
+   * Gets the instance.
+   *
+   * @return the single instance
+   */
+  public static InsertionQueryCarrier getInstance() {
     if (singleInstance == null) {
       singleInstance = new InsertionQueryCarrier();
     }
     return singleInstance;
   }
 
+  /**
+   * Carry insertion query.
+   *
+   * @param query
+   *          the query
+   * @param tablesNamesAndColumnsCount
+   *          the tables names and columns count
+   * @param currentDataBaseDirectory
+   *          the current data base directory
+   * @return the int
+   * @throws SQLException
+   *           the SQL exception
+   */
   public int carryInsertionQuery(String query, Map<String, Integer> tablesNamesAndColumnsCount,
       String currentDataBaseDirectory) throws SQLException {
 

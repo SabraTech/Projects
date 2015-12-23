@@ -1,11 +1,14 @@
 package eg.edu.alexu.csd.oop.jdbc;
 
+import eg.edu.alexu.csd.oop.jdbc.gui.Gui;
+
 import java.awt.EventQueue;
 
 import javax.swing.UIManager;
 
-import eg.edu.alexu.csd.oop.jdbc.gui.Gui;
-
+/**
+ * The Class Main.
+ */
 public class Main {
 
   /**

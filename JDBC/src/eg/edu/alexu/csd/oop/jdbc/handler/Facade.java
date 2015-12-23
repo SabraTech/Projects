@@ -1,7 +1,5 @@
 package eg.edu.alexu.csd.oop.jdbc.handler;
 
-import java.util.ArrayList;
-
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.MyEntry;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.DeleteParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.InsertionParameters;
@@ -9,14 +7,20 @@ import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.SelectionParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.TableCreationParameters;
 import eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters.UpdateParameters;
 
+import java.util.ArrayList;
+
+/**
+ * The Class Facade.
+ */
 public class Facade {
 
+  /** The table name. */
   private String tableName;
 
   /** The column to compare name. */
   private String columnToCompareName;
 
-  /** The comparing char. */
+  /** The comparing character. */
   private String comparingChar;
 
   /** The value to compare to. */
@@ -37,41 +41,76 @@ public class Facade {
   /** The required. */
   private ArrayList<MyEntry<String, String>> requiredToSetColumnsAndValues;
 
-  public Facade(TableCreationParameters create) {
-    this.tableName = create.getTableName();
-    this.columnsAndClasses = create.getColumnsNamesAndClasses();
+  /**
+   * Instantiates a new facade.
+   *
+   * @param parameters
+   *          the parameters
+   */
+  public Facade(TableCreationParameters parameters) {
+    this.tableName = parameters.getTableName();
+    this.columnsAndClasses = parameters.getColumnsNamesAndClasses();
   }
 
-  public Facade(SelectionParameters select) {
-    this.tableName = select.getTableName();
-    this.columnsNames = select.getColumnsToSelectNames();
-    this.columnToSelectName = select.getColumnToSelectName();
-    this.columnToCompareName = select.getColumnToCompareName();
-    this.comparingChar = select.getComparingChar();
-    this.valueToCompareTo = select.getValueToCompareTo();
+  /**
+   * Instantiates a new facade.
+   *
+   * @param parameters
+   *          the parameters
+   */
+  public Facade(SelectionParameters parameters) {
+    this.tableName = parameters.getTableName();
+    this.columnsNames = parameters.getColumnsToSelectNames();
+    this.columnToSelectName = parameters.getColumnToSelectName();
+    this.columnToCompareName = parameters.getColumnToCompareName();
+    this.comparingChar = parameters.getComparingChar();
+    this.valueToCompareTo = parameters.getValueToCompareTo();
   }
 
-  public Facade(UpdateParameters update) {
-    this.tableName = update.getTableName();
-    this.requiredToSetColumnsAndValues = update.getRequiredColumnsNamesAndValues();
-    this.columnToCompareName = update.getColumnToCompareToName();
-    this.comparingChar = update.getComparingChar();
-    this.valueToCompareTo = update.getValueToCompareTo();
+  /**
+   * Instantiates a new facade.
+   *
+   * @param parameters
+   *          the parameters
+   */
+  public Facade(UpdateParameters parameters) {
+    this.tableName = parameters.getTableName();
+    this.requiredToSetColumnsAndValues = parameters.getRequiredColumnsNamesAndValues();
+    this.columnToCompareName = parameters.getColumnToCompareToName();
+    this.comparingChar = parameters.getComparingChar();
+    this.valueToCompareTo = parameters.getValueToCompareTo();
   }
 
-  public Facade(DeleteParameters delete) {
-    this.tableName = delete.getTableName();
-    this.columnToCompareName = delete.getColumnToCompareToName();
-    this.comparingChar = delete.getComparingChar();
-    this.valueToCompareTo = delete.getValueToCompareTo();
+  /**
+   * Instantiates a new facade.
+   *
+   * @param parameters
+   *          the delete parameters
+   */
+  public Facade(DeleteParameters parameters) {
+    this.tableName = parameters.getTableName();
+    this.columnToCompareName = parameters.getColumnToCompareToName();
+    this.comparingChar = parameters.getComparingChar();
+    this.valueToCompareTo = parameters.getValueToCompareTo();
   }
 
-  public Facade(InsertionParameters insert) {
-    this.tableName = insert.getTableName();
-    this.columnsNames = insert.getColumnsNames();
-    this.values = insert.getValues();
+  /**
+   * Instantiates a new facade.
+   *
+   * @param parameters
+   *          the insert parameters
+   */
+  public Facade(InsertionParameters parameters) {
+    this.tableName = parameters.getTableName();
+    this.columnsNames = parameters.getColumnsNames();
+    this.values = parameters.getValues();
   }
 
+  /**
+   * Gets the table name.
+   *
+   * @return the table name
+   */
   public String getTableName() {
     if (tableName == null) {
       throw new RuntimeException("wrong method called");
@@ -79,6 +118,11 @@ public class Facade {
     return tableName;
   }
 
+  /**
+   * Gets the column to select name.
+   *
+   * @return the column to select name
+   */
   public String getColumnToSelectName() {
     if (columnToSelectName == null) {
       throw new RuntimeException("wrong method called");
@@ -86,6 +130,11 @@ public class Facade {
     return columnToSelectName;
   }
 
+  /**
+   * Gets the columns names.
+   *
+   * @return the columns names
+   */
   // for insert
   public ArrayList<String> getColumnsNames() {
     if (columnsNames == null) {
@@ -94,6 +143,11 @@ public class Facade {
     return columnsNames;
   }
 
+  /**
+   * Gets the values.
+   *
+   * @return the values
+   */
   public ArrayList<Object> getValues() {
     if (values == null) {
       throw new RuntimeException("wrong method called");
@@ -101,6 +155,11 @@ public class Facade {
     return values;
   }
 
+  /**
+   * Gets the column to compare to name.
+   *
+   * @return the column to compare to name
+   */
   // for delete
   public String getColumnToCompareToName() {
     if (columnToCompareName == null) {
@@ -109,6 +168,11 @@ public class Facade {
     return columnToCompareName;
   }
 
+  /**
+   * Gets the comparing char.
+   *
+   * @return the comparing char
+   */
   public String getComparingChar() {
     if (comparingChar == null) {
       throw new RuntimeException("wrong method called");
@@ -116,6 +180,11 @@ public class Facade {
     return comparingChar;
   }
 
+  /**
+   * Gets the value to compare to.
+   *
+   * @return the value to compare to
+   */
   public String getValueToCompareTo() {
     if (valueToCompareTo == null) {
       throw new RuntimeException("wrong method called");
@@ -123,6 +192,11 @@ public class Facade {
     return valueToCompareTo;
   }
 
+  /**
+   * Gets the required columns names and values.
+   *
+   * @return the required columns names and values
+   */
   public ArrayList<MyEntry<String, String>> getRequiredColumnsNamesAndValues() {
     if (requiredToSetColumnsAndValues == null) {
       throw new RuntimeException("wrong method called");
@@ -130,6 +204,11 @@ public class Facade {
     return requiredToSetColumnsAndValues;
   }
 
+  /**
+   * Gets the columns names and classes.
+   *
+   * @return the columns names and classes
+   */
   // for Table
   public ArrayList<MyEntry<String, Class<?>>> getColumnsNamesAndClasses() {
     if (columnsAndClasses == null) {

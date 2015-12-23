@@ -2,6 +2,7 @@ package eg.edu.alexu.csd.oop.jdbc.sql.parser.parameters;
 
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class InsertionParameters.
  */
@@ -80,7 +81,12 @@ public class InsertionParameters {
     return values;
   }
 
-  public boolean getColumnNamesSpecified() {
+  /**
+   * Column names specified.
+   *
+   * @return true, if column names are specified
+   */
+  public boolean columnNamesSpecified() {
     return columnNamesSpecified;
   }
 }
