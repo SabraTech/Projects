@@ -103,10 +103,10 @@ public class XmlHandler {
           NodeList columns = dummyNode.getChildNodes();
           for (int i = 0; i < columns.getLength(); i++) {
             Node childNode = columns.item(i);
-            Element dummyElement = (Element) childNode;
-            fieldsNames[i] = dummyElement.getTagName();
+            Element eElement = (Element) childNode;
+            fieldsNames[i] = eElement.getTagName();
             String value = childNode.getTextContent();
-            String datatype = dummyElement.getAttribute("datatype");
+            String datatype = eElement.getAttribute("datatype");
             fieldsTypes[i] = datatype;
             if (value.equals("null")) {
               data[temp][i] = null;
