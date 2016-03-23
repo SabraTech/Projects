@@ -57,7 +57,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
   @Override
   public T extract() {
     if (size() == 0) {
-      return null;
+      throw new RuntimeException("Size is zero");
     }
 
     INode<T> root = tree.get(0);
