@@ -71,8 +71,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   @Override
   public void insert(T element) {
-    tree.add(new Node(element, size, tree));
-    size++;
+    tree.add(new Node(element, size++, tree));
     
     INode<T> tmp = tree.get(size-1);
     
@@ -92,7 +91,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
       tree.add(new Node(node,index++,tree));
     }
     
-    for(int i=size/2-1;i>=0;i--){
+    for(int i=size/2-1;i>=0;--i){
       heapify(tree.get(i));
     }
     
