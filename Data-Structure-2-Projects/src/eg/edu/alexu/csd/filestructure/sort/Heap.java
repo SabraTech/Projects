@@ -38,11 +38,11 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     INode<T> right = node.getRightChild();
     INode<T> max = node;
 
-    if ( left != null && left.getValue().compareTo(node.getValue()) == 1) {
+    if ( left != null && left.getValue().compareTo(node.getValue()) > 0) {
       max = left;
     } 
 
-    if ( right != null && left.getValue().compareTo(max.getValue()) == 1) {
+    if ( right != null && left.getValue().compareTo(max.getValue()) > 0) {
       max = right;
     }
 
@@ -63,7 +63,6 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     INode<T> root = tree.get(0);
     T hold = root.getValue();
     swap(root, tree.get(size - 1));
-    // tree.remove(size - 1);
     size--;
     heapify(getRoot());
     return hold;
@@ -76,7 +75,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     
     INode<T> tmp = tree.get(size-1);
     
-    while(tmp.getParent() != null && tmp.getParent().getValue().compareTo(tmp.getValue()) == -1){
+    while(tmp.getParent() != null && tmp.getParent().getValue().compareTo(tmp.getValue()) < 0){
       swap(tmp, tmp.getParent());
       tmp = tmp.getParent();
     }
