@@ -38,13 +38,13 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     INode<T> right = node.getRightChild();
     INode<T> max;
 
-    if ((left.getValue().compareTo(right.getValue())) > 0) {
+    if ( left != null && (left.getValue().compareTo(right.getValue())) > 0) {
       max = left;
     } else {
       max = node;
     }
 
-    if ((left.getValue().compareTo(max.getValue())) > 0) {
+    if ( right != null && (left.getValue().compareTo(max.getValue())) > 0) {
       max = right;
     }
 
