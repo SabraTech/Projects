@@ -46,7 +46,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
       max = right;
     }
 
-    if ((max.getValue().compareTo(node.getValue())) != 0) {
+    if (max.getValue().compareTo(node.getValue()) != 0) {
       swap(max,node);
       heapify(max);
     }
@@ -70,8 +70,12 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   @Override
   public void insert(T element) {
+    if(tree.size() == size){
+      tree.add(new Node(element, size++));
+    }else{
+      tree.set(size,new Node(element, size++));
+    }
     
-    tree.add(new Node(element, size++));
     
     INode<T> tmp = tree.get(size-1);
     

@@ -15,10 +15,10 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
     myHeap.build(unordered);
     sortHeap.build(unordered);
     
-    for(int i=unordered.size()-1;i>=0;i--){
-      unordered.set(i, sortHeap.extract());
+    for(int i=unordered.size()-1;i>0;--i){
+      sortHeap.extract();
     }
-    return null;
+    return sortHeap;
   }
 
   @Override
