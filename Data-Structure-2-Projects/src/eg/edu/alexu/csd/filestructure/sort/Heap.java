@@ -72,12 +72,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
   @Override
   public void insert(T element) {
     
-    if(size == tree.size()){
-      tree.add(new Node<T>(element, size++, tree));
-    }else{
-      tree.set(size,new Node<T>(element, size++, tree));
-    }
-    
+    tree.add(new Node(element, size++));
     
     INode<T> tmp = tree.get(size-1);
     
@@ -94,7 +89,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     
     int index = 0;
     for(T node : unordered){
-      tree.add(new Node<T>(node,index++,tree));
+      tree.add(new Node(node,index++));
     }
     
     for(int i=size/2-1;i>=0;--i){
@@ -110,30 +105,28 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     j.setValue(tmp);
   }
 
-  private class Node<T extends Comparable<T>> implements INode<T> {
+  private class Node implements INode<T> {
     
-    T value;
-    int index;
-    ArrayList<INode<T>> heap;
+    private T value;
+    private int index;
     
-    public Node(T value, int index, ArrayList<INode<T>> tree){
+    public Node(T value, int index){
       this.value = value;
       this.index = index;
-      this.heap = tree;
     }
 
     @Override
     public INode<T> getLeftChild() {
-      if(index*2+1 < heap.size()){
-        return heap.get(index*2+1);
+      if(index*2+1 < Heap.this.size){
+        return Heap.this.tree.get(index*2+1);
       }
       return null;
     }
 
     @Override
     public INode<T> getRightChild() {
-      if(index*2+2 < heap.size()){
-        return heap.get(index*2+2);
+      if(index*2+2 < Heap.this.size){
+        return Heap.this.tree.get(index*2+2);
       }
       return null;
     }
@@ -143,7 +136,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
       if(index == 0){
         return null;
       }
-      return heap.get((index-1)/2);
+      return Heap.this.tree.get((index-1)/2);
     }
 
     @Override
