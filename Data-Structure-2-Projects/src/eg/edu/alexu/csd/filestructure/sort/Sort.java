@@ -26,7 +26,17 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
     if (unordered == null || unordered.size() == 0) {
       throw new RuntimeException("Array is null or size is zero");
     }
-    quickSort(unordered, 0, unordered.size() - 1);
+    for(int i=0;i<unordered.size();i++){
+      for(int j=0;j<unordered.size()-1;j++){
+        if(unordered.get(j).compareTo(unordered.get(j+1)) == 1){
+          
+          T tmp = unordered.get(j);
+          unordered.set(j , unordered.get(j+1));
+          unordered.set(j+1 , tmp);
+          
+      }
+      }
+    }
   }
 
   private void quickSort(ArrayList<T> unordered, int lowerIndex, int upperIndex) {
@@ -66,12 +76,19 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
 
   @Override
   public void sortFast(ArrayList<T> unordered) {
+    
     if (unordered == null || unordered.size() == 0) {
+      throw new RuntimeException("Array is null or size is zero");
+    }
+    quickSort(unordered, 0, unordered.size() - 1);
+    
+    
+    /*if (unordered == null || unordered.size() == 0) {
       throw new RuntimeException("Array is null or size is zero");
     }
     ArrayList<T> tmp = new ArrayList<T>();
     mergeSort(unordered, tmp, 0, unordered.size() - 1);
-
+*/
   }
 
   private void mergeSort(ArrayList<T> unordered, ArrayList<T> tmp, int left, int right) {

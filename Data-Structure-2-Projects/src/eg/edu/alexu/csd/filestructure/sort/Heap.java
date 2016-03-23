@@ -144,7 +144,6 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
     @Override
     public T getValue() {
-
       return value;
     }
 
