@@ -64,7 +64,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     T hold = root.getValue();
     swap(root, tree.get(size - 1));
     tree.remove(size - 1);
-    size--;
+    --size;
     heapify(getRoot());
     return hold;
   }
