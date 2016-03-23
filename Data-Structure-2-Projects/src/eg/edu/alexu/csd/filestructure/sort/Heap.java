@@ -63,15 +63,21 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     INode<T> root = tree.get(0);
     T hold = root.getValue();
     swap(root, tree.get(size - 1));
-    tree.remove(size - 1);
-    --size;
+    // tree.remove(size - 1);
+    size--;
     heapify(getRoot());
     return hold;
   }
 
   @Override
   public void insert(T element) {
-    tree.add(new Node(element, size++, tree));
+    
+    if(size == tree.size()){
+      tree.add(new Node<T>(element, size++, tree));
+    }else{
+      tree.set(size,new Node<T>(element, size++, tree));
+    }
+    
     
     INode<T> tmp = tree.get(size-1);
     
@@ -88,7 +94,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     
     int index = 0;
     for(T node : unordered){
-      tree.add(new Node(node,index++,tree));
+      tree.add(new Node<T>(node,index++,tree));
     }
     
     for(int i=size/2-1;i>=0;--i){
@@ -104,7 +110,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     j.setValue(tmp);
   }
 
-  private class Node implements INode<T> {
+  private class Node<T extends Comparable<T>> implements INode<T> {
     
     T value;
     int index;
