@@ -12,12 +12,13 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
     
     IHeap<T> myHeap = new Heap<T>();
     IHeap<T> sortHeap = new Heap<T>();
+    ArrayList<T> orderedArray = new ArrayList<T>();
     myHeap.build(unordered);
-    sortHeap.build(unordered);
     
     for(int i=unordered.size()-1;i>0;--i){
-      sortHeap.extract();
+      orderedArray.add(myHeap.extract());
     }
+    sortHeap.build(orderedArray);
     return sortHeap;
   }
 
