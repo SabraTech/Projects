@@ -63,6 +63,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     if(size() == 1){
       INode<T> root = tree.get(0);
       T value = root.getValue();
+      size--;
       return value;
     }
 
