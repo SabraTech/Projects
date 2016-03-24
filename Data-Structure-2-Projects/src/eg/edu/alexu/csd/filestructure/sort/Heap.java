@@ -87,9 +87,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   @Override
   public void build(Collection<T> unordered) {
-    if(unordered.size() == 0 || unordered == null){
-      throw new RuntimeException("Array to build heap is null or size is zero");
-    }
+    
     size = unordered.size();
     tree.clear();
     
