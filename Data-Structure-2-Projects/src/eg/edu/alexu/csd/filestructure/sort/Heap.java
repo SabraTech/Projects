@@ -44,7 +44,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
       flag = true;
     } 
 
-    if ( right != null && left.getValue().compareTo(max.getValue()) > 0) {
+    if ( right != null && right.getValue().compareTo(max.getValue()) > 0) {
       max = right;
       flag = true;
     }
