@@ -30,7 +30,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
   @Override
   public void heapify(INode<T> node) {
 
-    if (size == 0) {
+    if (size == 0 || size == 1) {
       return;
     }
 
