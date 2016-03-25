@@ -112,6 +112,10 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     
 
   }
+  
+  public INode<T> getIndex(int i){
+    return this.tree.get(i);
+  }
 
   private void swap(INode<T> i, INode<T> j) {
     T tmp = i.getValue();
