@@ -14,7 +14,7 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
     Heap<T> myHeap = new Heap<T>();
     myHeap.build(unordered);
    
-    for(int i=size-1;i>0;i--){
+    for(int i=size-1;i>=0;i--){
       swap(myHeap.getIndex(0), myHeap.getIndex(i));
       size--;
       myHeap.heapify(myHeap.getRoot());
