@@ -10,16 +10,16 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
       throw new RuntimeException("Array is null or size is zero");
     }
     
+    int size = unordered.size();
     IHeap<T> myHeap = new Heap<T>();
-    IHeap<T> sortHeap = new Heap<T>();
-    ArrayList<T> orderedArray = new ArrayList<T>();
     myHeap.build(unordered);
-    
-    for(int i=unordered.size()-1;i>0;--i){
-      orderedArray.add(myHeap.extract());
+   
+    for(int i=size-1;i>0;i--){
+      // swap between myHeap(0) and myHeap(i);
+      size--;
+      myHeap.heapify(myHeap.getRoot());
     }
-    sortHeap.build(orderedArray);
-    return sortHeap;
+    return myHeap;
   }
 
   @Override

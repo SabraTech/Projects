@@ -37,16 +37,19 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     INode<T> left = node.getLeftChild();
     INode<T> right = node.getRightChild();
     INode<T> max = node;
+    boolean flag = false;
 
     if ( left != null && left.getValue().compareTo(node.getValue()) > 0) {
       max = left;
+      flag = true;
     } 
 
     if ( right != null && left.getValue().compareTo(max.getValue()) > 0) {
       max = right;
+      flag = true;
     }
 
-    if (max.getValue().compareTo(node.getValue()) != 0) {
+    if (flag) {
       swap(max,node);
       heapify(max);
     }
