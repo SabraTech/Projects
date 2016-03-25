@@ -113,8 +113,8 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   }
   
-  public INode<T> getIndex(int i){
-    return this.tree.get(i);
+  public void swap2(int i, int j){
+    swap(tree.get(i),tree.get(j));
   }
 
   private void swap(INode<T> i, INode<T> j) {

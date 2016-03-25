@@ -15,18 +15,14 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
     myHeap.build(unordered);
    
     for(int i=size-1;i>=0;i--){
-      swap(myHeap.getIndex(0), myHeap.getIndex(i));
+      myHeap.swap2(0, i);
       size--;
       myHeap.heapify(myHeap.getRoot());
     }
     return myHeap;
   }
   
-  private void swap(INode<T> i, INode<T> j) {
-    T tmp = i.getValue();
-    i.setValue(j.getValue());
-    j.setValue(tmp);
-  }
+  
 
   @Override
   public void sortSlow(ArrayList<T> unordered) {
