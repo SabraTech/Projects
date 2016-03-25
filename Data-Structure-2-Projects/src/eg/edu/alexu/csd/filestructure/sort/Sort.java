@@ -40,8 +40,24 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
     }
   }
 
+  
+  @Override
+  public void sortFast(ArrayList<T> unordered) {
+    
+    if (unordered == null || unordered.size() == 0) {
+      throw new RuntimeException("Array is null or size is zero");
+    }
+    quickSort(unordered, 0, unordered.size() - 1);
+    
+    
+  }
+  
   private void quickSort(ArrayList<T> unordered, int lowerIndex, int upperIndex) {
-
+    
+    if (lowerIndex >= upperIndex){
+      return;
+    }
+    
     int lower = lowerIndex;
     int upper = upperIndex;
     // calculate the pivot
@@ -53,7 +69,7 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
         lower++;
       }
 
-      while ((unordered.get(lower).compareTo(pivot)) > 0) {
+      while ((unordered.get(upper).compareTo(pivot)) > 0) {
         upper--;
       }
 
@@ -75,61 +91,6 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
 
   }
 
-  @Override
-  public void sortFast(ArrayList<T> unordered) {
-    
-    /*if (unordered == null || unordered.size() == 0) {
-      throw new RuntimeException("Array is null or size is zero");
-    }
-    quickSort(unordered, 0, unordered.size() - 1);
-    */
-    
-    if (unordered == null || unordered.size() == 0) {
-      throw new RuntimeException("Array is null or size is zero");
-    }
-    ArrayList<T> tmp = new ArrayList<T>();
-    mergeSort(unordered, tmp, 0, unordered.size() - 1);
-
-  }
-
-  private void mergeSort(ArrayList<T> unordered, ArrayList<T> tmp, int left, int right) {
-    if (left < right) {
-      int center = (left + right) / 2;
-      mergeSort(unordered, tmp, left, center);
-      mergeSort(unordered, tmp, center + 1, right);
-      merge(unordered, tmp, left, center + 1, right);
-    }
-
-  }
-
-  private void merge(ArrayList<T> unordered, ArrayList<T> tmp, int left, int middle, int right) {
-    int center = middle - 1;
-    int k = left;
-    int num = middle - left + 1;
-
-    while (left <= center && middle <= right) {
-      if (unordered.get(left).compareTo(unordered.get(middle)) <= 0) {
-        tmp.set(k++, unordered.get(left++));
-      } else {
-        tmp.set(k++, unordered.get(middle++));
-      }
-    }
-
-    // Copy rest of first half
-    while (left <= center) {
-      tmp.set(k++, unordered.get(left++));
-    }
-
-    // Copy rest of right half
-    while (middle <= right) {
-      tmp.set(k++, unordered.get(middle++));
-    }
-
-    // Copy tmp back to unorderdList
-    for (int i = 0; i < num; i++, right--) {
-      unordered.set(right, tmp.get(right));
-    }
-
-  }
+  
 
 }
