@@ -78,18 +78,18 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
   @Override
   public void sortFast(ArrayList<T> unordered) {
     
-    if (unordered == null || unordered.size() == 0) {
+    /*if (unordered == null || unordered.size() == 0) {
       throw new RuntimeException("Array is null or size is zero");
     }
     quickSort(unordered, 0, unordered.size() - 1);
+    */
     
-    
-    /*if (unordered == null || unordered.size() == 0) {
+    if (unordered == null || unordered.size() == 0) {
       throw new RuntimeException("Array is null or size is zero");
     }
     ArrayList<T> tmp = new ArrayList<T>();
     mergeSort(unordered, tmp, 0, unordered.size() - 1);
-*/
+
   }
 
   private void mergeSort(ArrayList<T> unordered, ArrayList<T> tmp, int left, int right) {
