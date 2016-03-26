@@ -6,62 +6,55 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
 
   @Override
   public IHeap<T> heapSort(ArrayList<T> unordered) {
-    /*if (unordered == null || unordered.size() == 0) {
+    if (unordered == null || unordered.size() == 0) {
       throw new RuntimeException("Array is null or size is zero");
     }
-    
+
     Heap<T> myHeap = new Heap<T>();
     ArrayList<T> orderedArray = new ArrayList<T>();
     myHeap.build(unordered);
-    for(int i=unordered.size()-1;i>0;--i){
+    for (int i = unordered.size() - 1; i > 0; --i) {
       orderedArray.add(myHeap.extract());
     }
     myHeap.setSize(unordered.size());
-    return myHeap;*/
-    
-    Heap<T> heap = new Heap<T>();
-    
-    return heap.heapSort(unordered);
+    return myHeap;
+
   }
-  
-  
 
   @Override
   public void sortSlow(ArrayList<T> unordered) {
     if (unordered == null || unordered.size() == 0) {
       throw new RuntimeException("Array is null or size is zero");
     }
-    for(int i=0;i<unordered.size();i++){
-      for(int j=0;j<unordered.size()-1;j++){
-        if(unordered.get(j).compareTo(unordered.get(j+1)) == 1){
-          
+    for (int i = 0; i < unordered.size(); i++) {
+      for (int j = 0; j < unordered.size() - 1; j++) {
+        if (unordered.get(j).compareTo(unordered.get(j + 1)) == 1) {
+
           T tmp = unordered.get(j);
-          unordered.set(j , unordered.get(j+1));
-          unordered.set(j+1 , tmp);
-          
-      }
+          unordered.set(j, unordered.get(j + 1));
+          unordered.set(j + 1, tmp);
+
+        }
       }
     }
   }
 
-  
   @Override
   public void sortFast(ArrayList<T> unordered) {
-    
+
     if (unordered == null || unordered.size() == 0) {
       throw new RuntimeException("Array is null or size is zero");
     }
     quickSort(unordered, 0, unordered.size() - 1);
-    
-    
+
   }
-  
+
   private void quickSort(ArrayList<T> unordered, int lowerIndex, int upperIndex) {
-    
-    if (lowerIndex >= upperIndex){
+
+    if (lowerIndex >= upperIndex) {
       return;
     }
-    
+
     int lower = lowerIndex;
     int upper = upperIndex;
     // calculate the pivot
@@ -94,7 +87,5 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
     }
 
   }
-
-  
 
 }

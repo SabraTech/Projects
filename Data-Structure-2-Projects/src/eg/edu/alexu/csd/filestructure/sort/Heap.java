@@ -39,21 +39,20 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     INode<T> max = node;
     boolean flag = false;
 
-    if ( left != null && left.getValue().compareTo(node.getValue()) > 0) {
+    if (left != null && left.getValue().compareTo(node.getValue()) > 0) {
       max = left;
       flag = true;
-    } 
+    }
 
-    if ( right != null && right.getValue().compareTo(max.getValue()) > 0) {
+    if (right != null && right.getValue().compareTo(max.getValue()) > 0) {
       max = right;
       flag = true;
     }
 
     if (flag) {
-      swap(max,node);
+      swap(max, node);
       heapify(max);
     }
-
 
   }
 
@@ -62,8 +61,8 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     if (size() == 0) {
       throw new RuntimeException("Size is zero");
     }
-    
-    if(size() == 1){
+
+    if (size() == 1) {
       INode<T> root = tree.get(0);
       T value = root.getValue();
       size--;
@@ -80,16 +79,15 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   @Override
   public void insert(T element) {
-    if(tree.size() == size){
+    if (tree.size() == size) {
       tree.add(new Node(element, size++));
-    }else{
-      tree.set(size,new Node(element, size++));
+    } else {
+      tree.set(size, new Node(element, size++));
     }
-    
-    
-    INode<T> tmp = tree.get(size-1);
-    
-    while(tmp.getParent() != null && tmp.getParent().getValue().compareTo(tmp.getValue()) < 0){
+
+    INode<T> tmp = tree.get(size - 1);
+
+    while (tmp.getParent() != null && tmp.getParent().getValue().compareTo(tmp.getValue()) < 0) {
       swap(tmp, tmp.getParent());
       tmp = tmp.getParent();
     }
@@ -97,41 +95,23 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   @Override
   public void build(Collection<T> unordered) {
-    
+
     size = unordered.size();
     tree.clear();
-    
+
     int index = 0;
-    for(T node : unordered){
-      tree.add(new Node(node,index++));
+    for (T node : unordered) {
+      tree.add(new Node(node, index++));
     }
-    
-    for(int i=size/2-1;i>=0;--i){
+
+    for (int i = size / 2 - 1; i >= 0; --i) {
       heapify(tree.get(i));
     }
-    
 
   }
-  
-  public void setSize(int size){
+
+  public void setSize(int size) {
     this.size = size;
-  }
-  
-public IHeap<T> heapSort(ArrayList<T> unordered){
-    
-    if (unordered == null || unordered.size() == 0) {
-      throw new RuntimeException("Array is null or size is zero");
-    }
-    
-    int size = unordered.size();
-    build(unordered);
-   
-    for(int i=size-1;i>=0;i--){
-      swap(tree.get(0), tree.get(i));
-      this.size = size--;
-      heapify(getRoot());
-    }
-    return this;
   }
 
   private void swap(INode<T> i, INode<T> j) {
@@ -141,37 +121,37 @@ public IHeap<T> heapSort(ArrayList<T> unordered){
   }
 
   private class Node implements INode<T> {
-    
+
     private T value;
     private int index;
-    
-    public Node(T value, int index){
+
+    public Node(T value, int index) {
       this.value = value;
       this.index = index;
     }
 
     @Override
     public INode<T> getLeftChild() {
-      if(index*2+1 < Heap.this.size){
-        return Heap.this.tree.get(index*2+1);
+      if (index * 2 + 1 < Heap.this.size) {
+        return Heap.this.tree.get(index * 2 + 1);
       }
       return null;
     }
 
     @Override
     public INode<T> getRightChild() {
-      if(index*2+2 < Heap.this.size){
-        return Heap.this.tree.get(index*2+2);
+      if (index * 2 + 2 < Heap.this.size) {
+        return Heap.this.tree.get(index * 2 + 2);
       }
       return null;
     }
 
     @Override
     public INode<T> getParent() {
-      if(index == 0){
+      if (index == 0) {
         return null;
       }
-      return Heap.this.tree.get((index-1)/2);
+      return Heap.this.tree.get((index - 1) / 2);
     }
 
     @Override
