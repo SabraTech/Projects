@@ -6,7 +6,7 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
 
   @Override
   public IHeap<T> heapSort(ArrayList<T> unordered) {
-    Heap<T> heap = new Heap();
+    Heap<T> heap = new Heap<T>();
     heap.heapSort(unordered);
     return heap;
   }
