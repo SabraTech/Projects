@@ -113,8 +113,23 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   }
   
-  public void swap2(int i, int j){
-    swap(tree.get(i),tree.get(j));
+  public IHeap<T> heapSort(ArrayList<T> unordered){
+    
+    if (unordered == null || unordered.size() == 0) {
+      throw new RuntimeException("Array is null or size is zero");
+    }
+    
+    int size = unordered.size();
+    Heap<T> myHeap = new Heap<T>();
+    myHeap.build(unordered);
+   
+    for(int i=size-1;i>=0;i--){
+      myHeap.swap(tree.get(0), tree.get(i));
+      this.size = size--;
+      myHeap.heapify(myHeap.getRoot());
+    }
+    return myHeap;
+    
   }
 
   private void swap(INode<T> i, INode<T> j) {
