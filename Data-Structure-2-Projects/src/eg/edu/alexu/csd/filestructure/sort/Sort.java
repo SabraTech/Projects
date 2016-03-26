@@ -6,7 +6,7 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
 
   @Override
   public IHeap<T> heapSort(ArrayList<T> unordered) {
-    if (unordered == null || unordered.size() == 0) {
+    /*if (unordered == null || unordered.size() == 0) {
       throw new RuntimeException("Array is null or size is zero");
     }
     
@@ -17,7 +17,11 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
       orderedArray.add(myHeap.extract());
     }
     myHeap.setSize(unordered.size());
-    return myHeap;
+    return myHeap;*/
+    
+    Heap<T> heap = new Heap<T>();
+    
+    return heap.heapSort(unordered);
   }
   
   
