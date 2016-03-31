@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class Sort<T extends Comparable<T>> implements ISort<T> {
 
   /* (non-Javadoc)
-   * @see eg.edu.alexu.csd.filestructure.sort.ISort#heapSort(java.util.ArrayList)
+   * @see eg.edu.alexu.csd.filestructure.sort
+   * .ISort#heapSort(java.util.ArrayList)
    */
   @Override
   public IHeap<T> heapSort(ArrayList<T> unordered) {
@@ -51,7 +52,8 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
   }
 
   /* (non-Javadoc)
-   * @see eg.edu.alexu.csd.filestructure.sort.ISort#sortFast(java.util.ArrayList)
+   * @see eg.edu.alexu.csd.filestructure.sort
+   * .ISort#sortFast(java.util.ArrayList)
    */
   @Override
   public void sortFast(ArrayList<T> unordered) {

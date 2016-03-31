@@ -161,6 +161,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
    *          the new size
    */
   public void setSize(int size) {
+    
     this.size = size;
   }
 
