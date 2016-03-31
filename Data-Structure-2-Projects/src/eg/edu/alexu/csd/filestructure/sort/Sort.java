@@ -14,7 +14,7 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
    * .ISort#heapSort(java.util.ArrayList)
    */
   @Override
-  public IHeap<T> heapSort(ArrayList<T> unordered) {
+  public IHeap<T> heapSort(final ArrayList<T> unordered) {
     if (unordered == null || unordered.size() == 0) {
       throw new RuntimeException("Array is null or size is zero");
     }
@@ -35,7 +35,7 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
    * .ISort#sortSlow(java.util.ArrayList)
    */
   @Override
-  public void sortSlow(ArrayList<T> unordered) {
+  public void sortSlow(final ArrayList<T> unordered) {
     if (unordered == null || unordered.size() == 0) {
       throw new RuntimeException("Array is null or size is zero");
     }
@@ -57,7 +57,7 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
    * .ISort#sortFast(java.util.ArrayList)
    */
   @Override
-  public void sortFast(ArrayList<T> unordered) {
+  public void sortFast(final ArrayList<T> unordered) {
 
     if (unordered == null || unordered.size() == 0) {
       throw new RuntimeException("Array is null or size is zero");
@@ -73,8 +73,8 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
    * @param lowerIndex the lower index
    * @param upperIndex the upper index
    */
-  private void quickSort(ArrayList<T> unordered, 
-      int lowerIndex, int upperIndex) {
+  private void quickSort(final ArrayList<T> unordered, 
+      final int lowerIndex, final int upperIndex) {
 
     if (lowerIndex >= upperIndex) {
       return;
