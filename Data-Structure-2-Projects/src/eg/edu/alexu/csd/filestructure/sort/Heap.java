@@ -259,7 +259,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
      * eg.edu.alexu.csd.filestructure.sort.INode#setValue(java.lang.Comparable)
      */
     @Override
-    public void setValue(T value) {
+    public void setValue(final T value) {
       this.value = value;
     }
 
