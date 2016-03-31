@@ -198,7 +198,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
      * @param index
      *          the index
      */
-    public Node(T value, int index) {
+    public Node(final T value, final int index) {
       this.value = value;
       this.index = index;
     }
