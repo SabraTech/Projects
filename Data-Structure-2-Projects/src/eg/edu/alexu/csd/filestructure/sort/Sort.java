@@ -73,7 +73,8 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
    * @param lowerIndex the lower index
    * @param upperIndex the upper index
    */
-  private void quickSort(ArrayList<T> unordered, int lowerIndex, int upperIndex) {
+  private void quickSort(ArrayList<T> unordered, 
+      int lowerIndex, int upperIndex) {
 
     if (lowerIndex >= upperIndex) {
       return;

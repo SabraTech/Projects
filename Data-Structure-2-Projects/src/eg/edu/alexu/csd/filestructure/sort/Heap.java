@@ -116,7 +116,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
    * @see eg.edu.alexu.csd.filestructure.sort.IHeap#insert(java.lang.Comparable)
    */
   @Override
-  public void insert(T element) {
+  public void insert(final T element) {
     if (tree.size() == size) {
       tree.add(new Node(element, size++));
     } else {
