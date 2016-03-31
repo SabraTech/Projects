@@ -173,7 +173,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
    * @param j
    *          the j
    */
-  private void swap(INode<T> i, INode<T> j) {
+  private void swap(final INode<T> i, final INode<T> j) {
     T tmp = i.getValue();
     i.setValue(j.getValue());
     j.setValue(tmp);
