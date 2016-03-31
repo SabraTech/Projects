@@ -138,7 +138,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
    * @see eg.edu.alexu.csd.filestructure.sort.IHeap#build(java.util.Collection)
    */
   @Override
-  public void build(Collection<T> unordered) {
+  public void build(final Collection<T> unordered) {
 
     size = unordered.size();
     tree.clear();
