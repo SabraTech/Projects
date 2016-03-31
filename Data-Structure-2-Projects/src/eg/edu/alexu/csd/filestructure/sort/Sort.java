@@ -31,7 +31,8 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
   }
 
   /* (non-Javadoc)
-   * @see eg.edu.alexu.csd.filestructure.sort.ISort#sortSlow(java.util.ArrayList)
+   * @see eg.edu.alexu.csd.filestructure.sort
+   * .ISort#sortSlow(java.util.ArrayList)
    */
   @Override
   public void sortSlow(ArrayList<T> unordered) {

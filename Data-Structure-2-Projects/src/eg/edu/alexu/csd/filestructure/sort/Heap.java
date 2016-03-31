@@ -56,7 +56,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
    * filestructure.sort.INode)
    */
   @Override
-  public void heapify(INode<T> node) {
+  public void heapify(final INode<T> node) {
 
     if (size == 0 || size == 1) {
       return;
