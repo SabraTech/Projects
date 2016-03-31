@@ -2,8 +2,16 @@ package eg.edu.alexu.csd.filestructure.sort;
 
 import java.util.ArrayList;
 
+/**
+ * The Class Sort.
+ *
+ * @param <T> the generic type
+ */
 public class Sort<T extends Comparable<T>> implements ISort<T> {
 
+  /* (non-Javadoc)
+   * @see eg.edu.alexu.csd.filestructure.sort.ISort#heapSort(java.util.ArrayList)
+   */
   @Override
   public IHeap<T> heapSort(ArrayList<T> unordered) {
     if (unordered == null || unordered.size() == 0) {
@@ -21,6 +29,9 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
 
   }
 
+  /* (non-Javadoc)
+   * @see eg.edu.alexu.csd.filestructure.sort.ISort#sortSlow(java.util.ArrayList)
+   */
   @Override
   public void sortSlow(ArrayList<T> unordered) {
     if (unordered == null || unordered.size() == 0) {
@@ -39,6 +50,9 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
     }
   }
 
+  /* (non-Javadoc)
+   * @see eg.edu.alexu.csd.filestructure.sort.ISort#sortFast(java.util.ArrayList)
+   */
   @Override
   public void sortFast(ArrayList<T> unordered) {
 
@@ -49,6 +63,13 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
 
   }
 
+  /**
+   * Quick sort.
+   *
+   * @param unordered the unordered
+   * @param lowerIndex the lower index
+   * @param upperIndex the upper index
+   */
   private void quickSort(ArrayList<T> unordered, int lowerIndex, int upperIndex) {
 
     if (lowerIndex >= upperIndex) {

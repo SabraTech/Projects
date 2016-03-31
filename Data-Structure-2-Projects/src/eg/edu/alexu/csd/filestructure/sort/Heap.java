@@ -3,16 +3,33 @@ package eg.edu.alexu.csd.filestructure.sort;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * The Class Heap.
+ *
+ * @param <T>
+ *          the generic type
+ */
 public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
+  /** The tree. */
   private ArrayList<INode<T>> tree;
+
+  /** The size. */
   private int size;
 
+  /**
+   * Instantiates a new heap.
+   */
   public Heap() {
     tree = new ArrayList<INode<T>>();
     size = 0;
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see eg.edu.alexu.csd.filestructure.sort.IHeap#getRoot()
+   */
   @Override
   public INode<T> getRoot() {
     if (size == 0) {
@@ -21,12 +38,23 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     return tree.get(0);
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see eg.edu.alexu.csd.filestructure.sort.IHeap#size()
+   */
   @Override
   public int size() {
 
     return size;
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see eg.edu.alexu.csd.filestructure.sort.IHeap#heapify(eg.edu.alexu.csd.
+   * filestructure.sort.INode)
+   */
   @Override
   public void heapify(INode<T> node) {
 
@@ -56,6 +84,11 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see eg.edu.alexu.csd.filestructure.sort.IHeap#extract()
+   */
   @Override
   public T extract() {
     if (size() == 0) {
@@ -77,6 +110,11 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
     return hold;
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see eg.edu.alexu.csd.filestructure.sort.IHeap#insert(java.lang.Comparable)
+   */
   @Override
   public void insert(T element) {
     if (tree.size() == size) {
@@ -87,12 +125,18 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
     INode<T> tmp = tree.get(size - 1);
 
-    while (tmp.getParent() != null && tmp.getParent().getValue().compareTo(tmp.getValue()) < 0) {
+    while (tmp.getParent() != null && tmp.getParent().getValue()
+        .compareTo(tmp.getValue()) < 0) {
       swap(tmp, tmp.getParent());
       tmp = tmp.getParent();
     }
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see eg.edu.alexu.csd.filestructure.sort.IHeap#build(java.util.Collection)
+   */
   @Override
   public void build(Collection<T> unordered) {
 
@@ -110,26 +154,59 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   }
 
+  /**
+   * Sets the size.
+   *
+   * @param size
+   *          the new size
+   */
   public void setSize(int size) {
     this.size = size;
   }
 
+  /**
+   * Swap.
+   *
+   * @param i
+   *          the i
+   * @param j
+   *          the j
+   */
   private void swap(INode<T> i, INode<T> j) {
     T tmp = i.getValue();
     i.setValue(j.getValue());
     j.setValue(tmp);
   }
 
+  /**
+   * The Class Node.
+   */
   private class Node implements INode<T> {
 
+    /** The value. */
     private T value;
+
+    /** The index. */
     private int index;
 
+    /**
+     * Instantiates a new node.
+     *
+     * @param value
+     *          the value
+     * @param index
+     *          the index
+     */
     public Node(T value, int index) {
       this.value = value;
       this.index = index;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see eg.edu.alexu.csd.filestructure.sort.INode#getLeftChild()
+     */
     @Override
     public INode<T> getLeftChild() {
       if (index * 2 + 1 < Heap.this.size) {
@@ -138,6 +215,11 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
       return null;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see eg.edu.alexu.csd.filestructure.sort.INode#getRightChild()
+     */
     @Override
     public INode<T> getRightChild() {
       if (index * 2 + 2 < Heap.this.size) {
@@ -146,6 +228,11 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
       return null;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see eg.edu.alexu.csd.filestructure.sort.INode#getParent()
+     */
     @Override
     public INode<T> getParent() {
       if (index == 0) {
@@ -154,11 +241,22 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
       return Heap.this.tree.get((index - 1) / 2);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see eg.edu.alexu.csd.filestructure.sort.INode#getValue()
+     */
     @Override
     public T getValue() {
       return value;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * eg.edu.alexu.csd.filestructure.sort.INode#setValue(java.lang.Comparable)
+     */
     @Override
     public void setValue(T value) {
       this.value = value;
