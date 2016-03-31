@@ -160,7 +160,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
    * @param size
    *          the new size
    */
-  public void setSize(int size) {
+  public void setSize(final int size) {
     
     this.size = size;
   }
