@@ -3,7 +3,7 @@ package eg.edu.alexu.csd.filestructure.avl;
 public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
   
   private static final int ALLOWED_IMBALANCE = 1;
-  AVLNode<T> root;
+  private AVLNode<T> root;
   
   public AVLTree() {
     root = null;
@@ -11,19 +11,19 @@ public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
   
   @Override
   public void insert(T key) {
-    root = insertAVL(key, root);
+    root = insertAvl(key, root);
   }
   
-  private AVLNode<T> insertAVL(T key, AVLNode<T> root2) {
+  private AVLNode<T> insertAvl(T key, AVLNode<T> root2) {
     if (root2 == null) {
       root2 = new AVLNode<T>(key, null, null);
     }
     int compareResult = key.compareTo(root2.getValue());
     
     if (compareResult < 0) {
-      root2.left = insertAVL(key, root2.left);
+      root2.left = insertAvl(key, root2.left);
     } else if (compareResult > 0) {
-      root2.right = insertAVL(key, root2.right);
+      root2.right = insertAvl(key, root2.right);
     } else {
       // duplicate
     }
@@ -93,13 +93,13 @@ public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
     
   }
   
-  private boolean searchAvl(T key, AVLNode<T> t) {
-    while (t != null) {
-      int compareResult = key.compareTo(t.element);
+  private boolean searchAvl(T key, AVLNode<T> node) {
+    while (node != null) {
+      int compareResult = key.compareTo(node.element);
       if (compareResult < 0) {
-        t = t.left;
+        node = node.left;
       } else if (compareResult > 0) {
-        t = t.right;
+        node = node.right;
       } else {
         return true;
       }
