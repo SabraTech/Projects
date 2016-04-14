@@ -15,7 +15,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
   
   private AVLNode<T> insertAvl(T key, AVLNode<T> root2) {
     if (root2 == null) {
-      root2 = new AVLNode<T>(key);
+      return new AVLNode<T>(key);
     }
     int compareResult = key.compareTo(root2.getValue());
     
