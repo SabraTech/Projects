@@ -2,7 +2,6 @@ package eg.edu.alexu.csd.filestructure.avl;
 
 public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
   
-  private static final int ALLOWED_IMBALANCE = 1;
   private AVLNode<T> root;
   
   public AVLTree() {
@@ -16,18 +15,40 @@ public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
   
   private AVLNode<T> insertAvl(T key, AVLNode<T> root2) {
     if (root2 == null) {
-      root2 = new AVLNode<T>(key, null, null);
+      root2 = new AVLNode<T>(key);
     }
     int compareResult = key.compareTo(root2.getValue());
     
     if (compareResult < 0) {
       root2.left = insertAvl(key, root2.left);
-    } else if (compareResult > 0) {
-      root2.right = insertAvl(key, root2.right);
     } else {
-      // duplicate
+      root2.right = insertAvl(key, root2.right);
     }
-    return balance(root2);
+    
+    root2.height = Math.max(getHeight(root2.left), getHeight(root2.right)) + 1;
+    
+    int balance = getBalance(root2);
+    
+    // left left case
+    if (balance > 1 && key.compareTo(root2.left.element) < 0) {
+      return rotateRight(root2);
+    }
+    
+    // right right case
+    if (balance < -1 && key.compareTo(root2.right.element) > 0) {
+      return rotateLeft(root2);
+    }
+    
+    // left right case
+    if (balance > 1 && key.compareTo(root2.left.element) > 0) {
+      return rotateRight(root2);
+    }
+    
+    // right left case
+    if (balance < -1 && key.compareTo(root2.right.element) < 0) {
+      return rotateLeft(root2);
+    }
+    return root2;
     
   }
   
@@ -36,10 +57,10 @@ public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
     
     if (root == null) {
       return false;
-    } else if(search(key)) {
+    } else if (search(key)) {
       deleteAvl(key, root);
       return true;
-    }else{
+    } else {
       return false;
     }
     
@@ -55,14 +76,60 @@ public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
       root2.left = deleteAvl(key, root2.left);
     } else if (compareResult > 0) {
       root2.right = deleteAvl(key, root2.right);
-    } else if (root.left != null && root.right != null) {
-      root2.element = getMin(root2.right).element;
-      root2.right = deleteAvl(root2.element, root2.right);
     } else {
-      root2 = (root2.left != null) ? root2.left : root2.right;
+      
+      if (root2.left == null || root2.right == null) {
+        AVLNode<T> temp = null;
+        if (temp == root2.left) {
+          temp = root2.right;
+        } else {
+          temp = root2.left;
+        }
+        
+        if (temp == null) {
+          temp = root2;
+          root2 = null;
+        } else {
+          root2 = temp;
+        }
+      } else {
+        AVLNode<T> temp = getMin(root2.right);
+        root2.element = temp.element;
+        root2.right = deleteAvl(temp.element, root2.right);
+      }
     }
     
-    return balance(root2);
+    if (root2 == null) {
+      return root2;
+    }
+    
+    root2.height = Math.max(getHeight(root2.left), getHeight(root2.right)) + 1;
+    
+    int balance = getBalance(root2);
+    
+    // left left case
+    if (balance > 1 && getBalance(root2.left) >= 0) {
+      return rotateRight(root2);
+    }
+    
+    // left right case
+    if (balance > 1 && getBalance(root2.left) < 0) {
+      root2.left = rotateLeft(root2.left);
+      return rotateRight(root2);
+    }
+    
+    // right right case
+    if (balance < -1 && getBalance(root2.right) <= 0) {
+      return rotateLeft(root2);
+    }
+    
+    // left left case
+    if (balance < -1 && getBalance(root2.left) > 0) {
+      root2.right = rotateRight(root2.right);
+      return rotateLeft(root2);
+    }
+    
+    return root2;
     
   }
   
@@ -73,15 +140,6 @@ public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
       return right;
     }
     return getMin(right.left);
-  }
-  
-  private AVLNode<T> getMax(AVLNode<T> left) {
-    if (left == null) {
-      return null;
-    } else if (left.right == null) {
-      return left;
-    }
-    return getMin(left.right);
   }
   
   @Override
@@ -123,60 +181,43 @@ public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
   }
   
   private int getHeight(AVLNode<T> node) {
-    return node == null ? -1 : node.height;
-  }
-  
-  private AVLNode<T> balance(AVLNode<T> node) {
-    
     if (node == null) {
-      return node;
+      return 0;
     }
+    return node.height;
+  }
+  
+  private int getBalance(AVLNode<T> node) {
+    if (node == null) {
+      return 0;
+    }
+    return getHeight(node.left) - getHeight(node.right);
+  }
+  
+  private AVLNode<T> rotateRight(AVLNode<T> y) {
+    AVLNode<T> x = y.left;
+    AVLNode<T> t2 = x.right;
     
-    if (node.left.height - node.right.height > ALLOWED_IMBALANCE) {
-      if (node.left.left.height >= node.right.right.height) {
-        node = rotateWithLeftChild(node);
-      } else {
-        node = doubleWithLeftChild(node);
-      }
-    } else {
-      if (node.right.height - node.left.height > ALLOWED_IMBALANCE) {
-        if (node.right.right.height >= node.left.left.height) {
-          node = rotateWithRightChild(node);
-        } else {
-          node = doubleWithRightChild(node);
-        }
-      }
-    }
-    node.height = Math.max(node.left.height, node.right.height) + 1;
-    return node;
+    x.right = y;
+    y.left = t2;
+    
+    y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+    x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+    
+    return x;
   }
   
-  private AVLNode<T> doubleWithRightChild(AVLNode<T> node) {
-    node.right = rotateWithLeftChild(node.right);
-    return rotateWithRightChild(node);
-  }
-  
-  private AVLNode<T> rotateWithRightChild(AVLNode<T> node) {
-    AVLNode<T> k1 = node.right;
-    node.right = k1.left;
-    k1.left = node;
-    node.height = Math.max(node.right.height, node.left.height) + 1;
-    k1.height = Math.max(k1.right.height, node.height) + 1;
-    return k1;
-  }
-  
-  private AVLNode<T> doubleWithLeftChild(AVLNode<T> node) {
-    node.left = rotateWithRightChild(node.left);
-    return rotateWithLeftChild(node);
-  }
-  
-  private AVLNode<T> rotateWithLeftChild(AVLNode<T> node) {
-    AVLNode<T> k1 = node.left;
-    node.left = k1.right;
-    k1.right = node;
-    node.height = Math.max(node.left.height, node.right.height) + 1;
-    k1.height = Math.max(k1.left.height, node.height) + 1;
-    return k1;
+  private AVLNode<T> rotateLeft(AVLNode<T> x) {
+    AVLNode<T> y = x.right;
+    AVLNode<T> t2 = y.left;
+    
+    x.left = x;
+    y.right = t2;
+    
+    x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+    y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+    
+    return y;
   }
   
   private class AVLNode<T extends Comparable<T>> implements INode<T> {
@@ -186,11 +227,9 @@ public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
     private AVLNode<T> right;
     private int height;
     
-    public AVLNode(T key, AVLNode<T> left, AVLNode<T> right) {
+    public AVLNode(T key) {
       this.element = key;
-      this.left = left;
-      this.right = right;
-      this.height = 0;
+      this.height = 1;
     }
     
     @Override
