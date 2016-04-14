@@ -115,6 +115,11 @@ public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
     return root.height;
   }
   
+  @Override
+  public INode<T> getTree() {
+    return root;
+  }
+  
   private int getHeight(AVLNode<T> node) {
     return node == null ? -1 : node.height;
   }

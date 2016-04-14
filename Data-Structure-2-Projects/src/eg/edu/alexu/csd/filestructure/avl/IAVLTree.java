@@ -34,4 +34,11 @@ public interface IAVLTree<T extends Comparable<T>> {
    * @return tree height
    */
   int height();
+  
+  /**
+   * Return the root of your AVL tree.
+   * 
+   * @return root of the AVL tree.
+   */
+  INode<T> getTree();
 }
