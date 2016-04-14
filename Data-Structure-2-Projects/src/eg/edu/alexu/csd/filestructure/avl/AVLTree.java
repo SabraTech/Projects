@@ -34,10 +34,12 @@ public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
   @Override
   public boolean delete(T key) {
     
-    if (search(key)) {
+    if (root == null) {
+      return false;
+    } else if(search(key)) {
       deleteAvl(key, root);
       return true;
-    } else {
+    }else{
       return false;
     }
     
