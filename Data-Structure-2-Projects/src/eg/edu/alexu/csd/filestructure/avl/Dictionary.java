@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Dictionary implements IDictionary {
   
   /** The tree. */
-  private AVLTree<String> tree;
+  private AvlTree<String> tree;
   
   /** The size. */
   private int size;
@@ -20,7 +20,7 @@ public class Dictionary implements IDictionary {
    */
   public Dictionary() {
     
-    tree = new AVLTree<String>();
+    tree = new AvlTree<String>();
     size = 0;
   }
   

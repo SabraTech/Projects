@@ -1,10 +1,10 @@
 package eg.edu.alexu.csd.filestructure.avl;
 
-public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
+public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
   
   private AVLNode<T> root;
   
-  public AVLTree() {
+  public AvlTree() {
     root = null;
   }
   
@@ -154,7 +154,7 @@ public class AVLTree<T extends Comparable<T>> implements IAVLTree<T> {
   }
   
   private boolean searchAvl(T key, AVLNode<T> node) {
-    while (node != null) {
+    while (node != null && key != node.element) {
       int compareResult = key.compareTo(node.element);
       if (compareResult < 0) {
         node = node.left;
