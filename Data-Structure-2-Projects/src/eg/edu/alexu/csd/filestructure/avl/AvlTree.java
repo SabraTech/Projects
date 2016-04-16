@@ -120,20 +120,10 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
       root2.setRightChild(deleteAvl(key, root2.right));
     } else {
       
-      if ((root2.left == null) || (root2.right == null)) {
-        AVLNode temp = null;
-        if (temp == root2.left) {
-          temp = root2.right;
-        } else {
-          temp = root2.left;
-        }
-        
-        if (temp == null) {
-          temp = root2;
-          root2 = null;
-        } else {
-          root2 = temp;
-        }
+      if (root2.left == null) {
+        root2 = root2.right;
+      } else if (root2.right == null) {
+        root2 = root2.left;
       } else {
         
         AVLNode temp = getMin(root2.right);
