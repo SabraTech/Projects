@@ -8,7 +8,7 @@ import java.util.Scanner;
  * The Class Dictionary.
  */
 public class Dictionary implements IDictionary {
-  
+
   /** The tree. */
   private AvlTree<String> tree;
   
@@ -30,7 +30,7 @@ public class Dictionary implements IDictionary {
    * @see eg.edu.alexu.csd.filestructure.avl.IDictionary#load(java.io.File)
    */
   @Override
-  public void load(File file) {
+  public void load(final File file) {
     
     try (Scanner scanner = new Scanner(file)) {
       
@@ -54,7 +54,7 @@ public class Dictionary implements IDictionary {
    * eg.edu.alexu.csd.filestructure.avl.IDictionary#insert(java.lang.String)
    */
   @Override
-  public boolean insert(String word) {
+  public boolean insert(final String word) {
     if (tree.search(word)) {
       return false;
     } else {
@@ -71,7 +71,7 @@ public class Dictionary implements IDictionary {
    * eg.edu.alexu.csd.filestructure.avl.IDictionary#exists(java.lang.String)
    */
   @Override
-  public boolean exists(String word) {
+  public boolean exists(final String word) {
     
     if (tree.search(word)) {
       return true;
@@ -87,7 +87,7 @@ public class Dictionary implements IDictionary {
    * eg.edu.alexu.csd.filestructure.avl.IDictionary#delete(java.lang.String)
    */
   @Override
-  public boolean delete(String word) {
+  public boolean delete(final String word) {
     
     if (tree.delete(word)) {
       size--;

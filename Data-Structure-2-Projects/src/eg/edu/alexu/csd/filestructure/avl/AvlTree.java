@@ -197,12 +197,13 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
   public boolean search(T key) {
     AVLNode temp = root;
     while (temp != null) {
-      if (temp.getValue().compareTo(key) == 0)
+      if (temp.getValue().compareTo(key) == 0) {
         return true;
-      else if (temp.getValue().compareTo(key) > 0)
+      } else if (temp.getValue().compareTo(key) > 0) {
         temp = temp.left;
-      else
+      } else {
         temp = temp.right;
+      }
     }
     return false;
   }
@@ -409,5 +410,4 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
     }
     
   }
-  
 }
