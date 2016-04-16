@@ -36,8 +36,7 @@ public class Dictionary implements IDictionary {
       
       while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
-        tree.insert(line);
-        size++;
+        insert(line);
       }
       
       scanner.close();
