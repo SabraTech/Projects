@@ -25,7 +25,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
    * eg.edu.alexu.csd.filestructure.avl.IAVLTree#insert(java.lang.Comparable)
    */
   @Override
-  public void insert(T key) {
+  public void insert(final T key) {
     root = insertAvl(key, root);
   }
   
@@ -87,7 +87,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
    * eg.edu.alexu.csd.filestructure.avl.IAVLTree#delete(java.lang.Comparable)
    */
   @Override
-  public boolean delete(T key) {
+  public boolean delete(final T key) {
     
     if (search(key)) {
       root = deleteAvl(key, root);
@@ -194,7 +194,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
    * eg.edu.alexu.csd.filestructure.avl.IAVLTree#search(java.lang.Comparable)
    */
   @Override
-  public boolean search(T key) {
+  public boolean search(final T key) {
     AVLNode temp = root;
     while (temp != null) {
       if (temp.getValue().compareTo(key) == 0) {
