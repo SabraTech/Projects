@@ -38,7 +38,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
    *          the root2
    * @return the AVL node
    */
-  private AVLNode insertAvl(T key, AVLNode root2) {
+  private AVLNode insertAvl(final T key, final AVLNode root2) {
     if (root2 == null) {
       return new AVLNode(key);
     }
@@ -107,7 +107,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
    *          the root2
    * @return the AVL node
    */
-  private AVLNode deleteAvl(T key, AVLNode root2) {
+  private AVLNode deleteAvl(final T key, AVLNode root2) {
     if (root2 == null) {
       return root2;
     }
@@ -179,7 +179,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
    *          the node
    * @return the min
    */
-  private AVLNode getMin(AVLNode node) {
+  private AVLNode getMin(final AVLNode node) {
     AVLNode current = node;
     while (current.left != null) {
       current = current.left;
@@ -238,7 +238,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
    *          the node
    * @return the height
    */
-  private int getHeight(AVLNode node) {
+  private int getHeight(final AVLNode node) {
     if (node == null) {
       return 0;
     }
@@ -252,7 +252,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
    *          the node
    * @return the balance
    */
-  private int getBalance(AVLNode node) {
+  private int getBalance(final AVLNode node) {
     if (node == null) {
       return 0;
     }
@@ -266,7 +266,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
    *          the y
    * @return the AVL node
    */
-  private AVLNode rotateRight(AVLNode y) {
+  private AVLNode rotateRight(final AVLNode y) {
     AVLNode x = y.left;
     AVLNode t2 = x.right;
     
@@ -286,7 +286,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
    *          the x
    * @return the AVL node
    */
-  private AVLNode rotateLeft(AVLNode x) {
+  private AVLNode rotateLeft(final AVLNode x) {
     AVLNode y = x.right;
     AVLNode t2 = y.left;
     
