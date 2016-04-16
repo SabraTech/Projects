@@ -1,5 +1,7 @@
 package eg.edu.alexu.csd.filestructure.avl;
 
+
+
 public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
   
   private AVLNode<T> root;
@@ -25,38 +27,67 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
       root2.setRightChild(insertAvl(key, root2.right));
     }
     
-    root2
-        .setHeight(Math.max(getHeight(root2.left), getHeight(root2.right)) + 1);
-    
-    int balance = getBalance(root2);
-    
-    // left left case
-    if (balance > 1 && key.compareTo(root2.left.getValue()) < 0) {
-      return rotateRight(root2);
-    }
-    
-    // right right case
-    if (balance < -1 && key.compareTo(root2.right.getValue()) > 0) {
-      return rotateLeft(root2);
-    }
-    
-    // left right case
-    if (balance > 1 && key.compareTo(root2.left.getValue()) > 0) {
-      return rotateRight(root2);
-    }
-    
-    // right left case
-    if (balance < -1 && key.compareTo(root2.right.getValue()) < 0) {
-      return rotateLeft(root2);
-    }
-    return root2;
+    return balance(root2);
     
   }
   
+  private AVLNode<T> balance(AVLNode<T> node) {
+    if(node == null){
+      return node;
+    }
+    
+    int check = getBalance(node);
+    if(check > 1 ){
+      if(getHeight(node.left.left) >= getHeight(node.left.right)){
+        node = rotateWithLeftChild(node);
+      }else{
+        node = doubleWithLeftChild(node);
+      }
+    }else{
+      if(getHeight(node.right) - getHeight(node.left) > 1){
+        if(getHeight(node.right.right) >= getHeight(node.right.left)){
+          node = rotateWithRightChild(node);
+        }else{
+          node = doubleWithRightChild(node);
+        }
+      }
+    }
+    node.setHeight(Math.max(getHeight(node.left), getHeight(node.right))+1);
+    return node;
+  }
+
+  private AVLNode<T> doubleWithRightChild(AVLNode<T> node) {
+    node.setRightChild(rotateWithLeftChild(node.right));
+    return rotateWithRightChild(node);
+  }
+
+  private AVLNode<T> rotateWithRightChild(AVLNode<T> node) {
+    AVLNode<T> k1 = node.right;
+    node.setRightChild(k1.left);
+    k1.setLeftChild(node);
+    node.setHeight(Math.max(getHeight(node.left), getHeight(node.right))+1);
+    k1.setHeight(Math.max(getHeight(k1.right), node.getHeight())+1);
+    return k1;
+  }
+
+  private AVLNode<T> doubleWithLeftChild(AVLNode<T> node) {
+    node.setLeftChild(rotateWithRightChild(node.left));
+    return rotateWithLeftChild(node);
+  }
+
+  private AVLNode<T> rotateWithLeftChild(AVLNode<T> node) {
+    AVLNode<T> k1 = node.left;
+    node.setLeftChild(k1.right);
+    k1.setRightChild(node);
+    node.setHeight(Math.max(getHeight(node.left), getHeight(node.right))+1);
+    k1.setHeight(Math.max(getHeight(k1.left), node.getHeight())+1);
+    return k1;
+  }
+
   @Override
   public boolean delete(T key) {
     
-    if (search(key)) {
+    if (root != null) {
       root = deleteAvl(key, root);
       return true;
     } else {
@@ -75,63 +106,18 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
       root2.setLeftChild(deleteAvl(key, root2.left));
     } else if (compareResult > 0) {
       root2.setRightChild(deleteAvl(key, root2.right));
-    } else {
-      /*
-      if (root2.left == null || root2.right == null) {
-        
-        AVLNode<T> temp = null;
-        if (temp == root2.left) {
-          temp = root2.right;
-        } else {
-          temp = root2.left;
-        }
-        
-        if (temp == null) {
-          temp = root2;
-          root2 = null;
-        } else {
-          root2 = temp;
-        }
-      } */
-      if(root2.left == null){
-        return root2.right ; 
-      } else if(root2.right == null){
-        return root2.left ;
-      }else {
-        AVLNode<T> temp = getMin(root2.right);
-        root2.setValue(temp.getValue());
-        root2.setRightChild(deleteAvl(temp.getValue(), root2.right));
+    } else if(root2.left != null && root2.right != null) {
+      root2.setValue(getMin(root2.right).getValue());
+      root2.setRightChild(deleteAvl(root2.getValue(), root2.right));
+    }else{
+      if(root2.left != null){
+        root2 = root2.left;
+      }else{
+        root2 = root2.right;
       }
     }
     
-    root2
-        .setHeight(Math.max(getHeight(root2.left), getHeight(root2.right)) + 1);
-    
-    int balance = getBalance(root2);
-    
-    // left left case
-    if (balance > 1 && getBalance(root2.left) >= 0) {
-      return rotateRight(root2);
-    }
-    
-    // left right case
-    if (balance > 1 && getBalance(root2.left) < 0) {
-      root2.setLeftChild(rotateLeft(root2.left));
-      return rotateRight(root2);
-    }
-    
-    // right right case
-    if (balance < -1 && getBalance(root2.right) <= 0) {
-      return rotateLeft(root2);
-    }
-    
-    // left left case
-    if (balance < -1 && getBalance(root2.left) > 0) {
-      root2.setRightChild(rotateRight(root2.right));
-      return rotateLeft(root2);
-    }
-    
-    return root2;
+    return balance(root2);
     
   }
   
@@ -172,7 +158,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
   
   private int getHeight(AVLNode<T> node) {
     if (node == null) {
-      return 0;
+      return -1;
     }
     return node.getHeight();
   }
@@ -184,32 +170,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
     return getHeight(node.left) - getHeight(node.right);
   }
   
-  private AVLNode<T> rotateRight(AVLNode<T> y) {
-    AVLNode<T> x = y.left;
-    AVLNode<T> t2 = x.right;
-    
-    x.setRightChild(y);
-    y.setLeftChild(t2);
-    
-    y.setHeight(Math.max(getHeight(y.left), getHeight(y.right)) + 1);
-    x.setHeight(Math.max(getHeight(x.left), getHeight(x.right)) + 1);
-    
-    return x;
-  }
-  
-  private AVLNode<T> rotateLeft(AVLNode<T> x) {
-    AVLNode<T> y = x.right;
-    AVLNode<T> t2 = y.left;
-    
-    y.setLeftChild(x);
-    x.setRightChild(t2);
-    
-    x.setHeight(Math.max(getHeight(x.left), getHeight(x.right)) + 1);
-    y.setHeight(Math.max(getHeight(y.left), getHeight(y.right)) + 1);
-    
-    return y;
-  }
-  
+ 
   private class AVLNode<T extends Comparable<T>> implements INode<T> {
     
     private T element;
@@ -219,7 +180,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
     
     public AVLNode(T key) {
       this.element = key;
-      this.height = 1;
+      this.height = 0;
     }
     
     @Override
