@@ -27,7 +27,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
       root2.setRightChild(insertAvl(key, root2.right));
     }
     
-    return balance(root2);
+    return root2;
     
   }
   
@@ -117,7 +117,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
       }
     }
     
-    return balance(root2);
+    return root2;
     
   }
   
