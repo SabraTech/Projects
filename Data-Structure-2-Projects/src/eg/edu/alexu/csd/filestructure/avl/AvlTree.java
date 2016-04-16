@@ -1,148 +1,157 @@
 package eg.edu.alexu.csd.filestructure.avl;
 
-
-
 public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
-  
-  private AVLNode<T> root;
-  
+
+  private AVLNode root;
+
   public AvlTree() {
     root = null;
   }
-  
+
   @Override
   public void insert(T key) {
     root = insertAvl(key, root);
   }
-  
-  private AVLNode<T> insertAvl(T key, AVLNode<T> root2) {
+
+  private AVLNode insertAvl(T key, AVLNode root2) {
     if (root2 == null) {
-      return new AVLNode<T>(key);
+      return new AVLNode(key);
     }
     int compareResult = key.compareTo(root2.getValue());
-    
+
     if (compareResult < 0) {
-      root2.setLeftChild(insertAvl(key, root2.left));
+      root2.left = insertAvl(key, root2.left);
     } else {
-      root2.setRightChild(insertAvl(key, root2.right));
+      root2.right = insertAvl(key, root2.right);
     }
-    
-    return balance(root2);
-    
-  }
-  
-  private AVLNode<T> balance(AVLNode<T> node) {
-    if(node == null){
-      return node;
+
+    root2.height = (Math.max(getHeight(root2.left), getHeight(root2.right)) + 1);
+
+    int balance = getBalance(root2);
+
+    // left left case
+    if (balance > 1 && key.compareTo(root2.left.getValue()) < 0) {
+      return rotateRight(root2);
     }
-    
-    int check = getBalance(node);
-    if(check > 1 ){
-      if(getHeight(node.left.left) >= getHeight(node.left.right)){
-        node = rotateWithLeftChild(node);
-      }else{
-        node = doubleWithLeftChild(node);
-      }
-    }else{
-      if(getHeight(node.right) - getHeight(node.left) > 1){
-        if(getHeight(node.right.right) >= getHeight(node.right.left)){
-          node = rotateWithRightChild(node);
-        }else{
-          node = doubleWithRightChild(node);
-        }
-      }
+
+    // right right case
+    if (balance < -1 && key.compareTo(root2.right.getValue()) > 0) {
+      return rotateLeft(root2);
     }
-    node.setHeight(Math.max(getHeight(node.left), getHeight(node.right))+1);
-    return node;
-  }
 
-  private AVLNode<T> doubleWithRightChild(AVLNode<T> node) {
-    node.setRightChild(rotateWithLeftChild(node.right));
-    return rotateWithRightChild(node);
-  }
+    // left right case
+    if (balance > 1 && key.compareTo(root2.left.getValue()) > 0) {
+      root2.left = rotateLeft(root2.left);
+      return rotateRight(root2);
+    }
 
-  private AVLNode<T> rotateWithRightChild(AVLNode<T> node) {
-    AVLNode<T> k1 = node.right;
-    node.setRightChild(k1.left);
-    k1.setLeftChild(node);
-    node.setHeight(Math.max(getHeight(node.left), getHeight(node.right))+1);
-    k1.setHeight(Math.max(getHeight(k1.right), node.getHeight())+1);
-    return k1;
-  }
+    // right left case
+    if (balance < -1 && key.compareTo(root2.right.getValue()) < 0) {
+      root2.right = rotateRight(root2.right);
+      return rotateLeft(root2);
+    }
+    return root2;
 
-  private AVLNode<T> doubleWithLeftChild(AVLNode<T> node) {
-    node.setLeftChild(rotateWithRightChild(node.left));
-    return rotateWithLeftChild(node);
-  }
-
-  private AVLNode<T> rotateWithLeftChild(AVLNode<T> node) {
-    AVLNode<T> k1 = node.left;
-    node.setLeftChild(k1.right);
-    k1.setRightChild(node);
-    node.setHeight(Math.max(getHeight(node.left), getHeight(node.right))+1);
-    k1.setHeight(Math.max(getHeight(k1.left), node.getHeight())+1);
-    return k1;
   }
 
   @Override
   public boolean delete(T key) {
-    
-    if (root != null) {
+
+    if (search(key)) {
       root = deleteAvl(key, root);
       return true;
     } else {
       return false;
     }
-    
+
   }
-  
-  private AVLNode<T> deleteAvl(T key, AVLNode<T> root2) {
+
+  private AVLNode deleteAvl(T key, AVLNode root2) {
     if (root2 == null) {
       return root2;
     }
+
     int compareResult = key.compareTo(root2.getValue());
-    
+
     if (compareResult < 0) {
       root2.setLeftChild(deleteAvl(key, root2.left));
     } else if (compareResult > 0) {
       root2.setRightChild(deleteAvl(key, root2.right));
-    } else if(root2.left != null && root2.right != null) {
-      root2.setValue(getMin(root2.right).getValue());
-      root2.setRightChild(deleteAvl(root2.getValue(), root2.right));
-    }else{
-      if(root2.left != null){
-        root2 = root2.left;
-      }else{
-        root2 = root2.right;
+    } else {
+        
+        if ((root2.left == null) || (root2.right == null)) {
+          AVLNode temp = null;
+          if (temp == root2.left) {
+            temp = root2.right;
+          } else {
+            temp = root2.left;
+          }
+
+          if (temp == null) {
+            temp = root2;
+            root2 = null;
+          } else {
+            root2 = temp;
+          }
+        } else {
+
+          AVLNode temp = getMin(root2.right);
+          root2.setValue(temp.getValue());
+          root2.setRightChild(deleteAvl(temp.getValue(), root2.right));
+        }
       }
+
+      if (root2 == null) {
+        return root2;
+      }
+
+      root2.setHeight(Math.max(getHeight(root2.left), getHeight(root2.right)) + 1);
+
+      int balance = getBalance(root2);
+
+      if (balance > 1 && getBalance(root2.left) >= 0) {
+        return rotateRight(root2);
+      }
+
+      if (balance > 1 && getBalance(root2.left) < 0) {
+        root2.setLeftChild(rotateLeft(root2.left));
+        return rotateRight(root2);
+      }
+
+      if (balance < -1 && getBalance(root2.right) <= 0) {
+        return rotateLeft(root2);
+      }
+
+      if (balance < -1 && getBalance(root2.right) > 0) {
+        root2.setRightChild(rotateRight(root2.right));
+        return rotateLeft(root2);
+      }
+
+      return root2;
     }
-    
-    return balance(root2);
-    
-  }
-  
-  private AVLNode<T> getMin(AVLNode<T> node) {
-    AVLNode<T> current = node;
+
+  private AVLNode getMin(AVLNode node) {
+    AVLNode current = node;
     while (current.left != null) {
       current = current.left;
     }
     return current;
   }
-  
+
   @Override
   public boolean search(T key) {
-    AVLNode<T> temp = root;
+    AVLNode temp = root;
     while (temp != null) {
       if (temp.getValue().compareTo(key) == 0)
         return true;
       else if (temp.getValue().compareTo(key) > 0)
-        temp = temp.right;
-      else
         temp = temp.left;
+      else
+        temp = temp.right;
     }
     return false;
   }
-  
+
   @Override
   public int height() {
     if (root == null) {
@@ -150,77 +159,101 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
     }
     return root.getHeight();
   }
-  
+
   @Override
   public INode<T> getTree() {
-    return root;
+    return (INode) root;
   }
-  
-  private int getHeight(AVLNode<T> node) {
+
+  private int getHeight(AVLNode node) {
     if (node == null) {
-      return -1;
+      return 0;
     }
     return node.getHeight();
   }
-  
-  private int getBalance(AVLNode<T> node) {
+
+  private int getBalance(AVLNode node) {
     if (node == null) {
       return 0;
     }
     return getHeight(node.left) - getHeight(node.right);
   }
-  
- 
-  private class AVLNode<T extends Comparable<T>> implements INode<T> {
-    
+
+  private AVLNode rotateRight(AVLNode y) {
+    AVLNode x = y.left;
+    AVLNode t2 = x.right;
+
+    x.setRightChild(y);
+    y.setLeftChild(t2);
+
+    y.setHeight((Math.max(getHeight(y.left), getHeight(y.right)) + 1));
+    x.setHeight( (Math.max(getHeight(x.left), getHeight(x.right)) + 1) );
+
+    return x;
+  }
+
+  private AVLNode rotateLeft(AVLNode x) {
+    AVLNode y = x.right;
+    AVLNode t2 = y.left;
+
+    y.setLeftChild(x);
+    x.setRightChild(t2);
+
+    x.setHeight((Math.max(getHeight(x.left), getHeight(x.right)) + 1));
+    y.setHeight((Math.max(getHeight(y.left), getHeight(y.right)) + 1));
+
+    return y;
+  }
+
+  private class AVLNode implements INode<T> {
     private T element;
-    private AVLNode<T> left;
-    private AVLNode<T> right;
+    private AVLNode left;
+    private AVLNode right;
     private int height;
-    
+
     public AVLNode(T key) {
       this.element = key;
-      this.height = 0;
+      this.height = 1;
     }
-    
+
     @Override
     public INode<T> getLeftChild() {
-      return (AVLNode<T>) this.left;
+      return this.left;
     }
-    
+
     @Override
     public INode<T> getRightChild() {
-      return (AVLNode<T>) this.right;
+      return this.right;
     }
-    
-    public void setLeftChild(AVLNode<T> left) {
+
+    public void setLeftChild(AVLNode left) {
       this.left = left;
     }
-    
-    public void setRightChild(AVLNode<T> right) {
+
+    public void setRightChild(AVLNode right) {
       this.right = right;
     }
-    
+
     public void setHeight(int height) {
       this.height = height;
     }
-    
+
     public int getHeight() {
       return this.height;
-      
+
     }
-    
+
     @Override
     public T getValue() {
       return this.element;
     }
-    
+
     @Override
     public void setValue(T value) {
       this.element = value;
-      
+
     }
-    
+
   }
-  
+
 }
