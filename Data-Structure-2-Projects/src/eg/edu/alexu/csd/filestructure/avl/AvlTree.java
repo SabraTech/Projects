@@ -1,6 +1,5 @@
 package eg.edu.alexu.csd.filestructure.avl;
 
-
 public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
   
   private AVLNode<T> root;
@@ -77,8 +76,9 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
     } else if (compareResult > 0) {
       root2.setRightChild(deleteAvl(key, root2.right));
     } else {
-      
+      /*
       if (root2.left == null || root2.right == null) {
+        
         AVLNode<T> temp = null;
         if (temp == root2.left) {
           temp = root2.right;
@@ -92,15 +92,16 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
         } else {
           root2 = temp;
         }
-      } else {
+      } */
+      if(root2.left == null){
+        return root2.right ; 
+      } else if(root2.right == null){
+        return root2.left ;
+      }else {
         AVLNode<T> temp = getMin(root2.right);
         root2.setValue(temp.getValue());
         root2.setRightChild(deleteAvl(temp.getValue(), root2.right));
       }
-    }
-    
-    if (root2 == null) {
-      return root2;
     }
     
     root2
