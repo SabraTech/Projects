@@ -27,7 +27,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see eg.edu.alexu.csd.filestructure.sort.IHeap#getRoot()
    */
   @Override
@@ -40,7 +40,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see eg.edu.alexu.csd.filestructure.sort.IHeap#size()
    */
   @Override
@@ -51,7 +51,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see eg.edu.alexu.csd.filestructure.sort.IHeap#heapify(eg.edu.alexu.csd.
    * filestructure.sort.INode)
    */
@@ -86,7 +86,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see eg.edu.alexu.csd.filestructure.sort.IHeap#extract()
    */
   @Override
@@ -112,7 +112,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see eg.edu.alexu.csd.filestructure.sort.IHeap#insert(java.lang.Comparable)
    */
   @Override
@@ -134,7 +134,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see eg.edu.alexu.csd.filestructure.sort.IHeap#build(java.util.Collection)
    */
   @Override
@@ -161,7 +161,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
    *          the new size
    */
   public void setSize(final int size) {
-    
+
     this.size = size;
   }
 
@@ -205,7 +205,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see eg.edu.alexu.csd.filestructure.sort.INode#getLeftChild()
      */
     @Override
@@ -218,7 +218,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see eg.edu.alexu.csd.filestructure.sort.INode#getRightChild()
      */
     @Override
@@ -231,7 +231,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see eg.edu.alexu.csd.filestructure.sort.INode#getParent()
      */
     @Override
@@ -244,7 +244,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see eg.edu.alexu.csd.filestructure.sort.INode#getValue()
      */
     @Override
@@ -254,7 +254,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * eg.edu.alexu.csd.filestructure.sort.INode#setValue(java.lang.Comparable)
      */
