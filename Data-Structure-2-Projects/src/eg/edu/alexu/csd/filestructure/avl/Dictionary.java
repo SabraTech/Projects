@@ -11,19 +11,19 @@ public class Dictionary implements IDictionary {
 
   /** The tree. */
   private AvlTree<String> tree;
-  
+
   /** The size. */
   private int size;
-  
+
   /**
    * Instantiates a new dictionary.
    */
   public Dictionary() {
-    
+
     tree = new AvlTree<String>();
     size = 0;
   }
-  
+
   /*
    * (non-Javadoc)
    * 
@@ -31,22 +31,21 @@ public class Dictionary implements IDictionary {
    */
   @Override
   public void load(final File file) {
-    
+
     try (Scanner scanner = new Scanner(file)) {
-      
+
       while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
         insert(line);
       }
-      
       scanner.close();
-      
+
     } catch (IOException error) {
       error.printStackTrace();
     }
-    
+
   }
-  
+
   /*
    * (non-Javadoc)
    * 
@@ -63,7 +62,7 @@ public class Dictionary implements IDictionary {
       return true;
     }
   }
-  
+
   /*
    * (non-Javadoc)
    * 
@@ -72,14 +71,14 @@ public class Dictionary implements IDictionary {
    */
   @Override
   public boolean exists(final String word) {
-    
+
     if (tree.search(word)) {
       return true;
     } else {
       return false;
     }
   }
-  
+
   /*
    * (non-Javadoc)
    * 
@@ -88,7 +87,7 @@ public class Dictionary implements IDictionary {
    */
   @Override
   public boolean delete(final String word) {
-    
+
     if (tree.delete(word)) {
       size--;
       return true;
@@ -96,7 +95,7 @@ public class Dictionary implements IDictionary {
       return false;
     }
   }
-  
+
   /*
    * (non-Javadoc)
    * 
@@ -104,10 +103,10 @@ public class Dictionary implements IDictionary {
    */
   @Override
   public int size() {
-    
+
     return size;
   }
-  
+
   /*
    * (non-Javadoc)
    * 
@@ -115,8 +114,8 @@ public class Dictionary implements IDictionary {
    */
   @Override
   public int height() {
-    
+
     return tree.height();
   }
-  
+
 }
