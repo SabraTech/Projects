@@ -113,7 +113,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
     }
 
     int compareResult = key.compareTo(root2.getValue());
-    
+
     if (compareResult < 0) {
       root2.setLeftChild(deleteAvl(key, root2.left));
     } else if (compareResult > 0) {
