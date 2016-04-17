@@ -26,7 +26,7 @@ public class Dictionary implements IDictionary {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see eg.edu.alexu.csd.filestructure.avl.IDictionary#load(java.io.File)
    */
   @Override
@@ -48,7 +48,7 @@ public class Dictionary implements IDictionary {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see
    * eg.edu.alexu.csd.filestructure.avl.IDictionary#insert(java.lang.String)
    */
@@ -65,7 +65,7 @@ public class Dictionary implements IDictionary {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see
    * eg.edu.alexu.csd.filestructure.avl.IDictionary#exists(java.lang.String)
    */
@@ -81,7 +81,7 @@ public class Dictionary implements IDictionary {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see
    * eg.edu.alexu.csd.filestructure.avl.IDictionary#delete(java.lang.String)
    */
@@ -98,7 +98,7 @@ public class Dictionary implements IDictionary {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see eg.edu.alexu.csd.filestructure.avl.IDictionary#size()
    */
   @Override
@@ -109,7 +109,7 @@ public class Dictionary implements IDictionary {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see eg.edu.alexu.csd.filestructure.avl.IDictionary#height()
    */
   @Override

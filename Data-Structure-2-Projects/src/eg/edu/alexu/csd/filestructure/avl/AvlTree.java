@@ -20,7 +20,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see
    * eg.edu.alexu.csd.filestructure.avl.IAVLTree#insert(java.lang.Comparable)
    */
@@ -82,7 +82,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see
    * eg.edu.alexu.csd.filestructure.avl.IAVLTree#delete(java.lang.Comparable)
    */
@@ -179,7 +179,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see
    * eg.edu.alexu.csd.filestructure.avl.IAVLTree#search(java.lang.Comparable)
    */
@@ -200,7 +200,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see eg.edu.alexu.csd.filestructure.avl.IAVLTree#height()
    */
   @Override
@@ -213,7 +213,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see eg.edu.alexu.csd.filestructure.avl.IAVLTree#getTree()
    */
   @Override
@@ -319,7 +319,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see eg.edu.alexu.csd.filestructure.avl.INode#getLeftChild()
      */
     @Override
@@ -329,7 +329,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see eg.edu.alexu.csd.filestructure.avl.INode#getRightChild()
      */
     @Override
@@ -379,7 +379,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see eg.edu.alexu.csd.filestructure.avl.INode#getValue()
      */
     @Override
@@ -389,7 +389,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * eg.edu.alexu.csd.filestructure.avl.INode#setValue(java.lang.Comparable)
      */
