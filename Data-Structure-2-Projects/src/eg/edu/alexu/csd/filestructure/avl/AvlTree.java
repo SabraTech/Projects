@@ -374,7 +374,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
      */
     public int getHeight() {
       return this.height;
-      
+
     }
 
     /*
