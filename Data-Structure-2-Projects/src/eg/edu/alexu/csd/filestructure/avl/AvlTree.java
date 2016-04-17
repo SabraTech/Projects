@@ -312,7 +312,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
      * @param key
      *          the key
      */
-    public AVLNode(T key) {
+    public AVLNode(final T key) {
       this.element = key;
       this.height = 1;
     }
@@ -343,7 +343,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
      * @param left
      *          the new left child
      */
-    public void setLeftChild(AVLNode left) {
+    public void setLeftChild(final AVLNode left) {
       this.left = left;
     }
 
@@ -353,7 +353,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
      * @param right
      *          the new right child
      */
-    public void setRightChild(AVLNode right) {
+    public void setRightChild(final AVLNode right) {
       this.right = right;
     }
 
@@ -363,7 +363,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
      * @param height
      *          the new height
      */
-    public void setHeight(int height) {
+    public void setHeight(final int height) {
       this.height = height;
     }
 
@@ -394,7 +394,7 @@ public class AvlTree<T extends Comparable<T>> implements IAVLTree<T> {
      * eg.edu.alexu.csd.filestructure.avl.INode#setValue(java.lang.Comparable)
      */
     @Override
-    public void setValue(T value) {
+    public void setValue(final T value) {
       this.element = value;
 
     }
