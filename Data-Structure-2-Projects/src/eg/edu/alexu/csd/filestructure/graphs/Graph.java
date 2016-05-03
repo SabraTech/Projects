@@ -15,8 +15,9 @@ public class Graph implements IGraph {
   @Override
   public void readGraph(File file) {
     try (Scanner scanner = new Scanner(file)) {
-      size = scanner.nextInt();
+      int v = scanner.nextInt();
       int numEdges = scanner.nextInt();
+      size = numEdges;
       graph = new Integer[size][size];
       for (int i = 0; i < numEdges; i++) {
         int fromNode = scanner.nextInt();
