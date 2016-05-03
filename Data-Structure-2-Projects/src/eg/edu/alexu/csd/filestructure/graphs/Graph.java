@@ -17,7 +17,7 @@ public class Graph implements IGraph {
     try (Scanner scanner = new Scanner(file)) {
       size = scanner.nextInt();
       int numEdges = scanner.nextInt();
-      // graph = new Integer[size][size];
+      graph = new Integer[size][size];
       for (int i = 0; i < numEdges; i++) {
         int fromNode = scanner.nextInt();
         int toNode = scanner.nextInt();
