@@ -27,7 +27,7 @@ public class Graph implements IGraph {
       scanner.close();
       
     } catch (IOException error) {
-      error.printStackTrace();
+      throw new RuntimeException();
     }
     
   }
