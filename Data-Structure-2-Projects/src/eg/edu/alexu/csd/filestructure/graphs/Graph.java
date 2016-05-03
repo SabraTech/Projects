@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Graph implements IGraph {
   
   private Integer[][] graph;
-  private int size;
+  private int size, v, numEdges;
   private ArrayList<Integer> processedOrder;
   
   public Graph(){
@@ -19,10 +19,10 @@ public class Graph implements IGraph {
   @Override
   public void readGraph(File file) {
     try (Scanner scanner = new Scanner(file)) {
-      int v = scanner.nextInt();
-      int numEdges = scanner.nextInt();
+      v = scanner.nextInt();
+      numEdges = scanner.nextInt();
       size = numEdges;
-      graph = new Integer[size][size];
+      graph = new Integer[v][v];
       for (int i = 0; i < numEdges; i++) {
         int fromNode = scanner.nextInt();
         int toNode = scanner.nextInt();
@@ -45,7 +45,7 @@ public class Graph implements IGraph {
   @Override
   public ArrayList<Integer> getVertices() {
     ArrayList<Integer> vertices = new ArrayList<Integer>();
-    for(int i=0;i<size;i++){
+    for(int i=0;i<v;i++){
       vertices.add(i);
     }
     return vertices;
