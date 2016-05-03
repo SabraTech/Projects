@@ -12,6 +12,10 @@ public class Graph implements IGraph {
   private int size;
   private ArrayList<Integer> processedOrder;
   
+  public Graph(){
+    
+  }
+  
   @Override
   public void readGraph(File file) {
     try (Scanner scanner = new Scanner(file)) {
