@@ -61,13 +61,9 @@ public class Graph implements IGraph {
   @Override
   public void runDijkstra(int src, int[] distances) {
     processedOrder = new ArrayList<Integer>();
-    distances = new int[size];
+    Arrays.fill(distances, Integer.MAX_VALUE/2);
     boolean sptSet[] = new boolean[size];
-    
-    for (int i = 0; i < size; i++) {
-      distances[i] = Integer.MAX_VALUE;
-      sptSet[i] = false;
-    }
+    Arrays.fill(sptSet, false);
     
     distances[src] = 0;
     processedOrder.add(src);
@@ -76,7 +72,7 @@ public class Graph implements IGraph {
       processedOrder.add(u);
       sptSet[u] = true;
       for (int v = 0; v < size; v++) {
-        if (!sptSet[v] && graph[u][v] != 0 && distances[u] != Integer.MAX_VALUE
+        if (!sptSet[v] && graph[u][v] != 0 && distances[u] != Integer.MAX_VALUE/2
             && distances[u] + graph[u][v] < distances[v]) {
           distances[v] = distances[u] + graph[u][v];
         }
@@ -86,7 +82,7 @@ public class Graph implements IGraph {
   }
   
   private int minDistance(int[] distances, boolean[] sptSet) {
-    int min = Integer.MAX_VALUE, minIndex = -1;
+    int min = Integer.MAX_VALUE/2, minIndex = -1;
     for (int v = 0; v < size; v++) {
       if (sptSet[v] == false && distances[v] <= min) {
         min = distances[v];
@@ -103,13 +99,12 @@ public class Graph implements IGraph {
   
   @Override
   public boolean runBellmanFord(int src, int[] distances) {
-    distances = new int[size];
-    Arrays.fill(distances, Integer.MAX_VALUE);
+    Arrays.fill(distances, Integer.MAX_VALUE/2);
     distances[src] = 0;
     for (int i = 0; i < size - 1; i++) {
       for (int j = 0; j < size; j++) {
         for (int k = 0; k < size; k++) {
-          if (graph[j][k] != Integer.MAX_VALUE) {
+          if (graph[j][k] != Integer.MAX_VALUE/2) {
             if (distances[k] > distances[j] + graph[j][k]) {
               distances[k] = distances[j] + graph[j][k];
             }
