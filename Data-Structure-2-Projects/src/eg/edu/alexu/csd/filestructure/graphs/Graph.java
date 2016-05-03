@@ -39,8 +39,11 @@ public class Graph implements IGraph {
   
   @Override
   public ArrayList<Integer> getVertices() {
-    
-    return null;
+    ArrayList<Integer> vertices = new ArrayList<Integer>();
+    for(int i=0;i<size;i++){
+      vertices.add(i);
+    }
+    return vertices;
   }
   
   @Override
