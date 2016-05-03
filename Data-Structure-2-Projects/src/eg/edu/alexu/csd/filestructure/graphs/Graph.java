@@ -21,8 +21,8 @@ public class Graph implements IGraph {
     try (Scanner scanner = new Scanner(file)) {
       v = scanner.nextInt();
       numEdges = scanner.nextInt();
-      size = numEdges;
-      graph = new Integer[v][v];
+      size = v;
+      graph = new Integer[size][size];
       for (int i = 0; i < numEdges; i++) {
         int fromNode = scanner.nextInt();
         int toNode = scanner.nextInt();
@@ -39,13 +39,13 @@ public class Graph implements IGraph {
   
   @Override
   public int size() {
-    return size;
+    return numEdges;
   }
   
   @Override
   public ArrayList<Integer> getVertices() {
     ArrayList<Integer> vertices = new ArrayList<Integer>();
-    for(int i=0;i<v;i++){
+    for(int i=0;i<size;i++){
       vertices.add(i);
     }
     return vertices;
