@@ -60,6 +60,9 @@ public class Graph implements IGraph {
   
   @Override
   public void runDijkstra(int src, int[] distances) {
+    if(graph == null){
+      graph = new Integer[size][size];
+    }
     processedOrder = new ArrayList<Integer>();
     Arrays.fill(distances, Integer.MAX_VALUE/2);
     boolean sptSet[] = new boolean[size];
@@ -99,6 +102,9 @@ public class Graph implements IGraph {
   
   @Override
   public boolean runBellmanFord(int src, int[] distances) {
+    if(graph == null){
+      graph = new Integer[size][size];
+    }
     Arrays.fill(distances, Integer.MAX_VALUE/2);
     distances[src] = 0;
     for (int i = 0; i < size - 1; i++) {
@@ -115,7 +121,7 @@ public class Graph implements IGraph {
     
     for (int i = 0; i < size; i++) {
       for (int j = 0; j < size; j++) {
-        if (graph[i][j] != Integer.MAX_VALUE) {
+        if (graph[i][j] != Integer.MAX_VALUE/2) {
           if (distances[j] > distances[i] + graph[i][j]) {
             return false;
           }
