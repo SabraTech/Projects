@@ -15,10 +15,14 @@ public class Graph implements IGraph {
   
   @Override
   public void readGraph(File file) {
+   
     try (Scanner scanner = new Scanner(file)) {
       int v = scanner.nextInt();
       size = v;
       int numEdges = scanner.nextInt();
+      for(int i=0;i<numEdges;i++){
+            adjList.add(new ArrayList<Node>());
+      }
       sizeTest = numEdges;
       for (int i = 0; i < numEdges; i++) {
         int fromNode = scanner.nextInt();
