@@ -26,14 +26,20 @@ public class Graph implements IGraph {
       sizeTest = numEdges;
       for (int i = 0; i < numEdges; i++) {
         int fromNode = scanner.nextInt();
+        if(fromNode>=size || fromNode<0){
+          throw new RuntimeException();
+        }
         int toNode = scanner.nextInt();
+        if(toNode>=size || toNode<0){
+          throw new RuntimeException();
+        }
         int weight = scanner.nextInt();
         edgeList.add(new Edge(fromNode,toNode,weight));
         adjList.get(fromNode).add(new Node(toNode,weight));
       }
       scanner.close();
       
-    } catch (IOException error) {
+    } catch (Exception error) {
       throw new RuntimeException();
     }
     
