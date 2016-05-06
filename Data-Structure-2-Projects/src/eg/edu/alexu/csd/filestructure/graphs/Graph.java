@@ -8,22 +8,24 @@ import java.util.Scanner;
 
 public class Graph implements IGraph {
   
-  private Integer[][] graph;
+  private ArrayList<ArrayList<Node>> adjList = new ArrayList<ArrayList<Node>>();
+  private ArrayList<Edge> edgeList = new ArrayList<Edge>();
   private int size, sizeTest;
   private ArrayList<Integer> processedOrder;
   
   @Override
   public void readGraph(File file) {
     try (Scanner scanner = new Scanner(file)) {
-      size = scanner.nextInt();
+      int v = scanner.nextInt();
+      size = v;
       int numEdges = scanner.nextInt();
       sizeTest = numEdges;
-      graph = new Integer[size][size];
       for (int i = 0; i < numEdges; i++) {
         int fromNode = scanner.nextInt();
         int toNode = scanner.nextInt();
         int weight = scanner.nextInt();
-        graph[fromNode][toNode] = weight;
+        edgeList.add(new Edge(fromNode,toNode,weight));
+        adjList.get(fromNode).add(new Node(toNode,weight));
       }
       scanner.close();
       
@@ -50,9 +52,10 @@ public class Graph implements IGraph {
   @Override
   public ArrayList<Integer> getNeighbors(int v) {
     ArrayList<Integer> result = new ArrayList<Integer>();
-    for (int i = 0; i < graph.length; i++) {
-      if (graph[v][i] != null) {
-        result.add(i);
+    for (int i = 0; i < edgeList.size(); i++) {
+      Edge e = edgeList.get(i);
+      if(e.getFrom() == v){
+        result.add(e.getTo());
       }
     }
     return result;
@@ -60,9 +63,6 @@ public class Graph implements IGraph {
   
   @Override
   public void runDijkstra(int src, int[] distances) {
-    if(graph == null){
-      graph = new Integer[size][size];
-    }
     processedOrder = new ArrayList<Integer>();
     Arrays.fill(distances, Integer.MAX_VALUE/2);
     boolean sptSet[] = new boolean[size];
@@ -74,14 +74,13 @@ public class Graph implements IGraph {
       int u = minDistance(distances, sptSet);
       processedOrder.add(u);
       sptSet[u] = true;
-      for (int v = 0; v < size; v++) {
-        if (!sptSet[v] && graph[u][v] != 0 && distances[u] != Integer.MAX_VALUE/2
-            && distances[u] + graph[u][v] < distances[v]) {
-          distances[v] = distances[u] + graph[u][v];
+      for (int v = 0; v < adjList.get(u).size(); v++) {
+        if (!sptSet[v] && adjList.get(u).get(v).getWeight() != 0 && distances[u] != Integer.MAX_VALUE/2
+            && distances[u] + adjList.get(u).get(v).getWeight() < distances[v]) {
+          distances[v] = distances[u] +adjList.get(u).get(v).getWeight();
         }
       }
     }
-    
   }
   
   private int minDistance(int[] distances, boolean[] sptSet) {
@@ -102,30 +101,21 @@ public class Graph implements IGraph {
   
   @Override
   public boolean runBellmanFord(int src, int[] distances) {
-    if(graph == null){
-      graph = new Integer[size][size];
-    }
     Arrays.fill(distances, Integer.MAX_VALUE/2);
     distances[src] = 0;
     for (int i = 0; i < size - 1; i++) {
-      for (int j = 0; j < size; j++) {
-        for (int k = 0; k < size; k++) {
-          if (graph[j][k] != Integer.MAX_VALUE/2) {
-            if (distances[k] > distances[j] + graph[j][k]) {
-              distances[k] = distances[j] + graph[j][k];
-            }
-          }
+      for (int j = 0; j < edgeList.size(); j++) {
+        Edge e = edgeList.get(j);
+        if(distances[e.getFrom()]!=Integer.MAX_VALUE/2&&distances[e.getTo()] > distances[e.getFrom()] + e.getWeight()){
+          distances[e.getTo()] = distances[e.getFrom()] + e.getWeight();
         }
       }
     }
     
-    for (int i = 0; i < size; i++) {
-      for (int j = 0; j < size; j++) {
-        if (graph[i][j] != Integer.MAX_VALUE/2) {
-          if (distances[j] > distances[i] + graph[i][j]) {
-            return false;
-          }
-        }
+    for (int i = 0; i < edgeList.size(); i++) {
+      Edge e = edgeList.get(i);
+      if(distances[e.getFrom()]!=Integer.MAX_VALUE/2&&distances[e.getTo()] > distances[e.getFrom()] + e.getWeight()){
+        return false;
       }
     }
     return true;
