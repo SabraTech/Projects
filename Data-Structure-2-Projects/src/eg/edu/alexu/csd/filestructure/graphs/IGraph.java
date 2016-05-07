@@ -2,6 +2,9 @@ package eg.edu.alexu.csd.filestructure.graphs;
 
 import java.util.ArrayList;
 
+/**
+ * The Interface IGraph.
+ */
 public interface IGraph {
   /**
    * Constructs a graph with the number of vertices and set of edges provided in the file. Input
@@ -18,22 +21,22 @@ public interface IGraph {
   public void readGraph(java.io.File file);
   
   /**
-   * Return the size of the graph
-   * 
+   * Return the size of the graph.
+   *
    * @return Size of the graph
    */
   public int size();
   
   /**
-   * Returns the set of vertices in the graph
-   * 
+   * Returns the set of vertices in the graph.
+   *
    * @return List of vertices
    */
   public ArrayList<Integer> getVertices();
   
   /**
-   * Returns a list of the neighboring vertices to the vertex v
-   * 
+   * Returns a list of the neighboring vertices to the vertex v.
+   *
    * @param v
    *          ID of a vertex in the graph
    * @return A list of vertices adjacent to v
@@ -41,8 +44,8 @@ public interface IGraph {
   public ArrayList<Integer> getNeighbors(int v);
   
   /**
-   * Runs the Dijkstra single-source shortest path algorithm on the graph
-   * 
+   * Runs the Dijkstra single-source shortest path algorithm on the graph.
+   *
    * @param src
    *          ID of the source vertex for the shortest path algorithm
    * @param distances
@@ -51,15 +54,15 @@ public interface IGraph {
   public void runDijkstra(int src, int[] distances);
   
   /**
-   * Returns the order of vertices with which Dijkstra processed them
-   * 
+   * Returns the order of vertices with which Dijkstra processed them.
+   *
    * @return List of vertices ordered processed by Dijkstra's SSSP algorithm
    */
   public ArrayList<Integer> getDijkstraProcessedOrder();
   
   /**
-   * Runs the Bellman-Ford single-source shortest path algorithm on the graph
-   * 
+   * Runs the Bellman-Ford single-source shortest path algorithm on the graph.
+   *
    * @param src
    *          ID of the source vertex for the shortest path algorithm
    * @param distances
