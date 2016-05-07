@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class Graph implements IGraph {
   
   private ArrayList<ArrayList<Node>> adjList = new ArrayList<ArrayList<Node>>();
   private ArrayList<Edge> edgeList = new ArrayList<Edge>();
+  private Integer[][] graph;
   private int size, sizeTest;
   private ArrayList<Integer> processedOrder;
   
@@ -19,6 +21,7 @@ public class Graph implements IGraph {
     try (Scanner scanner = new Scanner(file)) {
       int v = scanner.nextInt();
       size = v;
+      graph = new Integer[size][size];
       int numEdges = scanner.nextInt();
       for(int i=0;i<numEdges;i++){
             adjList.add(new ArrayList<Node>());
@@ -36,6 +39,7 @@ public class Graph implements IGraph {
         int weight = scanner.nextInt();
         edgeList.add(new Edge(fromNode,toNode,weight));
         adjList.get(fromNode).add(new Node(toNode,weight));
+        graph[fromNode][toNode] = weight;
       }
       scanner.close();
       
@@ -75,33 +79,21 @@ public class Graph implements IGraph {
   public void runDijkstra(int src, int[] distances) {
     processedOrder = new ArrayList<Integer>();
     Arrays.fill(distances, Integer.MAX_VALUE/2);
-    boolean sptSet[] = new boolean[size];
-    Arrays.fill(sptSet, false);
+    PriorityQueue<Node> queue = new PriorityQueue<Node>();
     
     distances[src] = 0;
-    processedOrder.add(src);
-    for (int count = 0; count < size - 1; count++) {
-      int u = minDistance(distances, sptSet);
-      processedOrder.add(u);
-      sptSet[u] = true;
-      for (int v = 0; v < adjList.get(u).size(); v++) {
-        if (!sptSet[v] && adjList.get(u).get(v).getWeight() != 0 && distances[u] != Integer.MAX_VALUE/2
-            && distances[u] + adjList.get(u).get(v).getWeight() < distances[v]) {
-          distances[v] = distances[u] +adjList.get(u).get(v).getWeight();
+    queue.add(new Node(src,0));
+   while(queue.size()!=0) {
+      Node e = queue.poll(); 
+     processedOrder.add(e.getV());
+      for (int i = 0; i < adjList.get(e.getV()).size(); i++) {
+        if (distances[adjList.get(e.getV()).get(i).getV()] >distances[e.getV()]+graph[e.getV()][adjList.get(e.getV()).get(i).getV()]){
+          queue.remove(new Node(adjList.get(e.getV()).get(i).getV(),distances[adjList.get(e.getV()).get(i).getV()]));
+          distances[adjList.get(e.getV()).get(i).getV()]=distances[e.getV()]+graph[e.getV()][adjList.get(e.getV()).get(i).getV()];
+          queue.add(new Node(adjList.get(e.getV()).get(i).getV(),distances[adjList.get(e.getV()).get(i).getV()]));
         }
       }
     }
-  }
-  
-  private int minDistance(int[] distances, boolean[] sptSet) {
-    int min = Integer.MAX_VALUE/2, minIndex = -1;
-    for (int v = 0; v < size; v++) {
-      if (sptSet[v] == false && distances[v] <= min) {
-        min = distances[v];
-        minIndex = v;
-      }
-    }
-    return minIndex;
   }
   
   @Override
