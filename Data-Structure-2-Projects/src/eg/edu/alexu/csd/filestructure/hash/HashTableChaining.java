@@ -49,6 +49,8 @@ public class HashTableChaining<K, V> implements IHash<K, V>, IHashChaining {
     for (int j = 0; j < list.size(); j++) {
       if (list.get(j).getKey().equals(key)) {
         list.remove(j);
+        size--;
+        return;
       }
     }
     

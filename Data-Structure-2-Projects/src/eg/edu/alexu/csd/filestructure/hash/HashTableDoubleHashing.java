@@ -96,7 +96,7 @@ public class HashTableDoubleHashing<K, V> implements IHash<K, V>, IHashDouble {
   @Override
   public String get(K key) {
     int h = hash(key);
-    int h2 = hash(key);
+    int h2 = hash2(key);
     
     for (; table.get(h) != null; h = (int) (h + h2) % M) {
       if (table.get(h).getKey().equals(key)) {
@@ -109,12 +109,12 @@ public class HashTableDoubleHashing<K, V> implements IHash<K, V>, IHashDouble {
   @Override
   public void delete(K key) {
     int h = hash(key);
-    int h2 = hash(key);
+    int h2 = hash2(key);
     
     for (; table.get(h) != null; h = (int) (h + h2) % M) {
       if (table.get(h).getKey().equals(key)) {
         table.set(h, new Pair<K, V>((K) new Integer(-1), table.get(h).getValue()));
-        size++;
+        size--;
         return;
       }
     }
