@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Graph implements IGraph {
 
   /** The adj list. */
-  private ArrayList<ArrayList<Node>> adjList = new ArrayList<ArrayList<Node>>();
+  private ArrayList<ArrayList<Node>>adjList = new ArrayList<ArrayList<Node>>();
 
   /** The edge list. */
   private ArrayList<Edge> edgeList = new ArrayList<Edge>();
@@ -123,7 +123,8 @@ public class Graph implements IGraph {
       Node e = queue.poll();
       processedOrder.add(e.getV());
       for (int i = 0; i < adjList.get(e.getV()).size(); i++) {
-        if (distances[adjList.get(e.getV()).get(i).getV()] > distances[e.getV()]
+        if (distances[adjList.get(e.getV()).get(i).getV()] 
+            > distances[e.getV()]
             + graph[e.getV()][adjList.get(e.getV()).get(i).getV()]) {
           queue.remove(new Node(adjList.get(e.getV()).get(i).getV(),
               distances[adjList.get(e.getV()).get(i).getV()]));
@@ -139,7 +140,8 @@ public class Graph implements IGraph {
   /*
    * (non-Javadoc)
    *
-   * @see eg.edu.alexu.csd.filestructure.graphs.IGraph#getDijkstraProcessedOrder()
+   * @see eg.edu.alexu.csd.filestructure.graphs
+   * .IGraph#getDijkstraProcessedOrder()
    */
   @Override
   public ArrayList<Integer> getDijkstraProcessedOrder() {
@@ -149,7 +151,8 @@ public class Graph implements IGraph {
   /*
    * (non-Javadoc)
    *
-   * @see eg.edu.alexu.csd.filestructure.graphs.IGraph#runBellmanFord(int, int[])
+   * @see eg.edu.alexu.csd.filestructure.graphs
+   * .IGraph#runBellmanFord(int, int[])
    */
   @Override
   public boolean runBellmanFord(final int src, final int[] distances) {

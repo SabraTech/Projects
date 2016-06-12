@@ -63,7 +63,7 @@ IHash<K, V>, IHashQuadraticProbing {
       }
     }
 
-    for (int i = 0; table.get(tmp) != null; 
+    for (int i = 0; table.get(tmp) != null;
         tmp = (tmp + (i * i) % capacity) % capacity, i++) {
       collisions++;
     }
@@ -106,7 +106,7 @@ IHash<K, V>, IHashQuadraticProbing {
   @Override
   public String get(final K key) {
 
-    for (int i = hash(key); table.get(i) != null; 
+    for (int i = hash(key); table.get(i) != null;
         i = (i + (i * i) % capacity) % capacity) {
       if (key.equals(table.get(i).getKey())) {
         return (String) table.get(i).getValue();
@@ -120,7 +120,7 @@ IHash<K, V>, IHashQuadraticProbing {
    */
   @Override
   public void delete(final K key) {
-    for (int i = hash(key); table.get(i) != null; 
+    for (int i = hash(key); table.get(i) != null;
         i = (i + (i * i) % capacity) % capacity) {
       if (key.equals(table.get(i).getKey())) {
         table.set(i, new Pair<K, V>((K) new Integer(-1),

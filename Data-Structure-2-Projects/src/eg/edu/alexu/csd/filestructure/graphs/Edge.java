@@ -44,7 +44,7 @@ public class Edge {
    * @param to the to
    * @param weight the weight
    */
-  public Edge(final Integer from, final Integer to, final Integer weight){
+  public Edge(final Integer from, final Integer to, final Integer weight) {
     this.from = from;
     this.to = to;
     this.weight = weight;
