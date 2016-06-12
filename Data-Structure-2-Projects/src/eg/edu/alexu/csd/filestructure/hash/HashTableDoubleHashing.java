@@ -27,15 +27,12 @@ implements IHash<K, V>, IHashDouble {
   /** The table. */
   private ArrayList<Pair<K, V>> table;
 
-  /** The number of Slots. */
-  private static int NUMBER = 1200;
-
   /**
    * Instantiates a new hash table double hashing.
    */
   public HashTableDoubleHashing() {
     size = 0;
-    capacity = NUMBER;;
+    capacity = 1200;
     collisions = 0;
     doubleHashFactor = largestPrime(capacity);
     table = new ArrayList<Pair<K, V>>();

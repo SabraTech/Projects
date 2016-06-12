@@ -1,6 +1,6 @@
 package eg.edu.alexu.csd.filestructure.hash;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Pair.
  *

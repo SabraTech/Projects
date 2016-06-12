@@ -24,15 +24,12 @@ IHash<K, V>, IHashChaining {
   /** The table. */
   private ArrayList<ArrayList<Pair<K, V>>> table;
 
-  /** The number of Slots. */
-  private static int NUMBER = 1200;
-
   /**
    * Instantiates a new hash table chaining.
    */
   public HashTableChaining() {
     size = 0;
-    capacity = NUMBER;
+    capacity = 1200;
     table = new ArrayList<ArrayList<Pair<K, V>>>();
     for (int i = 0; i < 1200; i++) {
       table.add(new ArrayList<Pair<K, V>>());

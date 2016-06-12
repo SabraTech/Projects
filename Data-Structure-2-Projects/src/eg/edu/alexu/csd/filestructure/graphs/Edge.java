@@ -4,7 +4,7 @@ package eg.edu.alexu.csd.filestructure.graphs;
 /**
  * The Class Edge.
  */
-public class Edge{
+public class Edge {
 
   /** The weight. */
   private Integer from, to, weight;
