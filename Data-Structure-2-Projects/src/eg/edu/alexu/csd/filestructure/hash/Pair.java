@@ -8,13 +8,13 @@ package eg.edu.alexu.csd.filestructure.hash;
  * @param <V> the value type
  */
 public class Pair<K, V> {
-  
+
   /** The key. */
   private K key;
-  
+
   /** The value. */
   private V value;
-  
+
   /**
    * Instantiates a new pair.
    *
@@ -25,7 +25,7 @@ public class Pair<K, V> {
     this.key = key;
     this.value = value;
   }
-  
+
   /**
    * Gets the key.
    *
@@ -34,7 +34,7 @@ public class Pair<K, V> {
   public K getKey() {
     return key;
   }
-  
+
   /**
    * Sets the key.
    *
@@ -43,7 +43,7 @@ public class Pair<K, V> {
   public void setKey(final K key) {
     this.key = key;
   }
-  
+
   /**
    * Gets the value.
    *
@@ -52,7 +52,7 @@ public class Pair<K, V> {
   public V getValue() {
     return value;
   }
-  
+
   /**
    * Sets the value.
    *
@@ -61,5 +61,5 @@ public class Pair<K, V> {
   public void setValue(final V value) {
     this.value = value;
   }
-  
+
 }
