@@ -75,7 +75,7 @@ public class Graph implements IGraph {
   public int size() {
     return sizeTest;
   }
-  
+
   /*
    * (non-Javadoc)
    *
