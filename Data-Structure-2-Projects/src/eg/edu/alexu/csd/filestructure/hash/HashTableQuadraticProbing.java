@@ -24,12 +24,15 @@ IHash<K, V>, IHashQuadraticProbing {
   /** The table. */
   private ArrayList<Pair<K, V>> table;
 
+  /** The number of Slots. */
+  private static int NUMBER = 1200;
+
   /**
    * Instantiates a new hash table quadratic probing.
    */
   public HashTableQuadraticProbing() {
     size = 0;
-    capacity = 1200;
+    capacity = NUMBER;
     collisions = 0;
     table = new ArrayList<Pair<K, V>>();
     for (int i = 0; i < 1200; i++) {
@@ -43,7 +46,7 @@ IHash<K, V>, IHashQuadraticProbing {
    * @param key the key
    * @return the int
    */
-  private int hash(K key) {
+  private int hash(final K key) {
     return (key.hashCode() & 0x7fffffff) % capacity;
   }
 
@@ -52,10 +55,11 @@ IHash<K, V>, IHashQuadraticProbing {
    * java.lang.Object)
    */
   @Override
-  public void put(K key, V value) {
+  public void put(final K key, final V value) {
     int h = hash(key);
     int tmp = h;
-    for (int i = 0; table.get(h) != null && !table.get(h).getKey().equals(-1); i++) {
+    for (int i = 0; table.get(h) != null
+        && !table.get(h).getKey().equals(-1); i++) {
       h = (h + (i * i) % capacity) % capacity;
       if (h == tmp) {
         reHash();
@@ -103,7 +107,7 @@ IHash<K, V>, IHashQuadraticProbing {
    * @see eg.edu.alexu.csd.filestructure.hash.IHash#get(java.lang.Object)
    */
   @Override
-  public String get(K key) {
+  public String get(final K key) {
 
     for (int i = hash(key); table.get(i) != null; 
         i = (i + (i * i) % capacity) % capacity) {
@@ -118,11 +122,12 @@ IHash<K, V>, IHashQuadraticProbing {
    * @see eg.edu.alexu.csd.filestructure.hash.IHash#delete(java.lang.Object)
    */
   @Override
-  public void delete(K key) {
+  public void delete(final K key) {
     for (int i = hash(key); table.get(i) != null; 
         i = (i + (i * i) % capacity) % capacity) {
       if (key.equals(table.get(i).getKey())) {
-        table.set(i, new Pair<K, V>((K) new Integer(-1), table.get(i).getValue()));
+        table.set(i, new Pair<K, V>((K) new Integer(-1),
+            table.get(i).getValue()));
         size--;
         return;
       }
@@ -133,7 +138,7 @@ IHash<K, V>, IHashQuadraticProbing {
    * @see eg.edu.alexu.csd.filestructure.hash.IHash#contains(java.lang.Object)
    */
   @Override
-  public boolean contains(K key) {
+  public boolean contains(final K key) {
     return get(key) != null;
   }
 

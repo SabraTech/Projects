@@ -24,12 +24,15 @@ implements IHash<K, V>, IHashLinearProbing {
   /** The table. */
   private ArrayList<Pair<K, V>> table;
 
+  /** The number of Slots. */
+  private static int NUMBER = 1200;
+
   /**
    * Instantiates a new hash table linear probing.
    */
   public HashTableLinearProbing() {
     size = 0;
-    capacity = 1200;
+    capacity = NUMBER;;
     collisions = 0;
     table = new ArrayList<Pair<K, V>>();
     for (int i = 0; i < 1200; i++) {
@@ -43,7 +46,7 @@ implements IHash<K, V>, IHashLinearProbing {
    * @param key the key
    * @return the int
    */
-  private int hash(K key) {
+  private int hash(final K key) {
     return (key.hashCode() & 0x7fffffff) % capacity;
   }
 
@@ -52,7 +55,7 @@ implements IHash<K, V>, IHashLinearProbing {
    * put(java.lang.Object, java.lang.Object)
    */
   @Override
-  public void put(K key, V value) {
+  public void put(final K key, final V value) {
     int i;
     int j;
     for (i = hash(key); table.get(i) != null
@@ -104,7 +107,7 @@ implements IHash<K, V>, IHashLinearProbing {
    * @see eg.edu.alexu.csd.filestructure.hash.IHash#get(java.lang.Object)
    */
   @Override
-  public String get(K key) {
+  public String get(final K key) {
     for (int i = hash(key); table.get(i) != null; i = (i + 1) % capacity) {
       if (key.equals(table.get(i).getKey())) {
         return (String) table.get(i).getValue();
@@ -117,7 +120,7 @@ implements IHash<K, V>, IHashLinearProbing {
    * @see eg.edu.alexu.csd.filestructure.hash.IHash#delete(java.lang.Object)
    */
   @Override
-  public void delete(K key) {
+  public void delete(final K key) {
     for (int i = hash(key); table.get(i) != null; i = (i + 1) % capacity) {
       if (key.equals(table.get(i).getKey())) {
         table.set(i, new Pair<K, V>((K) new Integer(-1),
@@ -132,7 +135,7 @@ implements IHash<K, V>, IHashLinearProbing {
    * @see eg.edu.alexu.csd.filestructure.hash.IHash#contains(java.lang.Object)
    */
   @Override
-  public boolean contains(K key) {
+  public boolean contains(final K key) {
     return get(key) != null;
   }
 

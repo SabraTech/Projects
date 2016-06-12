@@ -27,12 +27,15 @@ implements IHash<K, V>, IHashDouble {
   /** The table. */
   private ArrayList<Pair<K, V>> table;
 
+  /** The number of Slots. */
+  private static int NUMBER = 1200;
+
   /**
    * Instantiates a new hash table double hashing.
    */
   public HashTableDoubleHashing() {
     size = 0;
-    capacity = 1200;
+    capacity = NUMBER;;
     collisions = 0;
     doubleHashFactor = largestPrime(capacity);
     table = new ArrayList<Pair<K, V>>();
@@ -47,7 +50,7 @@ implements IHash<K, V>, IHashDouble {
    * @param target the target
    * @return the int
    */
-  private int largestPrime(int target) {
+  private int largestPrime(final int target) {
     for (int i = target - 1; i > 0; i--) {
       boolean prime = true;
       for (int j = 2; j * j <= i && prime; j++) {
@@ -68,7 +71,7 @@ implements IHash<K, V>, IHashDouble {
    * @param key the key
    * @return the int
    */
-  private int hash(K key) {
+  private int hash(final K key) {
     return (key.hashCode() & 0x7fffffff) % capacity;
   }
 
@@ -78,7 +81,7 @@ implements IHash<K, V>, IHashDouble {
    * @param key the key
    * @return the int
    */
-  private int hash2(K key) {
+  private int hash2(final K key) {
     return doubleHashFactor - ((Integer) key % doubleHashFactor);
   }
 
@@ -87,7 +90,7 @@ implements IHash<K, V>, IHashDouble {
    * Object, java.lang.Object)
    */
   @Override
-  public void put(K key, V value) {
+  public void put(final K key, final V value) {
     int h = hash(key);
     int h2 = hash2(key);
     int tmp = h;
@@ -99,7 +102,8 @@ implements IHash<K, V>, IHashDouble {
       }
     }
 
-    for (; table.get(tmp) != null && !table.get(tmp).getKey().equals(-1); tmp = (tmp + h2) % capacity) {
+    for (; table.get(tmp) != null && !table.get(tmp).getKey().equals(-1);
+        tmp = (tmp + h2) % capacity) {
       collisions++;
     }
 
@@ -140,7 +144,7 @@ implements IHash<K, V>, IHashDouble {
    * @see eg.edu.alexu.csd.filestructure.hash.IHash#get(java.lang.Object)
    */
   @Override
-  public String get(K key) {
+  public String get(final K key) {
     int h = hash(key);
     int h2 = hash2(key);
 
@@ -156,7 +160,7 @@ implements IHash<K, V>, IHashDouble {
    * @see eg.edu.alexu.csd.filestructure.hash.IHash#delete(java.lang.Object)
    */
   @Override
-  public void delete(K key) {
+  public void delete(final K key) {
     int h = hash(key);
     int h2 = hash2(key);
 
@@ -174,7 +178,7 @@ implements IHash<K, V>, IHashDouble {
    * @see eg.edu.alexu.csd.filestructure.hash.IHash#contains(java.lang.Object)
    */
   @Override
-  public boolean contains(K key) {
+  public boolean contains(final K key) {
     return get(key) != null;
   }
 

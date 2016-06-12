@@ -24,12 +24,15 @@ IHash<K, V>, IHashChaining {
   /** The table. */
   private ArrayList<ArrayList<Pair<K, V>>> table;
 
+  /** The number of Slots. */
+  private static int NUMBER = 1200;
+
   /**
    * Instantiates a new hash table chaining.
    */
   public HashTableChaining() {
     size = 0;
-    capacity = 1200;
+    capacity = NUMBER;
     table = new ArrayList<ArrayList<Pair<K, V>>>();
     for (int i = 0; i < 1200; i++) {
       table.add(new ArrayList<Pair<K, V>>());
@@ -42,7 +45,7 @@ IHash<K, V>, IHashChaining {
    * @param key the key
    * @return the int
    */
-  private int hash(K key) {
+  private int hash(final K key) {
     return (key.hashCode() & 0x7fffffff) % capacity;
   }
 
@@ -53,7 +56,7 @@ IHash<K, V>, IHashChaining {
    * @param value the value
    */
   @Override
-  public void put(K key, V value) {
+  public void put(final K key, final V value) {
     int i = hash(key);
     collisions += table.get(i).size();
     table.get(i).add(new Pair<K, V>(key, value));
@@ -67,7 +70,7 @@ IHash<K, V>, IHashChaining {
    * @return the string
    */
   @Override
-  public String get(K key) {
+  public String get(final K key) {
     int i = hash(key);
     ArrayList<Pair<K, V>> list = table.get(i);
     for (int j = 0; j < list.size(); j++) {
@@ -84,7 +87,7 @@ IHash<K, V>, IHashChaining {
    * @param key the key
    */
   @Override
-  public void delete(K key) {
+  public void delete(final K key) {
     int i = hash(key);
     ArrayList<Pair<K, V>> list = table.get(i);
     for (int j = 0; j < list.size(); j++) {
@@ -103,7 +106,7 @@ IHash<K, V>, IHashChaining {
    * @return true, if successful
    */
   @Override
-  public boolean contains(K key) {
+  public boolean contains(final K key) {
     return get(key) != null;
   }
 
