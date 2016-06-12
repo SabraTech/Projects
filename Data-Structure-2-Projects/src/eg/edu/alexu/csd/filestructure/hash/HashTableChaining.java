@@ -4,9 +4,19 @@ import java.util.ArrayList;
 
 public class HashTableChaining<K, V> implements IHash<K, V>, IHashChaining {
   
-  private int M = 1200;
-  @SuppressWarnings("unchecked")
-  private ArrayList<Pair<K, V>>[] table = (ArrayList<Pair<K, V>>[]) new ArrayList[1200];
+  private int M;
+  private int collisions;
+  private int size;
+  private ArrayList<ArrayList<Pair<K, V>>> table;
+  
+  public HashTableChaining() {
+    size = 0;
+    M = 1200;
+    table = new ArrayList<ArrayList<Pair<K, V>>>();
+    for (int i = 0; i < 1200; i++) {
+      table.add(new ArrayList<Pair<K, V>>());
+    }
+  }
   
   private int hash(K key) {
     return (key.hashCode() & 0x7fffffff) % M;
@@ -15,14 +25,15 @@ public class HashTableChaining<K, V> implements IHash<K, V>, IHashChaining {
   @Override
   public void put(K key, V value) {
     int i = hash(key);
-    Pair<K,V> node = new Pair<K,V>(key, value);
-    table[i].add(node);
+    collisions += table.get(i).size();
+    table.get(i).add(new Pair<K, V>(key, value));
+    size++;
   }
   
   @Override
   public String get(K key) {
     int i = hash(key);
-    ArrayList<Pair<K, V>> list = table[i];
+    ArrayList<Pair<K, V>> list = table.get(i);
     for (int j = 0; j < list.size(); j++) {
       if (list.get(j).getKey().equals(key)) {
         return (String) list.get(j).getValue();
@@ -34,7 +45,7 @@ public class HashTableChaining<K, V> implements IHash<K, V>, IHashChaining {
   @Override
   public void delete(K key) {
     int i = hash(key);
-    ArrayList<Pair<K, V>> list = table[i];
+    ArrayList<Pair<K, V>> list = table.get(i);
     for (int j = 0; j < list.size(); j++) {
       if (list.get(j).getKey().equals(key)) {
         list.remove(j);
@@ -45,64 +56,35 @@ public class HashTableChaining<K, V> implements IHash<K, V>, IHashChaining {
   
   @Override
   public boolean contains(K key) {
-    int i = hash(key);
-    ArrayList<Pair<K, V>> list = table[i];
-    for (int j = 0; j < list.size(); j++) {
-      if (list.get(j).getKey().equals(key)) {
-        return true;
-      }
-    }
-    return false;
+    return get(key) != null;
   }
   
   @Override
   public boolean isEmpty() {
-    int cnt = 0;
-    for(int i=0;i<table.length;i++){
-      if(table[i].size() == 0){
-        cnt++;
-      }
-    }
-    if(cnt == 1200){
-      return true;
-    }else{
-      return false;
-    }
+    return size == 0;
   }
   
   @Override
   public int size() {
-    int cnt = 0;
-    for(int i=0;i<table.length;i++){
-      if(table[i].size() != 0){
-        cnt++;
-      }
-    }
-    return cnt;
+    return size;
   }
   
   @Override
   public int capacity() {
-    return 1200;
+    return M;
   }
   
   @Override
   public int collisions() {
-    int cnt = 0;
-    for(int i=0;i<table.length;i++){
-      if(table[i].size() > 1){
-       cnt += table[i].size() - 1;
-      }
-    }
-    return cnt;
+    return collisions;
   }
   
   @Override
   public Iterable<K> keys() {
     ArrayList<K> keys = new ArrayList<K>();
-    for(int i=0;i<table.length;i++){
-      for(int j=0;i<table[i].size();j++){
-        keys.add(table[i].get(j).getKey());
+    for (ArrayList<Pair<K, V>> list : table) {
+      for (Pair<K, V> entry : list) {
+        keys.add(entry.getKey());
       }
     }
     return keys;
