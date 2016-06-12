@@ -57,7 +57,7 @@ public class HashTableDoubleHashing<K, V> implements IHash<K, V>, IHashDouble {
       }
     }
     
-    for (; table.get(tmp) != null && !table.get(tmp).getKey().equals(-1); tmp = (tmp + h2) & M) {
+    for (; table.get(tmp) != null && !table.get(tmp).getKey().equals(-1); tmp = (tmp + h2) % M) {
       collisions++;
     }
     
