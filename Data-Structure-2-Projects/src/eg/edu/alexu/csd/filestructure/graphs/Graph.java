@@ -12,7 +12,8 @@ import java.util.Scanner;
 public class Graph implements IGraph {
 
   /** The adj list. */
-  private ArrayList<ArrayList<Node>>adjList = new ArrayList<ArrayList<Node>>();
+  private ArrayList<ArrayList<Node>> adjList =
+      new ArrayList<ArrayList<Node>>();
 
   /** The edge list. */
   private ArrayList<Edge> edgeList = new ArrayList<Edge>();

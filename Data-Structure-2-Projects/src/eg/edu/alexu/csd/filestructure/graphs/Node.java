@@ -15,7 +15,7 @@ public class Node implements Comparable<Node> {
    * @param v the v
    * @param weight the weight
    */
-  public Node(final Integer v, final Integer weight){
+  public Node(final Integer v, final Integer weight) {
     this.v = v;
     this.weight = weight;
   }
