@@ -9,7 +9,8 @@ import java.util.ArrayList;
  * @param <K> the key type
  * @param <V> the value type
  */
-public class HashTableDoubleHashing<K, V> implements IHash<K, V>, IHashDouble {
+public class HashTableDoubleHashing<K, V>
+implements IHash<K, V>, IHashDouble {
 
   /** The capacity. */
   private int capacity;
@@ -82,7 +83,8 @@ public class HashTableDoubleHashing<K, V> implements IHash<K, V>, IHashDouble {
   }
 
   /* (non-Javadoc)
-   * @see eg.edu.alexu.csd.filestructure.hash.IHash#put(java.lang.Object, java.lang.Object)
+   * @see eg.edu.alexu.csd.filestructure.hash.IHash#put(java.lang.
+   * Object, java.lang.Object)
    */
   @Override
   public void put(K key, V value) {
@@ -160,7 +162,8 @@ public class HashTableDoubleHashing<K, V> implements IHash<K, V>, IHashDouble {
 
     for (; table.get(h) != null; h = (int) (h + h2) % capacity) {
       if (table.get(h).getKey().equals(key)) {
-        table.set(h, new Pair<K, V>((K) new Integer(-1), table.get(h).getValue()));
+        table.set(h, new Pair<K, V>((K) new Integer(-1),
+            table.get(h).getValue()));
         size--;
         return;
       }

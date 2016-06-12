@@ -71,12 +71,7 @@ public class Dictionary implements IDictionary {
    */
   @Override
   public boolean exists(final String word) {
-
-    if (tree.search(word)) {
-      return true;
-    } else {
-      return false;
-    }
+      return tree.search(word);    
   }
 
   /*

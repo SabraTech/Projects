@@ -9,7 +9,8 @@ import java.util.ArrayList;
  * @param <K> the key type
  * @param <V> the value type
  */
-public class HashTableChaining<K, V> implements IHash<K, V>, IHashChaining {
+public class HashTableChaining<K, V> implements
+IHash<K, V>, IHashChaining {
   
   /** The capacity. */
   private int capacity;

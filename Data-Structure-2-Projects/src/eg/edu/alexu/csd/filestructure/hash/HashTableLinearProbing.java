@@ -9,7 +9,8 @@ import java.util.ArrayList;
  * @param <K> the key type
  * @param <V> the value type
  */
-public class HashTableLinearProbing<K, V> implements IHash<K, V>, IHashLinearProbing {
+public class HashTableLinearProbing<K, V>
+implements IHash<K, V>, IHashLinearProbing {
 
   /** The capacity. */
   private int capacity;
@@ -47,7 +48,8 @@ public class HashTableLinearProbing<K, V> implements IHash<K, V>, IHashLinearPro
   }
 
   /* (non-Javadoc)
-   * @see eg.edu.alexu.csd.filestructure.hash.IHash#put(java.lang.Object, java.lang.Object)
+   * @see eg.edu.alexu.csd.filestructure.hash.IHash#
+   * put(java.lang.Object, java.lang.Object)
    */
   @Override
   public void put(K key, V value) {
@@ -118,7 +120,8 @@ public class HashTableLinearProbing<K, V> implements IHash<K, V>, IHashLinearPro
   public void delete(K key) {
     for (int i = hash(key); table.get(i) != null; i = (i + 1) % capacity) {
       if (key.equals(table.get(i).getKey())) {
-        table.set(i, new Pair<K, V>((K) new Integer(-1), table.get(i).getValue()));
+        table.set(i, new Pair<K, V>((K) new Integer(-1),
+            table.get(i).getValue()));
         size--;
         return;
       }

@@ -9,17 +9,18 @@ import java.util.ArrayList;
  * @param <K> the key type
  * @param <V> the value type
  */
-public class HashTableQuadraticProbing<K, V> implements IHash<K, V>, IHashQuadraticProbing {
+public class HashTableQuadraticProbing<K, V> implements
+IHash<K, V>, IHashQuadraticProbing {
 
   /** The capacity. */
   private int capacity;
-  
+
   /** The size. */
   private int size;
-  
+
   /** The collisions. */
   private int collisions;
-  
+
   /** The table. */
   private ArrayList<Pair<K, V>> table;
 
@@ -47,7 +48,8 @@ public class HashTableQuadraticProbing<K, V> implements IHash<K, V>, IHashQuadra
   }
 
   /* (non-Javadoc)
-   * @see eg.edu.alexu.csd.filestructure.hash.IHash#put(java.lang.Object, java.lang.Object)
+   * @see eg.edu.alexu.csd.filestructure.hash.IHash#put(java.lang.Object,
+   * java.lang.Object)
    */
   @Override
   public void put(K key, V value) {
@@ -60,7 +62,8 @@ public class HashTableQuadraticProbing<K, V> implements IHash<K, V>, IHashQuadra
       }
     }
 
-    for (int i = 0; table.get(tmp) != null; tmp = (tmp + (i * i) % capacity) % capacity, i++) {
+    for (int i = 0; table.get(tmp) != null; 
+        tmp = (tmp + (i * i) % capacity) % capacity, i++) {
       collisions++;
     }
 
@@ -102,7 +105,8 @@ public class HashTableQuadraticProbing<K, V> implements IHash<K, V>, IHashQuadra
   @Override
   public String get(K key) {
 
-    for (int i = hash(key); table.get(i) != null; i = (i + (i * i) % capacity) % capacity) {
+    for (int i = hash(key); table.get(i) != null; 
+        i = (i + (i * i) % capacity) % capacity) {
       if (key.equals(table.get(i).getKey())) {
         return (String) table.get(i).getValue();
       }
@@ -115,7 +119,8 @@ public class HashTableQuadraticProbing<K, V> implements IHash<K, V>, IHashQuadra
    */
   @Override
   public void delete(K key) {
-    for (int i = hash(key); table.get(i) != null; i = (i + (i * i) % capacity) % capacity) {
+    for (int i = hash(key); table.get(i) != null; 
+        i = (i + (i * i) % capacity) % capacity) {
       if (key.equals(table.get(i).getKey())) {
         table.set(i, new Pair<K, V>((K) new Integer(-1), table.get(i).getValue()));
         size--;
