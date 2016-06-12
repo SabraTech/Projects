@@ -14,16 +14,16 @@ implements IHash<K, V>, IHashDouble {
 
   /** The capacity. */
   private int capacity;
-  
+
   /** The size. */
   private int size;
-  
+
   /** The collisions. */
   private int collisions;
-  
+
   /** The double hash factor. */
   private int doubleHashFactor;
-  
+
   /** The table. */
   private ArrayList<Pair<K, V>> table;
 

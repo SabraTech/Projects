@@ -14,13 +14,13 @@ implements IHash<K, V>, IHashLinearProbing {
 
   /** The capacity. */
   private int capacity;
-  
+
   /** The size. */
   private int size;
-  
+
   /** The collisions. */
   private int collisions;
-  
+
   /** The table. */
   private ArrayList<Pair<K, V>> table;
 

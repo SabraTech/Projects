@@ -14,13 +14,13 @@ IHash<K, V>, IHashChaining {
 
   /** The capacity. */
   private int capacity;
-  
+
   /** The collisions. */
   private int collisions;
-  
+
   /** The size. */
   private int size;
-  
+
   /** The table. */
   private ArrayList<ArrayList<Pair<K, V>>> table;
 
