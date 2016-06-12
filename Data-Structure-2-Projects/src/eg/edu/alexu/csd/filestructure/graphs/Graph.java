@@ -124,7 +124,7 @@ public class Graph implements IGraph {
       Node e = queue.poll();
       processedOrder.add(e.getV());
       for (int i = 0; i < adjList.get(e.getV()).size(); i++) {
-        if (distances[adjList.get(e.getV()).get(i).getV()] 
+        if (distances[adjList.get(e.getV()).get(i).getV()]
             > distances[e.getV()]
             + graph[e.getV()][adjList.get(e.getV()).get(i).getV()]) {
           queue.remove(new Node(adjList.get(e.getV()).get(i).getV(),
