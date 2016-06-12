@@ -97,10 +97,11 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
 
     // divide into two arrays
     while (lower <= upper) {
+      // <
       while ((unordered.get(lower).compareTo(pivot)) < 0) {
         lower++;
       }
-
+      // >
       while ((unordered.get(upper).compareTo(pivot)) > 0) {
         upper--;
       }
