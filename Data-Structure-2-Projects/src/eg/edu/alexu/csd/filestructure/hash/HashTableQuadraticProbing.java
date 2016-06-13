@@ -60,7 +60,7 @@ IHash<K, V>, IHashQuadraticProbing {
     int j;
     orderOfAdd.add(new Pair<K,V>(key,value));
     int count = 0;
-    for (j = hash(key);count < size;j = (hash(key) + count * count) % capacity) {
+    for (j = hash(key);count < capacity;j = (hash(key) + count * count) % capacity) {
       if(( table.get(j) == null || table.get(j).getKey().equals(-1) )){
         break;
       }  
