@@ -93,10 +93,9 @@ implements IHash<K, V>, IHashLinearProbing {
     }
     capacity = capacity * 2;
     size = 0;
-    int count = 0;
 
     for (Pair<K, V> p : orderOfAdd) {
-      tmp.set(count++, p);
+      tmp.add(p);
     }
 
     table = new ArrayList<Pair<K, V>>();
