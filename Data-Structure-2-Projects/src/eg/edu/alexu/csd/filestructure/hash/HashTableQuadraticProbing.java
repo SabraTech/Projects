@@ -93,7 +93,7 @@ IHash<K, V>, IHashQuadraticProbing {
     }
 
     table = new ArrayList<Pair<K, V>>();
-    orderOfAdd = new ArrayList<Pair<K,V>>();
+    orderOfAdd = new ArrayList<Pair<K, V>>();
     for (int i = 0; i < capacity; i++) {
       table.add(null);
     }
