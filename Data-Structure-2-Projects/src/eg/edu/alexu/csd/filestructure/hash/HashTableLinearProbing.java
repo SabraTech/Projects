@@ -24,7 +24,7 @@ implements IHash<K, V>, IHashLinearProbing {
   /** The table. */
   private ArrayList<Pair<K, V>> table;
 
-  /** The table. */
+  /** The orderOfAdd. */
   private ArrayList<Pair<K, V>> orderOfAdd;
 
   /**
@@ -57,7 +57,6 @@ implements IHash<K, V>, IHashLinearProbing {
    */
   @Override
   public void put(final K key, final V value) {
-    int i;
     int j;
     orderOfAdd.add(new Pair<K,V>(key,value));
     int count = 0;
@@ -99,9 +98,7 @@ implements IHash<K, V>, IHashLinearProbing {
     }
 
     for (Pair<K, V> p : tmp) {
-      //if (p != null) {
         put(p.getKey(), p.getValue());
-      //}
     }
   }
 
