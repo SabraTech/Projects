@@ -60,12 +60,12 @@ implements IHash<K, V>, IHashLinearProbing {
     int i;
     int j;
     orderOfAdd.add(new Pair<K,V>(key,value));
-    for (i = hash(key); table.get(i) != null
+    /*for (i = hash(key); table.get(i) != null
         && !table.get(i).getKey().equals(-1); i = (i + 1) % capacity) {
       if (table.get(i).equals(key)) {
         break;
       }
-    }
+    }*/
     int count = 0;
     for (j = hash(key); table.get(j) != null || count < size; count++, j = (j + 1) % capacity) {
 
@@ -78,7 +78,7 @@ implements IHash<K, V>, IHashLinearProbing {
     if(count != 0){
       collisions += count + 1;
     }
-    table.set(i, new Pair<K, V>(key, value));
+    table.set(j, new Pair<K, V>(key, value));
     size++;
 
   }
