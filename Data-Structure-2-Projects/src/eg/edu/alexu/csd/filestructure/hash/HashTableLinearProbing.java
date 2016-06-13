@@ -60,15 +60,9 @@ implements IHash<K, V>, IHashLinearProbing {
     int i;
     int j;
     orderOfAdd.add(new Pair<K,V>(key,value));
-    /*for (i = hash(key); table.get(i) != null
-        && !table.get(i).getKey().equals(-1); i = (i + 1) % capacity) {
-      if (table.get(i).equals(key)) {
-        break;
-      }
-    }*/
     int count = 0;
-    for (j = hash(key); table.get(j) != null || count < size; count++, j = (j + 1) % capacity) {
-
+    for (j = hash(key); (table.get(j) != null && !table.get(j).getKey().equals(-1)) || count < size;j = (j + 1) % capacity) {
+        count++;
     }
     if (count == capacity) {
       reHash();
