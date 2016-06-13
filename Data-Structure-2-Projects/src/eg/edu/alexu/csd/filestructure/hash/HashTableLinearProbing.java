@@ -24,6 +24,9 @@ implements IHash<K, V>, IHashLinearProbing {
   /** The table. */
   private ArrayList<Pair<K, V>> table;
 
+  /** The table. */
+  private ArrayList<Pair<K, V>> orderOfAdd;
+
   /**
    * Instantiates a new hash table linear probing.
    */
@@ -32,6 +35,7 @@ implements IHash<K, V>, IHashLinearProbing {
     capacity = 1200;
     collisions = 0;
     table = new ArrayList<Pair<K, V>>();
+    orderOfAdd = new ArrayList<Pair<K,V>>();
     for (int i = 0; i < 1200; i++) {
       table.add(null);
     }
@@ -55,21 +59,28 @@ implements IHash<K, V>, IHashLinearProbing {
   public void put(final K key, final V value) {
     int i;
     int j;
+    orderOfAdd.add(new Pair<K,V>(key,value));
     for (i = hash(key); table.get(i) != null
         && !table.get(i).getKey().equals(-1); i = (i + 1) % capacity) {
       if (table.get(i).equals(key)) {
         break;
       }
     }
-    for (j = hash(key); table.get(j) != null; j = (j + 1) % capacity) {
-      collisions++;
+    int count = 0;
+    for (j = hash(key); table.get(j) != null && count < size; count++, j = (j + 1) % capacity) {
+
+    }
+    if (count == capacity) {
+      reHash();
+      collisions += count + 1;
+      return;
+    }
+    if(count != 0){
+      collisions += count + 1;
     }
     table.set(i, new Pair<K, V>(key, value));
     size++;
 
-    if (size == capacity) {
-      reHash();
-    }
   }
 
   /**
@@ -84,11 +95,12 @@ implements IHash<K, V>, IHashLinearProbing {
     size = 0;
     int count = 0;
 
-    for (Pair<K, V> p : table) {
+    for (Pair<K, V> p : orderOfAdd) {
       tmp.set(count++, p);
     }
 
     table = new ArrayList<Pair<K, V>>();
+    orderOfAdd = new ArrayList<Pair<K,V>>();
     for (int i = 0; i < capacity; i++) {
       table.add(null);
     }
