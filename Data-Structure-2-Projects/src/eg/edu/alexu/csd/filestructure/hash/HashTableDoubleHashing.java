@@ -94,13 +94,13 @@ implements IHash<K, V>, IHashDouble {
   public void put(final K key, final V value) {
     int j;
     int h2 = hash2(key);
-      orderOfAdd.add(new Pair<K, V>(key,value));
+      orderOfAdd.add(new Pair<K, V>(key, value));
       int count = 0;
       for (j = hash(key);count < capacity;
           j = (hash(key) + count * h2) % capacity) {
         if (table.get(j) == null || table.get(j).getKey().equals(-1)) {
           break;
-        }  
+        }
         count++;
       }
       if (count == capacity) {
@@ -220,7 +220,7 @@ implements IHash<K, V>, IHashDouble {
   public Iterable<K> keys() {
     ArrayList<K> keys = new ArrayList<K>();
     for (Pair<K, V> tmp : table) {
-      if(tmp != null){
+      if (tmp != null) {
         keys.add(tmp.getKey());
       }
     }

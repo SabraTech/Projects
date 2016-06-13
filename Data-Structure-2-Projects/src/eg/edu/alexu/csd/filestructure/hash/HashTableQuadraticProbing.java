@@ -58,7 +58,7 @@ IHash<K, V>, IHashQuadraticProbing {
   @Override
   public void put(final K key, final V value) {
     int j;
-    orderOfAdd.add(new Pair<K, V>(key,value));
+    orderOfAdd.add(new Pair<K, V>(key, value));
     int count = 0;
     for (j = hash(key);count < capacity;
         j = (hash(key) + count * count) % capacity) {
@@ -181,7 +181,7 @@ IHash<K, V>, IHashQuadraticProbing {
   public Iterable<K> keys() {
     ArrayList<K> keys = new ArrayList<K>();
     for (Pair<K, V> tmp : table) {
-      if(tmp != null){
+      if (tmp != null) {
         keys.add(tmp.getKey());
       }
     }

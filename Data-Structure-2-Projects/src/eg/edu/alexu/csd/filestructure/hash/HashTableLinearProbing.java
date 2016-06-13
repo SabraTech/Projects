@@ -58,12 +58,12 @@ implements IHash<K, V>, IHashLinearProbing {
   @Override
   public void put(final K key, final V value) {
     int j;
-    orderOfAdd.add(new Pair<K, V>(key,value));
+    orderOfAdd.add(new Pair<K, V>(key, value));
     int count = 0;
     for (j = hash(key);count < capacity;j = (j + 1) % capacity) {
       if (table.get(j) == null || table.get(j).getKey().equals(-1)) {
         break;
-      }  
+      }
       count++;
     }
     if (count == capacity) {
@@ -177,7 +177,7 @@ implements IHash<K, V>, IHashLinearProbing {
   public Iterable<K> keys() {
     ArrayList<K> keys = new ArrayList<K>();
     for (Pair<K, V> tmp : table) {
-      if(tmp != null){
+      if (tmp != null) {
         keys.add(tmp.getKey());
       }
     }
