@@ -67,7 +67,7 @@ implements IHash<K, V>, IHashLinearProbing {
       }
     }
     int count = 0;
-    for (j = hash(key); table.get(j) != null && count < size; count++, j = (j + 1) % capacity) {
+    for (j = hash(key); table.get(j) != null || count < size; count++, j = (j + 1) % capacity) {
 
     }
     if (count == capacity) {
