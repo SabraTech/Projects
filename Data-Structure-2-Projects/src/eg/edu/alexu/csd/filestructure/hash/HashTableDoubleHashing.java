@@ -83,7 +83,7 @@ implements IHash<K, V>, IHashDouble {
    * @return the int
    */
   private int hash2(final K key) {
-    return doubleHashFactor - ((Integer) key % doubleHashFactor);
+    return 1193 - ((Integer) key % 1193);
   }
 
   /* (non-Javadoc)
