@@ -85,9 +85,6 @@ implements IHash<K, V>, IHashLinearProbing {
    */
   private void reHash() {
     ArrayList<Pair<K, V>> tmp = new ArrayList<Pair<K, V>>();
-    for (int i = 0; i < capacity; i++) {
-      tmp.add(null);
-    }
     capacity = capacity * 2;
     size = 0;
 
@@ -183,7 +180,9 @@ implements IHash<K, V>, IHashLinearProbing {
   public Iterable<K> keys() {
     ArrayList<K> keys = new ArrayList<K>();
     for (Pair<K, V> tmp : table) {
-      keys.add(tmp.getKey());
+      if(tmp != null){
+        keys.add(tmp.getKey());
+      }
     }
     return keys;
   }
