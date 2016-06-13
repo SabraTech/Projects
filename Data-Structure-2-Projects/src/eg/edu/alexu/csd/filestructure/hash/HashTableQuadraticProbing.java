@@ -35,7 +35,7 @@ IHash<K, V>, IHashQuadraticProbing {
     capacity = 1200;
     collisions = 0;
     table = new ArrayList<Pair<K, V>>();
-    orderOfAdd = new ArrayList<Pair<K,V>>();
+    orderOfAdd = new ArrayList<Pair<K, V>>();
     for (int i = 0; i < 1200; i++) {
       table.add(null);
     }
@@ -58,12 +58,13 @@ IHash<K, V>, IHashQuadraticProbing {
   @Override
   public void put(final K key, final V value) {
     int j;
-    orderOfAdd.add(new Pair<K,V>(key,value));
+    orderOfAdd.add(new Pair<K, V>(key,value));
     int count = 0;
-    for (j = hash(key);count < capacity;j = (hash(key) + count * count) % capacity) {
-      if(( table.get(j) == null || table.get(j).getKey().equals(-1) )){
+    for (j = hash(key);count < capacity;
+        j = (hash(key) + count * count) % capacity) {
+      if (table.get(j) == null || table.get(j).getKey().equals(-1)) {
         break;
-      }  
+      }
       count++;
     }
     if (count == capacity) {
@@ -71,7 +72,7 @@ IHash<K, V>, IHashQuadraticProbing {
       collisions += count + 1;
       return;
     }
-    if(count != 0){
+    if (count != 0) {
       collisions += count + 1;
     }
     table.set(j, new Pair<K, V>(key, value));

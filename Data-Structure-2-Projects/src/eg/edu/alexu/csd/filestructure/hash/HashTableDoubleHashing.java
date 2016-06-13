@@ -39,7 +39,7 @@ implements IHash<K, V>, IHashDouble {
     collisions = 0;
     doubleHashFactor = largestPrime(capacity);
     table = new ArrayList<Pair<K, V>>();
-    orderOfAdd = new ArrayList<Pair<K,V>>();
+    orderOfAdd = new ArrayList<Pair<K, V>>();
     for (int i = 0; i < 1200; i++) {
       table.add(null);
     }
@@ -94,10 +94,11 @@ implements IHash<K, V>, IHashDouble {
   public void put(final K key, final V value) {
     int j;
     int h2 = hash2(key);
-      orderOfAdd.add(new Pair<K,V>(key,value));
+      orderOfAdd.add(new Pair<K, V>(key,value));
       int count = 0;
-      for (j = hash(key);count < capacity;j = (hash(key) + count * h2) % capacity) {
-        if(( table.get(j) == null || table.get(j).getKey().equals(-1) )){
+      for (j = hash(key);count < capacity;
+          j = (hash(key) + count * h2) % capacity) {
+        if (table.get(j) == null || table.get(j).getKey().equals(-1)) {
           break;
         }  
         count++;
@@ -107,8 +108,8 @@ implements IHash<K, V>, IHashDouble {
         collisions += count + 1;
         return;
       }
-      if(count != 0){
-        collisions += count ;
+      if (count != 0) {
+        collisions += count;
       }
       table.set(j, new Pair<K, V>(key, value));
       size++;
