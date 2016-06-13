@@ -60,7 +60,7 @@ implements IHash<K, V>, IHashLinearProbing {
     int j;
     orderOfAdd.add(new Pair<K, V>(key, value));
     int count = 0;
-    for (j = hash(key);count < capacity;j = (j + 1) % capacity) {
+    for (j = hash(key); count < capacity;j = (j + 1) % capacity) {
       if (table.get(j) == null || table.get(j).getKey().equals(-1)) {
         break;
       }

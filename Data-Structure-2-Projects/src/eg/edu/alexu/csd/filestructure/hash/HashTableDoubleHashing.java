@@ -96,7 +96,7 @@ implements IHash<K, V>, IHashDouble {
     int h2 = hash2(key);
       orderOfAdd.add(new Pair<K, V>(key, value));
       int count = 0;
-      for (j = hash(key);count < capacity;
+      for (j = hash(key); count < capacity;
           j = (hash(key) + count * h2) % capacity) {
         if (table.get(j) == null || table.get(j).getKey().equals(-1)) {
           break;
