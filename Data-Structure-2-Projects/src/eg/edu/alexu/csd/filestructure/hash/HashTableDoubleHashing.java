@@ -27,6 +27,9 @@ implements IHash<K, V>, IHashDouble {
   /** The table. */
   private ArrayList<Pair<K, V>> table;
 
+  /** The orderOfAdd. */
+  private ArrayList<Pair<K, V>> orderOfAdd;
+
   /**
    * Instantiates a new hash table double hashing.
    */
@@ -36,6 +39,7 @@ implements IHash<K, V>, IHashDouble {
     collisions = 0;
     doubleHashFactor = largestPrime(capacity);
     table = new ArrayList<Pair<K, V>>();
+    orderOfAdd = new ArrayList<Pair<K,V>>();
     for (int i = 0; i < 1200; i++) {
       table.add(null);
     }
@@ -88,24 +92,26 @@ implements IHash<K, V>, IHashDouble {
    */
   @Override
   public void put(final K key, final V value) {
-    int h = hash(key);
+    int j;
     int h2 = hash2(key);
-    int tmp = h;
-
-    for (int i = 0; table.get(h) != null
-        && !table.get(h).getKey().equals(-1); i++, h = (h + h2) % capacity) {
-      if (i == capacity) {
-        reHash();
+      orderOfAdd.add(new Pair<K,V>(key,value));
+      int count = 0;
+      for (j = hash(key);count < capacity;j = (hash(key) + count * h2) % capacity) {
+        if(( table.get(j) == null || table.get(j).getKey().equals(-1) )){
+          break;
+        }  
+        count++;
       }
-    }
-
-    for (; table.get(tmp) != null && !table.get(tmp).getKey().equals(-1);
-        tmp = (tmp + h2) % capacity) {
-      collisions++;
-    }
-
-    table.set(h, new Pair<K, V>(key, value));
-    size++;
+      if (count == capacity) {
+        reHash();
+        collisions += count + 1;
+        return;
+      }
+      if(count != 0){
+        collisions += count ;
+      }
+      table.set(j, new Pair<K, V>(key, value));
+      size++;
   }
 
   /**
@@ -114,26 +120,21 @@ implements IHash<K, V>, IHashDouble {
   private void reHash() {
     doubleHashFactor = largestPrime(capacity * 2);
     ArrayList<Pair<K, V>> tmp = new ArrayList<Pair<K, V>>();
-    for (int i = 0; i < capacity; i++) {
-      tmp.add(null);
-    }
     capacity = capacity * 2;
     size = 0;
-    int count = 0;
 
-    for (Pair<K, V> p : table) {
-      tmp.set(count++, p);
+    for (Pair<K, V> p : orderOfAdd) {
+      tmp.add(p);
     }
 
     table = new ArrayList<Pair<K, V>>();
+    orderOfAdd = new ArrayList<Pair<K,V>>();
     for (int i = 0; i < capacity; i++) {
       table.add(null);
     }
 
     for (Pair<K, V> p : tmp) {
-      if (p != null) {
         put(p.getKey(), p.getValue());
-      }
     }
   }
 
@@ -218,7 +219,9 @@ implements IHash<K, V>, IHashDouble {
   public Iterable<K> keys() {
     ArrayList<K> keys = new ArrayList<K>();
     for (Pair<K, V> tmp : table) {
-      keys.add(tmp.getKey());
+      if(tmp != null){
+        keys.add(tmp.getKey());
+      }
     }
     return keys;
   }
