@@ -61,8 +61,11 @@ implements IHash<K, V>, IHashLinearProbing {
     int j;
     orderOfAdd.add(new Pair<K,V>(key,value));
     int count = 0;
-    for (j = hash(key); (table.get(j) != null && !table.get(j).getKey().equals(-1)) || count < size;j = (j + 1) % capacity) {
-        count++;
+    for (j = hash(key);count < size;j = (j + 1) % capacity) {
+      if(( table.get(j) == null || table.get(j).getKey().equals(-1) )){
+        break;
+      }  
+      count++;
     }
     if (count == capacity) {
       reHash();
@@ -99,9 +102,9 @@ implements IHash<K, V>, IHashLinearProbing {
     }
 
     for (Pair<K, V> p : tmp) {
-      if (p != null) {
+      //if (p != null) {
         put(p.getKey(), p.getValue());
-      }
+      //}
     }
   }
 
